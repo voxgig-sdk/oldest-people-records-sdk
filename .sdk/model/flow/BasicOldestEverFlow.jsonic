@@ -1,0 +1,47 @@
+# BasicOldestEverFlow
+
+main: kit: flow: BasicOldestEverFlow:
+{
+  entity: "oldest_ever",
+  kind: "basic",
+  name: "BasicOldestEverFlow",
+  step: [
+    {
+      input: {
+        ref: "oldest_ever_ref01",
+        srcdatavar: "oldest_ever_ref01_data",
+        suffix: "_up0",
+        textfield: "birth_date"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-oldest_ever_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "oldest_ever_ref01",
+        srcdatavar: "oldest_ever_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-oldest_ever_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOldestEverFlow"
+}

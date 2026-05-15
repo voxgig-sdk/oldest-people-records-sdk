@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "oldest_living": {
+      "OLDEST_LIVING00": {
+        "age": "s50",
+        "birth_date": "s51",
+        "country": "s52",
+        "death_date": "s53",
+        "id": "OLDEST_LIVING00",
+        "last_updated": "s55",
+        "name": "s56",
+        "verified": false
+      },
+      "OLDEST_LIVING01": {
+        "age": "sa0",
+        "birth_date": "sa1",
+        "country": "sa2",
+        "death_date": "sa3",
+        "id": "OLDEST_LIVING01",
+        "last_updated": "sa5",
+        "name": "sa6",
+        "verified": false
+      },
+      "OLDEST_LIVING02": {
+        "age": "sf0",
+        "birth_date": "sf1",
+        "country": "sf2",
+        "death_date": "sf3",
+        "id": "OLDEST_LIVING02",
+        "last_updated": "sf5",
+        "name": "sf6",
+        "verified": false
+      }
+    }
+  },
+  "new": {
+    "oldest_living": {
+      "oldest_living_ref01": {
+        "age": "s140",
+        "birth_date": "s141",
+        "country": "s142",
+        "death_date": "s143",
+        "last_updated": "s145",
+        "name": "s146",
+        "verified": false
+      }
+    }
+  }
+}

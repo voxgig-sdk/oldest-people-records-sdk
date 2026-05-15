@@ -1,0 +1,22 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 2
+  metrics: count: method: 4
+
+  entity: oldest_ever: {
+    path: "/oldest-ever": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: oldest_living: {
+    path: "/oldest-living": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+}

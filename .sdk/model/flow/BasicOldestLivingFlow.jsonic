@@ -1,0 +1,47 @@
+# BasicOldestLivingFlow
+
+main: kit: flow: BasicOldestLivingFlow:
+{
+  entity: "oldest_living",
+  kind: "basic",
+  name: "BasicOldestLivingFlow",
+  step: [
+    {
+      input: {
+        ref: "oldest_living_ref01",
+        srcdatavar: "oldest_living_ref01_data",
+        suffix: "_up0",
+        textfield: "birth_date"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-oldest_living_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "oldest_living_ref01",
+        srcdatavar: "oldest_living_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-oldest_living_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOldestLivingFlow"
+}

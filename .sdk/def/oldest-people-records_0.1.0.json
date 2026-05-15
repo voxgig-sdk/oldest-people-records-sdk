@@ -1,0 +1,377 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Oldest People Records API",
+    "description": "This API provides information about the oldest living person and the oldest person ever recorded. It manages local data, allowing updates and constraints such as birth date limits and country of origin.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://whoistheoldest.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://whoistheoldest.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/oldest-living": {
+      "get": {
+        "summary": "Get oldest living person",
+        "description": "Retrieves information about the oldest living person currently alive.",
+        "operationId": "getOldestLiving",
+        "tags": [
+          "Records"
+        ],
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Filter by country of origin",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "birthDateAfter",
+            "in": "query",
+            "description": "Filter for people born after this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "birthDateBefore",
+            "in": "query",
+            "description": "Filter for people born before this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No record found matching the criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update oldest living person record",
+        "description": "Updates the information about the oldest living person.",
+        "operationId": "updateOldestLiving",
+        "tags": [
+          "Records"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oldest-ever": {
+      "get": {
+        "summary": "Get oldest person ever recorded",
+        "description": "Retrieves information about the oldest person ever recorded in history.",
+        "operationId": "getOldestEver",
+        "tags": [
+          "Records"
+        ],
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Filter by country of origin",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "birthDateAfter",
+            "in": "query",
+            "description": "Filter for people born after this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "birthDateBefore",
+            "in": "query",
+            "description": "Filter for people born before this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No record found matching the criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update oldest person ever record",
+        "description": "Updates the information about the oldest person ever recorded.",
+        "operationId": "updateOldestEver",
+        "tags": [
+          "Records"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the person"
+          },
+          "name": {
+            "type": "string",
+            "description": "Full name of the person"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of birth in ISO 8601 format"
+          },
+          "deathDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of death in ISO 8601 format (null if still living)",
+            "nullable": true
+          },
+          "age": {
+            "type": "integer",
+            "description": "Age in years"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country of origin"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Whether the record has been verified"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of last update"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "birthDate",
+          "age",
+          "country"
+        ]
+      },
+      "PersonInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Full name of the person"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of birth in ISO 8601 format"
+          },
+          "deathDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of death in ISO 8601 format (null if still living)",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "Country of origin"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Whether the record has been verified"
+          }
+        },
+        "required": [
+          "name",
+          "birthDate",
+          "country"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details"
+          }
+        },
+        "required": [
+          "error",
+          "code"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Records",
+      "description": "Operations related to oldest people records"
+    }
+  ]
+}

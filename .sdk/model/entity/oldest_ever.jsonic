@@ -1,0 +1,125 @@
+# Entity: oldest_ever
+
+main: kit: entity: oldest_ever: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "birth_date"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "death_date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "last_updated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "verified"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "oldest_ever"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "birth_date_after"
+                orig: "birth_date_after"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "birth_date_before"
+                orig: "birth_date_before"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/oldest-ever"
+          parts: [
+            "oldest-ever"
+          ]
+          select: {
+            exist: [
+              "birth_date_after"
+              "birth_date_before"
+              "country"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          method: "PUT"
+          orig: "/oldest-ever"
+          parts: [
+            "oldest-ever"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

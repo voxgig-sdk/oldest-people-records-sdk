@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://whoistheoldest.com/"
+      }
+      description: "This API provides information about the oldest living person and the oldest person ever recorded. It manages local data, allowing updates and constraints such as birth date limits and country of origin."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://whoistheoldest.com"
+        }
+      ]
+      title: "Oldest People Records API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
