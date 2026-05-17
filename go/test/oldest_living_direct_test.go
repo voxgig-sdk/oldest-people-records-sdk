@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/oldest-people-records-sdk"
-	"github.com/voxgig-sdk/oldest-people-records-sdk/core"
+	sdk "github.com/voxgig-sdk/oldest-people-records-sdk/go"
+	"github.com/voxgig-sdk/oldest-people-records-sdk/go/core"
 )
 
 func TestOldestLivingDirect(t *testing.T) {

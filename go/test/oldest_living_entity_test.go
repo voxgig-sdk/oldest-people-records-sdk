@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/oldest-people-records-sdk"
-	"github.com/voxgig-sdk/oldest-people-records-sdk/core"
+	sdk "github.com/voxgig-sdk/oldest-people-records-sdk/go"
+	"github.com/voxgig-sdk/oldest-people-records-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/oldest-people-records-sdk/go/utility/struct"
 )
 
 func TestOldestLivingEntity(t *testing.T) {

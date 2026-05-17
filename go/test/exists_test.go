@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/oldest-people-records-sdk"
+	sdk "github.com/voxgig-sdk/oldest-people-records-sdk/go"
 )
 
 func TestExists(t *testing.T) {

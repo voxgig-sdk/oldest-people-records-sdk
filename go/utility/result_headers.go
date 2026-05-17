@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/oldest-people-records-sdk/core"
+import "github.com/voxgig-sdk/oldest-people-records-sdk/go/core"
 
 func resultHeadersUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response

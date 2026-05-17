@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/oldest-people-records-sdk/core"
+	"github.com/voxgig-sdk/oldest-people-records-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/oldest-people-records-sdk/go/utility/struct"
 )
 
 type OldestLivingEntity struct {

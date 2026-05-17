@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/oldest-people-records-sdk/core"
+	"github.com/voxgig-sdk/oldest-people-records-sdk/go/core"
 )
 
 type BaseFeature struct {
