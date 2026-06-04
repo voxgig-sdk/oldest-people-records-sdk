@@ -15,9 +15,6 @@ module OldestPeopleRecordsConfig
       },
       "options" => {
         "base" => "https://whoistheoldest.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

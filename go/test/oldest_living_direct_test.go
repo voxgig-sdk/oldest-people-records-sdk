@@ -99,14 +99,12 @@ func oldest_livingDirectSetup(mockres any) *oldest_livingDirectSetupResult {
 	env := envOverride(map[string]any{
 		"OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID": map[string]any{},
 		"OLDESTPEOPLERECORDS_TEST_LIVE":    "FALSE",
-		"OLDESTPEOPLERECORDS_APIKEY":       "NONE",
 	})
 
 	live := env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["OLDESTPEOPLERECORDS_APIKEY"],
 		}
 		client := sdk.NewOldestPeopleRecordsSDK(mergedOpts)
 

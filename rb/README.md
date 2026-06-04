@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "OldestPeopleRecords_sdk"
 
-client = OldestPeopleRecordsSDK.new({
-  "apikey" => ENV["OLDEST-PEOPLE-RECORDS_APIKEY"],
-})
+client = OldestPeopleRecordsSDK.new({})
 ```
 
 ### 3. Load a oldestever
@@ -129,7 +127,6 @@ Create a `.env.local` file at the project root:
 
 ```
 OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
-OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,7 +149,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |
