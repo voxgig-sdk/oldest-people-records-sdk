@@ -111,6 +111,7 @@ def _oldest_ever_basic_setup(extra):
         "OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID": idmap,
         "OLDESTPEOPLERECORDS_TEST_LIVE": "FALSE",
         "OLDESTPEOPLERECORDS_TEST_EXPLAIN": "FALSE",
+        "OLDESTPEOPLERECORDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -121,6 +122,7 @@ def _oldest_ever_basic_setup(extra):
     if env.get("OLDESTPEOPLERECORDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("OLDESTPEOPLERECORDS_APIKEY"),
             },
             extra or {},
         ])

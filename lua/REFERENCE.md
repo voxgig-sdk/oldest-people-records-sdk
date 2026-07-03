@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -111,7 +111,7 @@ local oldest_ever = client:OldestEver(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OldestEver(nil):load({ id = "oldest_ever_id" }, nil)
+local result, err = client:OldestEver():load({ id = "oldest_ever_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -119,10 +119,10 @@ local result, err = client:OldestEver(nil):load({ id = "oldest_ever_id" }, nil)
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:OldestEver(nil):update({
+local result, err = client:OldestEver():update({
   id = "oldest_ever_id",
   -- Fields to update
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -181,7 +181,7 @@ local oldest_living = client:OldestLiving(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OldestLiving(nil):load({ id = "oldest_living_id" }, nil)
+local result, err = client:OldestLiving():load({ id = "oldest_living_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -189,10 +189,10 @@ local result, err = client:OldestLiving(nil):load({ id = "oldest_living_id" }, n
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:OldestLiving(nil):update({
+local result, err = client:OldestLiving():update({
   id = "oldest_living_id",
   -- Fields to update
-}, nil)
+})
 ```
 
 ### Common Methods

@@ -1,6 +1,11 @@
 # OldestPeopleRecords Lua SDK
 
-The Lua SDK for the OldestPeopleRecords API. Provides an entity-oriented interface using Lua conventions.
+
+
+The Lua SDK for the OldestPeopleRecords API — an entity-oriented client using Lua conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -26,13 +31,15 @@ loading a specific record.
 ```lua
 local sdk = require("oldest-people-records_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OLDEST-PEOPLE-RECORDS_APIKEY"),
+})
 ```
 
 ### 3. Load a oldestever
 
 ```lua
-local result, err = client:OldestEver(nil):load({ id = "example_id" }, nil)
+local result, err = client:OldestEver():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -41,7 +48,7 @@ print(result)
 
 ```lua
 -- Update
-client:OldestEver(nil):update({ id = created["id"], name = "Example-Renamed" }, nil)
+client:OldestEver():update({ id = created["id"], name = "Example-Renamed" })
 
 ```
 
@@ -86,11 +93,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 
-local result, err = client:OldestPeopleRecords(nil):load(
-  { id = "test01" }, nil
-)
+local result, err = client:OldestPeopleRecords():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -124,6 +129,7 @@ Create a `.env.local` file at the project root:
 
 ```
 OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
+OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -146,6 +152,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

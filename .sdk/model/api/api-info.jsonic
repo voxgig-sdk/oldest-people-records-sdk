@@ -16,21 +16,7 @@ main: {
       ]
       title: "Oldest People Records API"
       version: "1.0.0"
-      tagline: "Look up the oldest living person and the oldest person ever recorded"
-      homepage: "https://whoistheoldest.com"
-      about_md: `The Oldest People Records API exposes data about two well-known longevity records: the oldest person currently alive and the oldest person who ever lived. It is a small, single-purpose service hosted at [whoistheoldest.com](https://whoistheoldest.com) and catalogued on [Free Public APIs](https://freepublicapis.com/oldest-people-records-api).
-
-What you get from the API:
-
-- \`GET /api/oldest-person-ever\` — record for the oldest person ever documented.
-- \`GET /api/oldest-living-person\` — record for the current oldest living person.
-
-Operational notes: the catalogue page reports that CORS is disabled and no authentication is documented. At the time the upstream listing was last checked, both endpoints were returning errors, so callers should be prepared for the service to be unavailable.`
-      entity_desc: {
-        oldest_ever: "The oldest person ever recorded, served from `GET /api/oldest-person-ever`."
-        oldest_living: "The oldest person currently alive, served from `GET /api/oldest-living-person`."
-      }
-      auth: false
     }
   }
 }
+

@@ -148,6 +148,7 @@ func oldest_everBasicSetup(extra map[string]any) *entityTestSetup {
 		"OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID": idmap,
 		"OLDESTPEOPLERECORDS_TEST_LIVE":      "FALSE",
 		"OLDESTPEOPLERECORDS_TEST_EXPLAIN":   "FALSE",
+		"OLDESTPEOPLERECORDS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID"])
@@ -158,6 +159,7 @@ func oldest_everBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["OLDESTPEOPLERECORDS_APIKEY"],
 			},
 			extra,
 		})

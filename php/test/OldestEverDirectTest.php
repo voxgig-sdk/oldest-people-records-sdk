@@ -67,12 +67,14 @@ function oldest_ever_direct_setup($mockres)
     $env = Runner::env_override([
         "OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID" => [],
         "OLDESTPEOPLERECORDS_TEST_LIVE" => "FALSE",
+        "OLDESTPEOPLERECORDS_APIKEY" => "NONE",
     ]);
 
     $live = $env["OLDESTPEOPLERECORDS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["OLDESTPEOPLERECORDS_APIKEY"],
         ];
         $client = new OldestPeopleRecordsSDK($merged_opts);
         return [

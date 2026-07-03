@@ -127,6 +127,7 @@ function basicSetup(extra?: any) {
     'OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID': idmap,
     'OLDEST_PEOPLE_RECORDS_TEST_LIVE': 'FALSE',
     'OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN': 'FALSE',
+    'OLDEST_PEOPLE_RECORDS_APIKEY': 'NONE',
   })
 
   idmap = env['OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID']
@@ -136,6 +137,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new OldestPeopleRecordsSDK(merge([
       {
+        apikey: env.OLDEST_PEOPLE_RECORDS_APIKEY,
       },
       extra
     ]))

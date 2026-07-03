@@ -1,6 +1,11 @@
 # OldestPeopleRecords Ruby SDK
 
-The Ruby SDK for the OldestPeopleRecords API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the OldestPeopleRecords API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "OldestPeopleRecords_sdk"
 
-client = OldestPeopleRecordsSDK.new({})
+client = OldestPeopleRecordsSDK.new({
+  "apikey" => ENV["OLDEST-PEOPLE-RECORDS_APIKEY"],
+})
 ```
 
 ### 3. Load a oldestever
 
 ```ruby
-result, err = client.OldestEver(nil).load({ "id" => "example_id" }, nil)
+result, err = client.OldestEver().load({ "id" => "example_id" })
 raise err if err
 puts result
 ```
@@ -46,7 +53,7 @@ puts result
 
 ```ruby
 # Update
-client.OldestEver(nil).update({ "id" => created["id"], "name" => "Example-Renamed" }, nil)
+client.OldestEver().update({ "id" => created["id"], "name" => "Example-Renamed" })
 
 ```
 
@@ -91,11 +98,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = OldestPeopleRecordsSDK.test(nil, nil)
+client = OldestPeopleRecordsSDK.test
 
-result, err = client.OldestPeopleRecords(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.OldestPeopleRecords().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -127,6 +132,7 @@ Create a `.env.local` file at the project root:
 
 ```
 OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
+OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -149,6 +155,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

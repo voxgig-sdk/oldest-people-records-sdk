@@ -1,6 +1,11 @@
 # OldestPeopleRecords Python SDK
 
-The Python SDK for the OldestPeopleRecords API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the OldestPeopleRecords API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK
 
-client = OldestPeopleRecordsSDK({})
+client = OldestPeopleRecordsSDK({
+    "apikey": os.environ.get("OLDEST-PEOPLE-RECORDS_APIKEY"),
+})
 ```
 
 ### 3. Load a oldestever
 
 ```python
-result, err = client.OldestEver(None).load({"id": "example_id"}, None)
+result, err = client.OldestEver().load({"id": "example_id"})
 if err:
     raise Exception(err)
 print(result)
@@ -41,7 +49,7 @@ print(result)
 
 ```python
 # Update
-client.OldestEver(None).update({"id": created["id"], "name": "Example-Renamed"}, None)
+client.OldestEver().update({"id": created["id"], "name": "Example-Renamed"})
 
 ```
 
@@ -87,11 +95,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = OldestPeopleRecordsSDK.test(None, None)
+client = OldestPeopleRecordsSDK.test()
 
-result, err = client.OldestPeopleRecords(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.OldestPeopleRecords().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -122,6 +128,7 @@ Create a `.env.local` file at the project root:
 
 ```
 OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
+OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,6 +152,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

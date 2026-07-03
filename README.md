@@ -1,19 +1,8 @@
 # OldestPeopleRecords SDK
 
-Look up the oldest living person and the oldest person ever recorded
+Oldest People Records API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Oldest People Records API
-
-The Oldest People Records API exposes data about two well-known longevity records: the oldest person currently alive and the oldest person who ever lived. It is a small, single-purpose service hosted at [whoistheoldest.com](https://whoistheoldest.com) and catalogued on [Free Public APIs](https://freepublicapis.com/oldest-people-records-api).
-
-What you get from the API:
-
-- `GET /api/oldest-person-ever` — record for the oldest person ever documented.
-- `GET /api/oldest-living-person` — record for the current oldest living person.
-
-Operational notes: the catalogue page reports that CORS is disabled and no authentication is documented. At the time the upstream listing was last checked, both endpoints were returning errors, so callers should be prepared for the service to be unavailable.
 
 ## Try it
 
@@ -47,27 +36,31 @@ gem install oldest-people-records-sdk
 luarocks install oldest-people-records-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { OldestPeopleRecordsSDK } from 'oldest-people-records'
 
-const client = new OldestPeopleRecordsSDK({})
+const client = new OldestPeopleRecordsSDK({
+  apikey: process.env.OLDEST-PEOPLE-RECORDS_APIKEY,
+})
 
+// Load oldestever data
+const oldestever = await client.OldestEver().load({})
+console.log(oldestever.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -97,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **OldestEver** | The oldest person ever recorded, served from `GET /api/oldest-person-ever`. | `/oldest-ever` |
-| **OldestLiving** | The oldest person currently alive, served from `GET /api/oldest-living-person`. | `/oldest-living` |
+| **OldestEver** |  | `/oldest-ever` |
+| **OldestLiving** |  | `/oldest-living` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -108,15 +101,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK
 
-client = OldestPeopleRecordsSDK({})
+client = OldestPeopleRecordsSDK({
+    "apikey": os.environ.get("OLDEST-PEOPLE-RECORDS_APIKEY"),
+})
 
 
 # Load a specific oldestever
-oldestever, err = client.OldestEver(None).load(
-    {"id": "example_id"}, None
-)
+oldestever, err = client.OldestEver().load({"id": "example_id"})
+print(oldestever)
 ```
 
 ### PHP
@@ -125,13 +120,14 @@ oldestever, err = client.OldestEver(None).load(
 <?php
 require_once 'oldestpeoplerecords_sdk.php';
 
-$client = new OldestPeopleRecordsSDK([]);
+$client = new OldestPeopleRecordsSDK([
+    "apikey" => getenv("OLDEST-PEOPLE-RECORDS_APIKEY"),
+]);
 
 
 // Load a specific oldestever
-[$oldestever, $err] = $client->OldestEver(null)->load(
-    ["id" => "example_id"], null
-);
+[$oldestever, $err] = $client->OldestEver()->load(["id" => "example_id"]);
+print_r($oldestever);
 ```
 
 ### Golang
@@ -139,8 +135,13 @@ $client = new OldestPeopleRecordsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/oldest-people-records-sdk/go"
 
-client := sdk.NewOldestPeopleRecordsSDK(map[string]any{})
+client := sdk.NewOldestPeopleRecordsSDK(map[string]any{
+    "apikey": os.Getenv("OLDEST-PEOPLE-RECORDS_APIKEY"),
+})
 
+// Load oldestever data
+oldestever, err := client.OldestEver(nil).Load(map[string]any{}, nil)
+fmt.Println(oldestever)
 ```
 
 ### Ruby
@@ -148,13 +149,14 @@ client := sdk.NewOldestPeopleRecordsSDK(map[string]any{})
 ```ruby
 require_relative "OldestPeopleRecords_sdk"
 
-client = OldestPeopleRecordsSDK.new({})
+client = OldestPeopleRecordsSDK.new({
+  "apikey" => ENV["OLDEST-PEOPLE-RECORDS_APIKEY"],
+})
 
 
 # Load a specific oldestever
-oldestever, err = client.OldestEver(nil).load(
-  { "id" => "example_id" }, nil
-)
+oldestever, err = client.OldestEver().load({ "id" => "example_id" })
+puts oldestever
 ```
 
 ### Lua
@@ -162,13 +164,14 @@ oldestever, err = client.OldestEver(nil).load(
 ```lua
 local sdk = require("oldest-people-records_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("OLDEST-PEOPLE-RECORDS_APIKEY"),
+})
 
 
 -- Load a specific oldestever
-local oldestever, err = client:OldestEver(nil):load(
-  { id = "example_id" }, nil
-)
+local oldestever, err = client:OldestEver():load({ id = "example_id" })
+print(oldestever)
 ```
 
 ## Unit testing in offline mode
@@ -187,25 +190,21 @@ const result = await client.OldestEver().load({ id: 'test01' })
 ### Python
 
 ```python
-client = OldestPeopleRecordsSDK.test(None, None)
-result, err = client.OldestEver(None).load(
-    {"id": "test01"}, None
-)
+client = OldestPeopleRecordsSDK.test()
+result, err = client.OldestEver().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = OldestPeopleRecordsSDK::test(null, null);
-[$result, $err] = $client->OldestEver(null)->load(
-    ["id" => "test01"], null
-);
+$client = OldestPeopleRecordsSDK::test();
+[$result, $err] = $client->OldestEver()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.OldestEver(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -214,19 +213,15 @@ result, err := client.OldestEver(nil).Load(
 ### Ruby
 
 ```ruby
-client = OldestPeopleRecordsSDK.test(nil, nil)
-result, err = client.OldestEver(nil).load(
-  { "id" => "test01" }, nil
-)
+client = OldestPeopleRecordsSDK.test
+result, err = client.OldestEver().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:OldestEver(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:OldestEver():load({ id = "test01" })
 ```
 
 ## How it works
@@ -330,10 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Oldest People Records API
-
-- Upstream: [https://whoistheoldest.com](https://whoistheoldest.com)
 
 ---
 

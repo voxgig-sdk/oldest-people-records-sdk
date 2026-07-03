@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID': {},
     'OLDESTPEOPLERECORDS_TEST_LIVE': 'FALSE',
+    'OLDESTPEOPLERECORDS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.OLDESTPEOPLERECORDS_TEST_LIVE
 
   if (live) {
     const client = new OldestPeopleRecordsSDK({
+      apikey: env.OLDESTPEOPLERECORDS_APIKEY,
     })
 
     let idmap: any = env['OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID']

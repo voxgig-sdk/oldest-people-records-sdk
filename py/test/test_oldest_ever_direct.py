@@ -59,12 +59,14 @@ def _oldest_ever_direct_setup(mockres):
     env = runner.env_override({
         "OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID": {},
         "OLDESTPEOPLERECORDS_TEST_LIVE": "FALSE",
+        "OLDESTPEOPLERECORDS_APIKEY": "NONE",
     })
 
     live = env.get("OLDESTPEOPLERECORDS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("OLDESTPEOPLERECORDS_APIKEY"),
         }
         client = OldestPeopleRecordsSDK(merged_opts)
         return {
