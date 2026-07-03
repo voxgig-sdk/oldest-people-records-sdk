@@ -10,7 +10,7 @@ The Python SDK for the OldestPeopleRecords API — an entity-oriented client fol
 
 ## Install
 ```bash
-pip install oldest-people-records-sdk
+pip install voxgig-sdk-oldest-people-records
 ```
 
 Or install from source:

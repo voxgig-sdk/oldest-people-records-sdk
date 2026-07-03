@@ -10,7 +10,7 @@ The Lua SDK for the OldestPeopleRecords API — an entity-oriented client using 
 
 ## Install
 ```bash
-luarocks install oldest-people-records-sdk
+luarocks install voxgig-sdk-oldest-people-records
 ```
 
 If the module is not yet published, add the source directory to

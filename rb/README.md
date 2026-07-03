@@ -10,13 +10,13 @@ The Ruby SDK for the OldestPeopleRecords API — an entity-oriented client using
 
 ## Install
 ```bash
-gem install oldest-people-records-sdk
+gem install voxgig-sdk-oldest-people-records
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "oldest-people-records-sdk"
+gem "voxgig-sdk-oldest-people-records"
 ```
 
 Then run:

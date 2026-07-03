@@ -10,7 +10,7 @@ The PHP SDK for the OldestPeopleRecords API — an entity-oriented client using 
 
 ## Install
 ```bash
-composer require voxgig/oldest-people-records-sdk
+composer require voxgig-sdk/oldest-people-records
 ```
 
 

@@ -10,7 +10,7 @@ The TypeScript SDK for the OldestPeopleRecords API — a type-safe, entity-orien
 
 ## Install
 ```bash
-npm install oldest-people-records
+npm install @voxgig-sdk/oldest-people-records
 ```
 ## Tutorial: your first API call
 
