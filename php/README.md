@@ -33,9 +33,10 @@ $client = new OldestPeopleRecordsSDK();
 
 ```php
 try {
-    $result = $client->oldestever()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare OldestEver record (throws on error).
+    $oldestever = $client->OldestEver()->load(["id" => "example_id"]);
+    print_r($oldestever);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -43,8 +44,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Update
-$client->oldestever()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
+// Update — index the bare record directly ($created["id"]).
+$client->OldestEver()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
 
 ```
 
@@ -89,13 +90,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = OldestPeopleRecordsSDK::test();
+$client = OldestPeopleRecordsSDK::test([
+    "entity" => ["oldestever" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->oldestever()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$oldestever = $client->OldestEver()->load(["id" => "test01"]);
+print_r($oldestever);
 ```
 
 ### Use a custom fetch function
@@ -174,8 +179,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `OldestEver` | `($data): OldestEverEntity` | Create a OldestEver entity instance. |
-| `OldestLiving` | `($data): OldestLivingEntity` | Create a OldestLiving entity instance. |
+| `OldestEver` | `($data): OldestEverEntity` | Create an OldestEver entity instance. |
+| `OldestLiving` | `($data): OldestLivingEntity` | Create an OldestLiving entity instance. |
 
 ### Entity interface
 
@@ -256,7 +261,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.oldest_ever`
+Create an instance: `$oldest_ever = $client->OldestEver();`
 
 #### Operations
 
@@ -280,14 +285,15 @@ Create an instance: `const oldest_ever = client.oldest_ever`
 
 #### Example: Load
 
-```ts
-const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
+```php
+// load() returns the bare OldestEver record (throws on error).
+$oldest_ever = $client->OldestEver()->load(["id" => "oldest_ever_id"]);
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.oldest_living`
+Create an instance: `$oldest_living = $client->OldestLiving();`
 
 #### Operations
 
@@ -311,8 +317,9 @@ Create an instance: `const oldest_living = client.oldest_living`
 
 #### Example: Load
 
-```ts
-const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
+```php
+// load() returns the bare OldestLiving record (throws on error).
+$oldest_living = $client->OldestLiving()->load(["id" => "oldest_living_id"]);
 ```
 
 
@@ -387,7 +394,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$oldestever = $client->oldestever();
+$oldestever = $client->OldestEver();
 $oldestever->load(["id" => "example_id"]);
 
 // $oldestever->dataGet() now returns the loaded oldestever data

@@ -26,9 +26,9 @@ import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records'
 
 const client = new OldestPeopleRecordsSDK()
 
-// Load oldestever data
-const oldestever = await client.oldestever.load({})
-console.log(oldestever.data)
+// Load oldestever data (returns a OldestEver)
+const oldestever = await client.OldestEver().load()
+console.log(oldestever)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,8 +85,8 @@ from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK
 client = OldestPeopleRecordsSDK()
 
 
-# Load a specific oldestever
-oldestever = client.oldestever.load({"id": "example_id"})
+# Load a specific oldestever (returns the record, raises on error)
+oldestever = client.OldestEver().load({"id": "example_id"})
 print(oldestever)
 ```
 
@@ -99,8 +99,8 @@ require_once 'oldestpeoplerecords_sdk.php';
 $client = new OldestPeopleRecordsSDK();
 
 
-// Load a specific oldestever
-$oldestever = $client->oldestever()->load(["id" => "example_id"]);
+// Load a specific oldestever (returns the bare record; throws on error)
+$oldestever = $client->OldestEver()->load(["id" => "example_id"]);
 print_r($oldestever);
 ```
 
@@ -124,8 +124,8 @@ require_relative "OldestPeopleRecords_sdk"
 client = OldestPeopleRecordsSDK.new
 
 
-# Load a specific oldestever
-oldestever = client.oldestever.load({ "id" => "example_id" })
+# Load a specific oldestever (returns the bare record; raises on error)
+oldestever = client.OldestEver.load({ "id" => "example_id" })
 puts oldestever
 ```
 
@@ -138,7 +138,7 @@ local client = sdk.new()
 
 
 -- Load a specific oldestever
-local oldestever, err = client:oldestever():load({ id = "example_id" })
+local oldestever, err = client:OldestEver():load({ id = "example_id" })
 print(oldestever)
 ```
 
@@ -151,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = OldestPeopleRecordsSDK.test()
-const result = await client.oldestever.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const oldestever = await client.OldestEver().load({ id: 'test01' })
+// oldestever is a bare OldestEver populated with mock data
+console.log(oldestever)
 ```
 
 ### Python
 
 ```python
 client = OldestPeopleRecordsSDK.test()
-result = client.oldestever.load({"id": "test01"})
+oldestever = client.OldestEver().load({"id": "test01"})
+print(oldestever)
 ```
 
 ### PHP
 
 ```php
-$client = OldestPeopleRecordsSDK::test();
-$result = $client->oldestever()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = OldestPeopleRecordsSDK::test([
+    "entity" => ["oldestever" => ["test01" => ["id" => "test01"]]],
+]);
+$oldestever = $client->OldestEver()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -181,15 +186,18 @@ result, err := client.OldestEver(nil).Load(
 ### Ruby
 
 ```ruby
-client = OldestPeopleRecordsSDK.test
-result = client.oldestever.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = OldestPeopleRecordsSDK.test({
+  "entity" => { "oldestever" => { "test01" => { "id" => "test01" } } },
+})
+oldestever = client.OldestEver.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:oldestever():load({ id = "test01" })
+local result, err = client:OldestEver():load({ id = "test01" })
 ```
 
 ## How it works
@@ -237,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

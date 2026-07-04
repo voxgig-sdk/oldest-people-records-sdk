@@ -233,10 +233,10 @@ class OldestPeopleRecordsSDK
 
     private $_oldest_ever = null;
 
-    // Idiomatic facade: $client->oldest_ever()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias OldestEver() (PHP method
-    // names are case-insensitive).
-    public function oldest_ever($data = null)
+    // Canonical facade: $client->OldestEver()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->oldest_ever()
+    // resolves here too.
+    public function OldestEver($data = null)
     {
         require_once __DIR__ . '/entity/oldest_ever_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class OldestPeopleRecordsSDK
 
     private $_oldest_living = null;
 
-    // Idiomatic facade: $client->oldest_living()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias OldestLiving() (PHP method
-    // names are case-insensitive).
-    public function oldest_living($data = null)
+    // Canonical facade: $client->OldestLiving()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->oldest_living()
+    // resolves here too.
+    public function OldestLiving($data = null)
     {
         require_once __DIR__ . '/entity/oldest_living_entity.php';
         if ($data === null) {

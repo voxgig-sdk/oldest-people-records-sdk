@@ -33,10 +33,12 @@ client = OldestPeopleRecordsSDK()
 
 ### 3. Load an oldestever
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.oldestever.load({"id": "example_id"})
-    print(result)
+    oldestever = client.OldestEver().load({"id": "example_id"})
+    print(oldestever)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -44,8 +46,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Update
-client.oldestever.update({"id": created["id"], "name": "Example-Renamed"})
+# Update — the created record's id is a plain dict key
+client.OldestEver().update({"id": created["id"], "name": "Example-Renamed"})
 
 ```
 
@@ -92,8 +94,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OldestPeopleRecordsSDK.test()
 
-result = client.oldestever.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+oldestever = client.OldestEver().load({"id": "test01"})
+# oldestever contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -169,8 +172,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `OldestEver` | `(data) -> OldestEverEntity` | Create a OldestEver entity instance. |
-| `OldestLiving` | `(data) -> OldestLivingEntity` | Create a OldestLiving entity instance. |
+| `OldestEver` | `(data) -> OldestEverEntity` | Create an OldestEver entity instance. |
+| `OldestLiving` | `(data) -> OldestLivingEntity` | Create an OldestLiving entity instance. |
 
 ### Entity interface
 
@@ -251,7 +254,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.oldest_ever`
+Create an instance: `oldest_ever = client.OldestEver()`
 
 #### Operations
 
@@ -275,14 +278,14 @@ Create an instance: `const oldest_ever = client.oldest_ever`
 
 #### Example: Load
 
-```ts
-const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
+```python
+oldest_ever = client.OldestEver().load({"id": "oldest_ever_id"})
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.oldest_living`
+Create an instance: `oldest_living = client.OldestLiving()`
 
 #### Operations
 
@@ -306,8 +309,8 @@ Create an instance: `const oldest_living = client.oldest_living`
 
 #### Example: Load
 
-```ts
-const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
+```python
+oldest_living = client.OldestLiving().load({"id": "oldest_living_id"})
 ```
 
 
@@ -381,7 +384,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-oldestever = client.oldestever
+oldestever = client.OldestEver()
 oldestever.load({"id": "example_id"})
 
 # oldestever.data_get() now returns the loaded oldestever data

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:oldest_ever():list() / client:oldest_ever():load({ id = ... })
-function OldestPeopleRecordsSDK:oldest_ever(data)
+-- Idiomatic facade: client:OldestEver():list() / client:OldestEver():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OldestPeopleRecordsSDK:OldestEver(data)
   local EntityMod = require("entity.oldest_ever_entity")
   if data == nil then
     if self._oldest_ever == nil then
@@ -256,15 +257,10 @@ function OldestPeopleRecordsSDK:oldest_ever(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:oldest_ever() instead.
-function OldestPeopleRecordsSDK:OldestEver(data)
-  local EntityMod = require("entity.oldest_ever_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:oldest_living():list() / client:oldest_living():load({ id = ... })
-function OldestPeopleRecordsSDK:oldest_living(data)
+-- Idiomatic facade: client:OldestLiving():list() / client:OldestLiving():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function OldestPeopleRecordsSDK:OldestLiving(data)
   local EntityMod = require("entity.oldest_living_entity")
   if data == nil then
     if self._oldest_living == nil then
@@ -272,12 +268,6 @@ function OldestPeopleRecordsSDK:oldest_living(data)
     end
     return self._oldest_living
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:oldest_living() instead.
-function OldestPeopleRecordsSDK:OldestLiving(data)
-  local EntityMod = require("entity.oldest_living_entity")
   return EntityMod.new(self, data)
 end
 

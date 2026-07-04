@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## OldestEverEntity
 
 ```lua
-local oldest_ever = client:oldest_ever(nil)
+local oldest_ever = client:OldestEver(nil)
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ local oldest_ever = client:oldest_ever(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:oldest_ever():load({ id = "oldest_ever_id" })
+local result, err = client:OldestEver():load({ id = "oldest_ever_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -118,7 +118,7 @@ local result, err = client:oldest_ever():load({ id = "oldest_ever_id" })
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:oldest_ever():update({
+local result, err = client:OldestEver():update({
   id = "oldest_ever_id",
   -- Fields to update
 })
@@ -157,7 +157,7 @@ Return the entity name.
 ## OldestLivingEntity
 
 ```lua
-local oldest_living = client:oldest_living(nil)
+local oldest_living = client:OldestLiving(nil)
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ local oldest_living = client:oldest_living(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:oldest_living():load({ id = "oldest_living_id" })
+local result, err = client:OldestLiving():load({ id = "oldest_living_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -188,7 +188,7 @@ local result, err = client:oldest_living():load({ id = "oldest_living_id" })
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:oldest_living():update({
+local result, err = client:OldestLiving():update({
   id = "oldest_living_id",
   -- Fields to update
 })

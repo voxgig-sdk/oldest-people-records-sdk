@@ -30,20 +30,23 @@ const client = new OldestPeopleRecordsSDK()
 
 ### 3. Load an oldestever
 
-```ts
-const result = await client.oldestever.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const oldestever = await client.OldestEver().load({ id: 'example_id' })
+  console.log(oldestever)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
 ### 4. Create, update, and remove
 
 ```ts
-// Update
-const updated = await client.oldestever.update({
-  id: created.data.id,
+// Update — the id comes straight off the returned entity
+const updated = await client.OldestEver().update({
+  id: created.id,
   name: 'Example-Renamed',
 })
 
@@ -63,6 +66,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -91,9 +97,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OldestPeopleRecordsSDK.test()
 
-const result = await client.oldestever.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const oldestever = await client.OldestEver().load({ id: 'test01' })
+// oldestever is a bare entity populated with mock response data
+console.log(oldestever)
 ```
 
 You can also use the instance method:
@@ -108,7 +114,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.oldestever
+const entity = client.OldestEver()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -186,8 +192,8 @@ new OldestPeopleRecordsSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `OldestEver(data?)` | `OldestEverEntity` | Create a OldestEver entity instance. |
-| `OldestLiving(data?)` | `OldestLivingEntity` | Create a OldestLiving entity instance. |
+| `OldestEver(data?)` | `OldestEverEntity` | Create an OldestEver entity instance. |
+| `OldestLiving(data?)` | `OldestLivingEntity` | Create an OldestLiving entity instance. |
 | `tester(testopts?, sdkopts?)` | `OldestPeopleRecordsSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -204,29 +210,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): OldestPeopleRecordsSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -299,7 +306,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.oldest_ever`
+Create an instance: `const oldest_ever = client.OldestEver()`
 
 #### Operations
 
@@ -324,13 +331,13 @@ Create an instance: `const oldest_ever = client.oldest_ever`
 #### Example: Load
 
 ```ts
-const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
+const oldest_ever = await client.OldestEver().load({ id: 'oldest_ever_id' })
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.oldest_living`
+Create an instance: `const oldest_living = client.OldestLiving()`
 
 #### Operations
 
@@ -355,7 +362,7 @@ Create an instance: `const oldest_living = client.oldest_living`
 #### Example: Load
 
 ```ts
-const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
+const oldest_living = await client.OldestLiving().load({ id: 'oldest_living_id' })
 ```
 
 
@@ -426,7 +433,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const oldestever = client.oldestever
+const oldestever = client.OldestEver()
 await oldestever.load({ id: "example_id" })
 
 // oldestever.data() now returns the loaded oldestever data

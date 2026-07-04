@@ -208,26 +208,14 @@ class OldestPeopleRecordsSDK
   end
 
 
-  # Idiomatic facade: client.oldest_ever.list / client.oldest_ever.load({ "id" => ... })
-  def oldest_ever
-    require_relative 'entity/oldest_ever_entity'
-    @oldest_ever ||= OldestEverEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.oldest_ever instead.
+  # Canonical facade: client.OldestEver.list / client.OldestEver.load({ "id" => ... })
   def OldestEver(data = nil)
     require_relative 'entity/oldest_ever_entity'
     OldestEverEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.oldest_living.list / client.oldest_living.load({ "id" => ... })
-  def oldest_living
-    require_relative 'entity/oldest_living_entity'
-    @oldest_living ||= OldestLivingEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.oldest_living instead.
+  # Canonical facade: client.OldestLiving.list / client.OldestLiving.load({ "id" => ... })
   def OldestLiving(data = nil)
     require_relative 'entity/oldest_living_entity'
     OldestLivingEntity.new(self, data)

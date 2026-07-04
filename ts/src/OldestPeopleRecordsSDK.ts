@@ -205,28 +205,14 @@ class OldestPeopleRecordsSDK {
 
 
 
-  _oldest_ever?: OldestEverEntity
-
-  // Idiomatic facade: `client.oldest_ever.list()` / `client.oldest_ever.load({ id })`.
-  get oldest_ever(): OldestEverEntity {
-    return (this._oldest_ever ??= new OldestEverEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.oldest_ever` instead. */
+  // Entity access: `client.OldestEver().list()` / `client.OldestEver().load({ id })`.
   OldestEver(data?: any) {
     const self = this
     return new OldestEverEntity(self,data)
   }
 
 
-  _oldest_living?: OldestLivingEntity
-
-  // Idiomatic facade: `client.oldest_living.list()` / `client.oldest_living.load({ id })`.
-  get oldest_living(): OldestLivingEntity {
-    return (this._oldest_living ??= new OldestLivingEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.oldest_living` instead. */
+  // Entity access: `client.OldestLiving().list()` / `client.OldestLiving().load({ id })`.
   OldestLiving(data?: any) {
     const self = this
     return new OldestLivingEntity(self,data)

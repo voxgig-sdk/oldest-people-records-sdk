@@ -34,16 +34,16 @@ local client = sdk.new()
 ### 3. Load an oldestever
 
 ```lua
-local result, err = client:oldestever():load({ id = "example_id" })
+local oldestever, err = client:OldestEver():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(oldestever)
 ```
 
 ### 4. Create, update, and remove
 
 ```lua
 -- Update
-client:oldestever():update({ id = created["id"], name = "Example-Renamed" })
+client:OldestEver():update({ id = created["id"], name = "Example-Renamed" })
 
 ```
 
@@ -90,8 +90,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:oldestever():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:OldestEver():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -169,8 +169,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `OldestEver` | `(data) -> OldestEverEntity` | Create a OldestEver entity instance. |
-| `OldestLiving` | `(data) -> OldestLivingEntity` | Create a OldestLiving entity instance. |
+| `OldestEver` | `(data) -> OldestEverEntity` | Create an OldestEver entity instance. |
+| `OldestLiving` | `(data) -> OldestLivingEntity` | Create an OldestLiving entity instance. |
 
 ### Entity interface
 
@@ -192,17 +192,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local oldest_ever, err = client:OldestEver():load({ id = "example_id" })
+    if err then error(err) end
+    -- oldest_ever is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -247,7 +252,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.oldest_ever`
+Create an instance: `local oldest_ever = client:OldestEver(nil)`
 
 #### Operations
 
@@ -271,14 +276,14 @@ Create an instance: `const oldest_ever = client.oldest_ever`
 
 #### Example: Load
 
-```ts
-const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
+```lua
+local oldest_ever, err = client:OldestEver():load({ id = "oldest_ever_id" })
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.oldest_living`
+Create an instance: `local oldest_living = client:OldestLiving(nil)`
 
 #### Operations
 
@@ -302,8 +307,8 @@ Create an instance: `const oldest_living = client.oldest_living`
 
 #### Example: Load
 
-```ts
-const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
+```lua
+local oldest_living, err = client:OldestLiving():load({ id = "oldest_living_id" })
 ```
 
 
@@ -378,7 +383,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local oldestever = client:oldestever()
+local oldestever = client:OldestEver()
 oldestever:load({ id = "example_id" })
 
 -- oldestever:data_get() now returns the loaded oldestever data

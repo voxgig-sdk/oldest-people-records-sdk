@@ -121,7 +121,7 @@ Alias for `OldestPeopleRecordsSDK.test()`.
 ## OldestEverEntity
 
 ```ts
-const oldest_ever = client.oldest_ever
+const oldest_ever = client.OldestEver()
 ```
 
 ### Fields
@@ -144,7 +144,7 @@ const oldest_ever = client.oldest_ever
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.oldest_ever.load({ id: 'oldest_ever_id' })
+const result = await client.OldestEver().load({ id: 'oldest_ever_id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -152,7 +152,7 @@ const result = await client.oldest_ever.load({ id: 'oldest_ever_id' })
 Update an existing entity. The data must include the entity `id`.
 
 ```ts
-const result = await client.oldest_ever.update({
+const result = await client.OldestEver().update({
   id: 'oldest_ever_id',
   // Fields to update
 })
@@ -189,7 +189,7 @@ Return a copy of the entity options.
 ## OldestLivingEntity
 
 ```ts
-const oldest_living = client.oldest_living
+const oldest_living = client.OldestLiving()
 ```
 
 ### Fields
@@ -212,7 +212,7 @@ const oldest_living = client.oldest_living
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.oldest_living.load({ id: 'oldest_living_id' })
+const result = await client.OldestLiving().load({ id: 'oldest_living_id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -220,7 +220,7 @@ const result = await client.oldest_living.load({ id: 'oldest_living_id' })
 Update an existing entity. The data must include the entity `id`.
 
 ```ts
-const result = await client.oldest_living.update({
+const result = await client.OldestLiving().update({
   id: 'oldest_living_id',
   // Fields to update
 })

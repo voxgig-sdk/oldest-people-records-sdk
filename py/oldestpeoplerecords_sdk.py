@@ -220,41 +220,21 @@ class OldestPeopleRecordsSDK:
         }
 
 
-    @property
-    def oldest_ever(self):
-        """Idiomatic facade: client.oldest_ever.list() / client.oldest_ever.load({"id": ...})."""
-        from entity.oldest_ever_entity import OldestEverEntity
-        cached = getattr(self, "_oldest_ever", None)
-        if cached is None:
-            cached = OldestEverEntity(self, None)
-            self._oldest_ever = cached
-        return cached
-
-    def OldestEver(self, data=None):
-        # Deprecated: use client.oldest_ever instead.
+    def OldestEver(self, data=None) -> "OldestEverEntity":
+        """Entity factory: client.OldestEver().list({}) / client.OldestEver().load({"id": ...})."""
         from entity.oldest_ever_entity import OldestEverEntity
         return OldestEverEntity(self, data)
 
 
-    @property
-    def oldest_living(self):
-        """Idiomatic facade: client.oldest_living.list() / client.oldest_living.load({"id": ...})."""
-        from entity.oldest_living_entity import OldestLivingEntity
-        cached = getattr(self, "_oldest_living", None)
-        if cached is None:
-            cached = OldestLivingEntity(self, None)
-            self._oldest_living = cached
-        return cached
-
-    def OldestLiving(self, data=None):
-        # Deprecated: use client.oldest_living instead.
+    def OldestLiving(self, data=None) -> "OldestLivingEntity":
+        """Entity factory: client.OldestLiving().list({}) / client.OldestLiving().load({"id": ...})."""
         from entity.oldest_living_entity import OldestLivingEntity
         return OldestLivingEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "OldestPeopleRecordsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class OldestPeopleRecordsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.oldest_ever_entity import OldestEverEntity
+    from entity.oldest_living_entity import OldestLivingEntity

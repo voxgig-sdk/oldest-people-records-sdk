@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## OldestEverEntity
 
 ```python
-oldest_ever = client.oldest_ever
+oldest_ever = client.OldestEver()
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ oldest_ever = client.oldest_ever
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.oldest_ever.load({"id": "oldest_ever_id"})
+result = client.OldestEver().load({"id": "oldest_ever_id"})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -115,7 +115,7 @@ result = client.oldest_ever.load({"id": "oldest_ever_id"})
 Update an existing entity. The data must include the entity `id`. Returns the updated entity data and raises on error.
 
 ```python
-result = client.oldest_ever.update({
+result = client.OldestEver().update({
     "id": "oldest_ever_id",
     # Fields to update
 })
@@ -153,7 +153,7 @@ Return the entity name.
 ## OldestLivingEntity
 
 ```python
-oldest_living = client.oldest_living
+oldest_living = client.OldestLiving()
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ oldest_living = client.oldest_living
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.oldest_living.load({"id": "oldest_living_id"})
+result = client.OldestLiving().load({"id": "oldest_living_id"})
 ```
 
 #### `update(reqdata, ctrl=None) -> dict`
@@ -184,7 +184,7 @@ result = client.oldest_living.load({"id": "oldest_living_id"})
 Update an existing entity. The data must include the entity `id`. Returns the updated entity data and raises on error.
 
 ```python
-result = client.oldest_living.update({
+result = client.OldestLiving().update({
     "id": "oldest_living_id",
     # Fields to update
 })
