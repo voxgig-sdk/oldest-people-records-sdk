@@ -9,9 +9,12 @@ The TypeScript SDK for the OldestPeopleRecords API — a type-safe, entity-orien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/oldest-people-records
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/oldest-people-records-sdk/releases](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OldestPeopleRecordsSDK } from 'oldest-people-records'
+import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records'
 
-const client = new OldestPeopleRecordsSDK({
-  apikey: process.env.OLDEST-PEOPLE-RECORDS_APIKEY,
-})
+const client = new OldestPeopleRecordsSDK()
 ```
 
-### 3. Load a oldestever
+### 3. Load an oldestever
 
 ```ts
-const result = await client.OldestEver().load({ id: 'example_id' })
+const result = await client.oldestever.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -41,7 +42,7 @@ if (result.ok) {
 
 ```ts
 // Update
-const updated = await client.OldestEver().update({
+const updated = await client.oldestever.update({
   id: created.data.id,
   name: 'Example-Renamed',
 })
@@ -90,7 +91,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OldestPeopleRecordsSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.oldestever.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +99,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new OldestPeopleRecordsSDK({ apikey: '...' })
+const client = new OldestPeopleRecordsSDK()
 const testClient = client.tester()
 ```
 
@@ -107,7 +108,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.oldestever
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -134,7 +135,6 @@ const logger = {
 }
 
 const client = new OldestPeopleRecordsSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -144,8 +144,7 @@ const client = new OldestPeopleRecordsSDK({
 Create a `.env.local` file at the project root:
 
 ```
-OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
-OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
+OLDEST_PEOPLE_RECORDS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -163,7 +162,6 @@ cd ts && npm test
 
 ```ts
 new OldestPeopleRecordsSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -174,7 +172,6 @@ new OldestPeopleRecordsSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -302,7 +299,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.OldestEver()`
+Create an instance: `const oldest_ever = client.oldest_ever`
 
 #### Operations
 
@@ -327,13 +324,13 @@ Create an instance: `const oldest_ever = client.OldestEver()`
 #### Example: Load
 
 ```ts
-const oldest_ever = await client.OldestEver().load({ id: 'oldest_ever_id' })
+const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.OldestLiving()`
+Create an instance: `const oldest_living = client.oldest_living`
 
 #### Operations
 
@@ -358,7 +355,7 @@ Create an instance: `const oldest_living = client.OldestLiving()`
 #### Example: Load
 
 ```ts
-const oldest_living = await client.OldestLiving().load({ id: 'oldest_living_id' })
+const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
 ```
 
 
@@ -419,7 +416,7 @@ oldest-people-records/
 Import the SDK from the package root:
 
 ```ts
-import { OldestPeopleRecordsSDK } from 'oldest-people-records'
+import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records'
 ```
 
 ### Entity state
@@ -429,11 +426,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const oldestever = client.oldestever
+await oldestever.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// oldestever.data() now returns the loaded oldestever data
+// oldestever.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

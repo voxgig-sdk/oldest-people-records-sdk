@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch OldestEverLoadMatch
+---@param ctrl? table
+---@return OldestEver
+---@return string? err
 function OldestEverEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -108,6 +112,10 @@ end
 
 
 
+---@param reqdata OldestEverUpdateData
+---@param ctrl? table
+---@return OldestEver
+---@return string? err
 function OldestEverEntity:update(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

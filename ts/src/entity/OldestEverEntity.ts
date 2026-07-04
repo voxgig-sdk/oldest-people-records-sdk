@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  OldestEver,
+  OldestEverLoadMatch,
+  OldestEverUpdateData,
+} from '../OldestPeopleRecordsTypes'
 
 // TODO: needs Entity superclass
-class OldestEverEntity extends OldestPeopleRecordsEntityBase {
+class OldestEverEntity extends OldestPeopleRecordsEntityBase<OldestEver> {
 
   constructor(client: OldestPeopleRecordsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class OldestEverEntity extends OldestPeopleRecordsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: OldestEverLoadMatch, ctrl?: Control): Promise<OldestEver> {
 
     const utility = this._utility
 
@@ -136,7 +141,9 @@ class OldestEverEntity extends OldestPeopleRecordsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<OldestEver> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -145,7 +152,7 @@ class OldestEverEntity extends OldestPeopleRecordsEntityBase {
 
 
 
-  async update(this: any, reqdata?: any, ctrl?: Control) {
+  async update(this: any, reqdata?: OldestEverUpdateData, ctrl?: Control): Promise<OldestEver> {
 
     const utility = this._utility
 
@@ -250,7 +257,9 @@ class OldestEverEntity extends OldestPeopleRecordsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<OldestEver> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch OldestLivingLoadMatch
+---@param ctrl? table
+---@return OldestLiving
+---@return string? err
 function OldestLivingEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -108,6 +112,10 @@ end
 
 
 
+---@param reqdata OldestLivingUpdateData
+---@param ctrl? table
+---@return OldestLiving
+---@return string? err
 function OldestLivingEntity:update(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

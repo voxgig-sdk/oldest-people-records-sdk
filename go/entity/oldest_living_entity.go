@@ -85,6 +85,27 @@ func (e *OldestLivingEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an OldestLiving; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *OldestLivingEntity) DataTyped(data ...OldestLiving) OldestLiving {
+	if len(data) > 0 {
+		return typedFrom[OldestLiving](e.Data(asMap(data[0])))
+	}
+	return typedFrom[OldestLiving](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through OldestLiving (all fields
+// optional at the wire level).
+func (e *OldestLivingEntity) MatchTyped(match ...OldestLiving) OldestLiving {
+	if len(match) > 0 {
+		return typedFrom[OldestLiving](e.Match(asMap(match[0])))
+	}
+	return typedFrom[OldestLiving](e.Match())
+}
+
 
 func (e *OldestLivingEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *OldestLivingEntity) Load(reqmatch map[string]any, ctrl map[string]any) 
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// OldestLivingLoadMatch and returns an OldestLiving. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *OldestLivingEntity) LoadTyped(reqmatch OldestLivingLoadMatch, ctrl map[string]any) (OldestLiving, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return OldestLiving{}, err
+	}
+	return typedFrom[OldestLiving](res), nil
 }
 
 
@@ -147,6 +179,17 @@ func (e *OldestLivingEntity) Update(reqdata map[string]any, ctrl map[string]any)
 			}
 		}
 	})
+}
+
+// UpdateTyped is the statically-typed variant of Update: it takes an
+// OldestLivingUpdateData and returns an OldestLiving. It delegates to the untyped
+// Update (identical runtime) and converts at the typed boundary.
+func (e *OldestLivingEntity) UpdateTyped(reqdata OldestLivingUpdateData, ctrl map[string]any) (OldestLiving, error) {
+	res, err := e.Update(asMap(reqdata), ctrl)
+	if err != nil {
+		return OldestLiving{}, err
+	}
+	return typedFrom[OldestLiving](res), nil
 }
 
 

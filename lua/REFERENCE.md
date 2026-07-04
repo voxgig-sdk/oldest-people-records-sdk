@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -88,7 +87,7 @@ same parameters as `direct()`.
 ## OldestEverEntity
 
 ```lua
-local oldest_ever = client:OldestEver(nil)
+local oldest_ever = client:oldest_ever(nil)
 ```
 
 ### Fields
@@ -111,7 +110,7 @@ local oldest_ever = client:OldestEver(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OldestEver():load({ id = "oldest_ever_id" })
+local result, err = client:oldest_ever():load({ id = "oldest_ever_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -119,7 +118,7 @@ local result, err = client:OldestEver():load({ id = "oldest_ever_id" })
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:OldestEver():update({
+local result, err = client:oldest_ever():update({
   id = "oldest_ever_id",
   -- Fields to update
 })
@@ -158,7 +157,7 @@ Return the entity name.
 ## OldestLivingEntity
 
 ```lua
-local oldest_living = client:OldestLiving(nil)
+local oldest_living = client:oldest_living(nil)
 ```
 
 ### Fields
@@ -181,7 +180,7 @@ local oldest_living = client:OldestLiving(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OldestLiving():load({ id = "oldest_living_id" })
+local result, err = client:oldest_living():load({ id = "oldest_living_id" })
 ```
 
 #### `update(reqdata, ctrl) -> any, err`
@@ -189,7 +188,7 @@ local result, err = client:OldestLiving():load({ id = "oldest_living_id" })
 Update an existing entity. The data must include the entity `id`.
 
 ```lua
-local result, err = client:OldestLiving():update({
+local result, err = client:oldest_living():update({
   id = "oldest_living_id",
   -- Fields to update
 })

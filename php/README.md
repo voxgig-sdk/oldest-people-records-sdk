@@ -9,9 +9,10 @@ The PHP SDK for the OldestPeopleRecords API — an entity-oriented client using 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/oldest-people-records
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/oldest-people-records-sdk/releases](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,24 +26,25 @@ loading a specific record.
 <?php
 require_once 'oldestpeoplerecords_sdk.php';
 
-$client = new OldestPeopleRecordsSDK([
-    "apikey" => getenv("OLDEST-PEOPLE-RECORDS_APIKEY"),
-]);
+$client = new OldestPeopleRecordsSDK();
 ```
 
-### 3. Load a oldestever
+### 3. Load an oldestever
 
 ```php
-[$result, $err] = $client->OldestEver()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->oldestever()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Update
-$client->OldestEver()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
+$client->oldestever()->update(["id" => $created["id"], "name" => "Example-Renamed"]);
 
 ```
 
@@ -54,28 +56,31 @@ $client->OldestEver()->update(["id" => $created["id"], "name" => "Example-Rename
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -89,7 +94,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = OldestPeopleRecordsSDK::test();
 
-[$result, $err] = $client->OldestPeopleRecords()->load(["id" => "test01"]);
+$result = $client->oldestever()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -123,8 +128,7 @@ $client = new OldestPeopleRecordsSDK([
 Create a `.env.local` file at the project root:
 
 ```
-OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
-OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
+OLDEST_PEOPLE_RECORDS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -147,7 +151,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -194,8 +197,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -249,7 +256,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.OldestEver()`
+Create an instance: `const oldest_ever = client.oldest_ever`
 
 #### Operations
 
@@ -274,13 +281,13 @@ Create an instance: `const oldest_ever = client.OldestEver()`
 #### Example: Load
 
 ```ts
-const oldest_ever = await client.OldestEver().load({ id: 'oldest_ever_id' })
+const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.OldestLiving()`
+Create an instance: `const oldest_living = client.oldest_living`
 
 #### Operations
 
@@ -305,7 +312,7 @@ Create an instance: `const oldest_living = client.OldestLiving()`
 #### Example: Load
 
 ```ts
-const oldest_living = await client.OldestLiving().load({ id: 'oldest_living_id' })
+const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
 ```
 
 
@@ -380,11 +387,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$oldestever = $client->oldestever();
+$oldestever->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $oldestever->dataGet() now returns the loaded oldestever data
+// $oldestever->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

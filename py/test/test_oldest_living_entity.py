@@ -56,9 +56,7 @@ class TestOldestLivingEntity:
         oldest_living_ref01_markdef_up0_value = "Mark01-oldest_living_ref01_" + str(setup["now"])
         oldest_living_ref01_data_up0_up[oldest_living_ref01_markdef_up0_name] = oldest_living_ref01_markdef_up0_value
 
-        oldest_living_ref01_resdata_up0_result, err = oldest_living_ref01_ent.update(oldest_living_ref01_data_up0_up, None)
-        assert err is None
-        oldest_living_ref01_resdata_up0 = helpers.to_map(oldest_living_ref01_resdata_up0_result)
+        oldest_living_ref01_resdata_up0 = helpers.to_map(oldest_living_ref01_ent.update(oldest_living_ref01_data_up0_up, None))
         assert oldest_living_ref01_resdata_up0 is not None
         assert oldest_living_ref01_resdata_up0["id"] == oldest_living_ref01_data_up0_up["id"]
         assert oldest_living_ref01_resdata_up0[oldest_living_ref01_markdef_up0_name] == oldest_living_ref01_markdef_up0_value
@@ -67,8 +65,7 @@ class TestOldestLivingEntity:
         oldest_living_ref01_match_dt0 = {
             "id": oldest_living_ref01_data["id"],
         }
-        oldest_living_ref01_data_dt0_loaded, err = oldest_living_ref01_ent.load(oldest_living_ref01_match_dt0, None)
-        assert err is None
+        oldest_living_ref01_data_dt0_loaded = oldest_living_ref01_ent.load(oldest_living_ref01_match_dt0, None)
         oldest_living_ref01_data_dt0_load_result = helpers.to_map(oldest_living_ref01_data_dt0_loaded)
         assert oldest_living_ref01_data_dt0_load_result is not None
         assert oldest_living_ref01_data_dt0_load_result["id"] == oldest_living_ref01_data["id"]
@@ -111,7 +108,6 @@ def _oldest_living_basic_setup(extra):
         "OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID": idmap,
         "OLDESTPEOPLERECORDS_TEST_LIVE": "FALSE",
         "OLDESTPEOPLERECORDS_TEST_EXPLAIN": "FALSE",
-        "OLDESTPEOPLERECORDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -122,7 +118,6 @@ def _oldest_living_basic_setup(extra):
     if env.get("OLDESTPEOPLERECORDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("OLDESTPEOPLERECORDS_APIKEY"),
             },
             extra or {},
         ])

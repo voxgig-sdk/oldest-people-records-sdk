@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'OldestPeopleRecords_types'
+
 
 class OldestPeopleRecordsSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class OldestPeopleRecordsSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class OldestPeopleRecordsSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue OldestPeopleRecordsError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = OldestPeopleRecordsHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class OldestPeopleRecordsSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,22 +198,36 @@ class OldestPeopleRecordsSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.oldest_ever.list / client.oldest_ever.load({ "id" => ... })
+  def oldest_ever
+    require_relative 'entity/oldest_ever_entity'
+    @oldest_ever ||= OldestEverEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.oldest_ever instead.
   def OldestEver(data = nil)
     require_relative 'entity/oldest_ever_entity'
     OldestEverEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.oldest_living.list / client.oldest_living.load({ "id" => ... })
+  def oldest_living
+    require_relative 'entity/oldest_living_entity'
+    @oldest_living ||= OldestLivingEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.oldest_living instead.
   def OldestLiving(data = nil)
     require_relative 'entity/oldest_living_entity'
     OldestLivingEntity.new(self, data)

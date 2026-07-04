@@ -9,12 +9,9 @@ The Lua SDK for the OldestPeopleRecords API — an entity-oriented client using 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-oldest-people-records
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("oldest-people-records_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("OLDEST-PEOPLE-RECORDS_APIKEY"),
-})
+local client = sdk.new()
 ```
 
-### 3. Load a oldestever
+### 3. Load an oldestever
 
 ```lua
-local result, err = client:OldestEver():load({ id = "example_id" })
+local result, err = client:oldestever():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -48,7 +43,7 @@ print(result)
 
 ```lua
 -- Update
-client:OldestEver():update({ id = created["id"], name = "Example-Renamed" })
+client:oldestever():update({ id = created["id"], name = "Example-Renamed" })
 
 ```
 
@@ -95,7 +90,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:OldestPeopleRecords():load({ id = "test01" })
+local result, err = client:oldestever():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -128,8 +123,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-OLDEST-PEOPLE-RECORDS_TEST_LIVE=TRUE
-OLDEST-PEOPLE-RECORDS_APIKEY=<your-key>
+OLDEST_PEOPLE_RECORDS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +146,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -254,7 +247,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `const oldest_ever = client.OldestEver()`
+Create an instance: `const oldest_ever = client.oldest_ever`
 
 #### Operations
 
@@ -279,13 +272,13 @@ Create an instance: `const oldest_ever = client.OldestEver()`
 #### Example: Load
 
 ```ts
-const oldest_ever = await client.OldestEver().load({ id: 'oldest_ever_id' })
+const oldest_ever = await client.oldest_ever.load({ id: 'oldest_ever_id' })
 ```
 
 
 ### OldestLiving
 
-Create an instance: `const oldest_living = client.OldestLiving()`
+Create an instance: `const oldest_living = client.oldest_living`
 
 #### Operations
 
@@ -310,7 +303,7 @@ Create an instance: `const oldest_living = client.OldestLiving()`
 #### Example: Load
 
 ```ts
-const oldest_living = await client.OldestLiving().load({ id: 'oldest_living_id' })
+const oldest_living = await client.oldest_living.load({ id: 'oldest_living_id' })
 ```
 
 
@@ -385,11 +378,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local oldestever = client:oldestever()
+oldestever:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- oldestever:data_get() now returns the loaded oldestever data
+-- oldestever:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

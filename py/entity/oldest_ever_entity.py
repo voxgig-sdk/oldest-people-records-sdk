@@ -1,7 +1,14 @@
 # OldestPeopleRecords SDK OldestEver entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from oldestpeoplerecords_types import (
+    OldestEver,
+    OldestEverLoadMatch,
+    OldestEverUpdateData,
+)
 
 
 class OldestEverEntity:
@@ -44,7 +51,7 @@ class OldestEverEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> OldestEver:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +60,12 @@ class OldestEverEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> OldestEver:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: OldestEverLoadMatch, ctrl=None) -> OldestEver:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",
@@ -84,7 +91,7 @@ class OldestEverEntity:
     
 
     
-    def update(self, reqdata, ctrl=None):
+    def update(self, reqdata: OldestEverUpdateData, ctrl=None) -> OldestEver:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "update",

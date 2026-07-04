@@ -45,6 +45,7 @@ class OldestLivingEntity
     end
   end
 
+  # @return [OldestLiving, Hash] the current OldestLiving data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class OldestLivingEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of OldestLiving fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single OldestLiving.
+  #
+  # @param reqmatch [OldestLivingLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [OldestLiving, Hash] the loaded OldestLiving; raises OldestPeopleRecordsError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -90,6 +97,11 @@ class OldestLivingEntity
   
 
   
+  # Update an existing OldestLiving.
+  #
+  # @param reqdata [OldestLivingUpdateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [OldestLiving, Hash] the updated OldestLiving; raises OldestPeopleRecordsError on failure
   def update(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

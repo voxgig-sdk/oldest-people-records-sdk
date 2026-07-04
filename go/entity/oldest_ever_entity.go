@@ -85,6 +85,27 @@ func (e *OldestEverEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an OldestEver; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *OldestEverEntity) DataTyped(data ...OldestEver) OldestEver {
+	if len(data) > 0 {
+		return typedFrom[OldestEver](e.Data(asMap(data[0])))
+	}
+	return typedFrom[OldestEver](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through OldestEver (all fields
+// optional at the wire level).
+func (e *OldestEverEntity) MatchTyped(match ...OldestEver) OldestEver {
+	if len(match) > 0 {
+		return typedFrom[OldestEver](e.Match(asMap(match[0])))
+	}
+	return typedFrom[OldestEver](e.Match())
+}
+
 
 func (e *OldestEverEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *OldestEverEntity) Load(reqmatch map[string]any, ctrl map[string]any) (a
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// OldestEverLoadMatch and returns an OldestEver. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *OldestEverEntity) LoadTyped(reqmatch OldestEverLoadMatch, ctrl map[string]any) (OldestEver, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return OldestEver{}, err
+	}
+	return typedFrom[OldestEver](res), nil
 }
 
 
@@ -147,6 +179,17 @@ func (e *OldestEverEntity) Update(reqdata map[string]any, ctrl map[string]any) (
 			}
 		}
 	})
+}
+
+// UpdateTyped is the statically-typed variant of Update: it takes an
+// OldestEverUpdateData and returns an OldestEver. It delegates to the untyped
+// Update (identical runtime) and converts at the typed boundary.
+func (e *OldestEverEntity) UpdateTyped(reqdata OldestEverUpdateData, ctrl map[string]any) (OldestEver, error) {
+	res, err := e.Update(asMap(reqdata), ctrl)
+	if err != nil {
+		return OldestEver{}, err
+	}
+	return typedFrom[OldestEver](res), nil
 }
 
 

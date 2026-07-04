@@ -62,14 +62,12 @@ function oldest_living_direct_setup(mockres)
   local env = runner.env_override({
     ["OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID"] = {},
     ["OLDESTPEOPLERECORDS_TEST_LIVE"] = "FALSE",
-    ["OLDESTPEOPLERECORDS_APIKEY"] = "NONE",
   })
 
   local live = env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["OLDESTPEOPLERECORDS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

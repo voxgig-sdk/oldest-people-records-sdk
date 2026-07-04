@@ -103,7 +103,7 @@ class OldestPeopleRecordsSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class OldestPeopleRecordsSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class OldestPeopleRecordsSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,31 +216,53 @@ class OldestPeopleRecordsSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function OldestEver($data = null)
+    private $_oldest_ever = null;
+
+    // Idiomatic facade: $client->oldest_ever()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias OldestEver() (PHP method
+    // names are case-insensitive).
+    public function oldest_ever($data = null)
     {
         require_once __DIR__ . '/entity/oldest_ever_entity.php';
+        if ($data === null) {
+            if ($this->_oldest_ever === null) {
+                $this->_oldest_ever = new OldestEverEntity($this, null);
+            }
+            return $this->_oldest_ever;
+        }
         return new OldestEverEntity($this, $data);
     }
 
 
-    public function OldestLiving($data = null)
+    private $_oldest_living = null;
+
+    // Idiomatic facade: $client->oldest_living()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias OldestLiving() (PHP method
+    // names are case-insensitive).
+    public function oldest_living($data = null)
     {
         require_once __DIR__ . '/entity/oldest_living_entity.php';
+        if ($data === null) {
+            if ($this->_oldest_living === null) {
+                $this->_oldest_living = new OldestLivingEntity($this, null);
+            }
+            return $this->_oldest_living;
+        }
         return new OldestLivingEntity($this, $data);
     }
 

@@ -55,6 +55,9 @@ class OldestEverEntity
         return new OldestEverEntity($this->_client, $opts);
     }
 
+    /**
+     * @param OldestEver|array $args OldestEver data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class OldestEverEntity
         }
     }
 
+    /**
+     * @return OldestEver|array The current OldestEver data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of OldestEver fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class OldestEverEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of OldestEver fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class OldestEverEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single OldestEver.
+     *
+     * @param OldestEverLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed OldestEverLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return OldestEver|array The loaded OldestEver as an assoc-array at the
+     *   SDK boundary; throws OldestPeopleRecordsError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,16 @@ class OldestEverEntity
     
 
     
-    public function update($reqdata, $ctrl = null): array
+    /**
+     * Update an existing OldestEver.
+     *
+     * @param OldestEverUpdateData|array|null $reqdata Body data as an assoc-array;
+     *   a typed OldestEverUpdateData names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return OldestEver|array The updated OldestEver as an assoc-array at the
+     *   SDK boundary; throws OldestPeopleRecordsError on failure (item-5 convention).
+     */
+    public function update(?array $reqdata = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -141,7 +171,7 @@ class OldestEverEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

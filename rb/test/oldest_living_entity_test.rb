@@ -49,8 +49,7 @@ class OldestLivingEntityTest < Minitest::Test
     oldest_living_ref01_markdef_up0_value = "Mark01-oldest_living_ref01_#{setup[:now]}"
     oldest_living_ref01_data_up0_up[oldest_living_ref01_markdef_up0_name] = oldest_living_ref01_markdef_up0_value
 
-    oldest_living_ref01_resdata_up0_result, err = oldest_living_ref01_ent.update(oldest_living_ref01_data_up0_up, nil)
-    assert_nil err
+    oldest_living_ref01_resdata_up0_result = oldest_living_ref01_ent.update(oldest_living_ref01_data_up0_up, nil)
     oldest_living_ref01_resdata_up0 = Helpers.to_map(oldest_living_ref01_resdata_up0_result)
     assert !oldest_living_ref01_resdata_up0.nil?
     assert_equal oldest_living_ref01_resdata_up0["id"], oldest_living_ref01_data_up0_up["id"]
@@ -60,8 +59,7 @@ class OldestLivingEntityTest < Minitest::Test
     oldest_living_ref01_match_dt0 = {
       "id" => oldest_living_ref01_data["id"],
     }
-    oldest_living_ref01_data_dt0_loaded, err = oldest_living_ref01_ent.load(oldest_living_ref01_match_dt0, nil)
-    assert_nil err
+    oldest_living_ref01_data_dt0_loaded = oldest_living_ref01_ent.load(oldest_living_ref01_match_dt0, nil)
     oldest_living_ref01_data_dt0_load_result = Helpers.to_map(oldest_living_ref01_data_dt0_loaded)
     assert !oldest_living_ref01_data_dt0_load_result.nil?
     assert_equal oldest_living_ref01_data_dt0_load_result["id"], oldest_living_ref01_data["id"]
@@ -102,7 +100,6 @@ def oldest_living_basic_setup(extra)
     "OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID" => idmap,
     "OLDESTPEOPLERECORDS_TEST_LIVE" => "FALSE",
     "OLDESTPEOPLERECORDS_TEST_EXPLAIN" => "FALSE",
-    "OLDESTPEOPLERECORDS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -114,7 +111,6 @@ def oldest_living_basic_setup(extra)
   if env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["OLDESTPEOPLERECORDS_APIKEY"],
       },
       extra || {},
     ])

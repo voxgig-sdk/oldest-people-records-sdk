@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -122,7 +121,7 @@ Alias for `OldestPeopleRecordsSDK.test()`.
 ## OldestEverEntity
 
 ```ts
-const oldest_ever = client.OldestEver()
+const oldest_ever = client.oldest_ever
 ```
 
 ### Fields
@@ -145,7 +144,7 @@ const oldest_ever = client.OldestEver()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.OldestEver().load({ id: 'oldest_ever_id' })
+const result = await client.oldest_ever.load({ id: 'oldest_ever_id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -153,7 +152,7 @@ const result = await client.OldestEver().load({ id: 'oldest_ever_id' })
 Update an existing entity. The data must include the entity `id`.
 
 ```ts
-const result = await client.OldestEver().update({
+const result = await client.oldest_ever.update({
   id: 'oldest_ever_id',
   // Fields to update
 })
@@ -190,7 +189,7 @@ Return a copy of the entity options.
 ## OldestLivingEntity
 
 ```ts
-const oldest_living = client.OldestLiving()
+const oldest_living = client.oldest_living
 ```
 
 ### Fields
@@ -213,7 +212,7 @@ const oldest_living = client.OldestLiving()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.OldestLiving().load({ id: 'oldest_living_id' })
+const result = await client.oldest_living.load({ id: 'oldest_living_id' })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -221,7 +220,7 @@ const result = await client.OldestLiving().load({ id: 'oldest_living_id' })
 Update an existing entity. The data must include the entity `id`.
 
 ```ts
-const result = await client.OldestLiving().update({
+const result = await client.oldest_living.update({
   id: 'oldest_living_id',
   // Fields to update
 })

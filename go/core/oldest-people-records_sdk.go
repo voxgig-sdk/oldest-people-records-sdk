@@ -245,11 +245,17 @@ func (sdk *OldestPeopleRecordsSDK) Direct(fetchargs map[string]any) (map[string]
 }
 
 
+// OldestEver returns a OldestEver entity bound to this client.
+// Idiomatic usage: client.OldestEver(nil).List(nil, nil) or
+// client.OldestEver(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OldestPeopleRecordsSDK) OldestEver(data map[string]any) OldestPeopleRecordsEntity {
 	return NewOldestEverEntityFunc(sdk, data)
 }
 
 
+// OldestLiving returns a OldestLiving entity bound to this client.
+// Idiomatic usage: client.OldestLiving(nil).List(nil, nil) or
+// client.OldestLiving(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *OldestPeopleRecordsSDK) OldestLiving(data map[string]any) OldestPeopleRecordsEntity {
 	return NewOldestLivingEntityFunc(sdk, data)
 }

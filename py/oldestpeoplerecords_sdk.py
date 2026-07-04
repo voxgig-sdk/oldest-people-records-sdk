@@ -144,16 +144,23 @@ class OldestPeopleRecordsSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class OldestPeopleRecordsSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,20 +212,42 @@ class OldestPeopleRecordsSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def oldest_ever(self):
+        """Idiomatic facade: client.oldest_ever.list() / client.oldest_ever.load({"id": ...})."""
+        from entity.oldest_ever_entity import OldestEverEntity
+        cached = getattr(self, "_oldest_ever", None)
+        if cached is None:
+            cached = OldestEverEntity(self, None)
+            self._oldest_ever = cached
+        return cached
 
     def OldestEver(self, data=None):
+        # Deprecated: use client.oldest_ever instead.
         from entity.oldest_ever_entity import OldestEverEntity
         return OldestEverEntity(self, data)
 
 
+    @property
+    def oldest_living(self):
+        """Idiomatic facade: client.oldest_living.list() / client.oldest_living.load({"id": ...})."""
+        from entity.oldest_living_entity import OldestLivingEntity
+        cached = getattr(self, "_oldest_living", None)
+        if cached is None:
+            cached = OldestLivingEntity(self, None)
+            self._oldest_living = cached
+        return cached
+
     def OldestLiving(self, data=None):
+        # Deprecated: use client.oldest_living instead.
         from entity.oldest_living_entity import OldestLivingEntity
         return OldestLivingEntity(self, data)
 
