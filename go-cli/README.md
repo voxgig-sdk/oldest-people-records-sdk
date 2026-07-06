@@ -16,9 +16,9 @@ go build -o oldest-people-records-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./oldest-people-records-cli list oldest_ever
 ./oldest-people-records-cli load 1 oldest_ever
 ./oldest-people-records-cli load '{id:1}' oldest_ever
+./oldest-people-records-cli update '{id:1}' oldest_ever
 
 # REPL
 ./oldest-people-records-cli
@@ -28,7 +28,6 @@ go build -o oldest-people-records-cli ./...
 
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
-| `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
 | `update` | `[entity]` · `[query entity]`                | Update a record            |
 

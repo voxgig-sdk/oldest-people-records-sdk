@@ -17,8 +17,24 @@
 ---@field verified? boolean
 
 ---@class OldestEverLoadMatch
+---@field age? number
+---@field birth_date? string
+---@field country? string
+---@field death_date? string
+---@field id string
+---@field last_updated? string
+---@field name? string
+---@field verified? boolean
 
 ---@class OldestEverUpdateData
+---@field age? number
+---@field birth_date? string
+---@field country? string
+---@field death_date? string
+---@field id? string
+---@field last_updated? string
+---@field name? string
+---@field verified? boolean
 
 ---@class OldestLiving
 ---@field age number
@@ -31,8 +47,24 @@
 ---@field verified? boolean
 
 ---@class OldestLivingLoadMatch
+---@field age? number
+---@field birth_date? string
+---@field country? string
+---@field death_date? string
+---@field id string
+---@field last_updated? string
+---@field name? string
+---@field verified? boolean
 
 ---@class OldestLivingUpdateData
+---@field age? number
+---@field birth_date? string
+---@field country? string
+---@field death_date? string
+---@field id? string
+---@field last_updated? string
+---@field name? string
+---@field verified? boolean
 
 local M = {}
 

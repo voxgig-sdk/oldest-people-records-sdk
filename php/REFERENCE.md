@@ -8,7 +8,7 @@ Complete API reference for the OldestPeopleRecords PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/oldest-people-records_sdk.php';
+require_once __DIR__ . '/oldestpeoplerecords_sdk.php';
 
 $client = new OldestPeopleRecordsSDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `OldestEverEntity` instance. Pass `null` for no initial data.
 
 Create a new `OldestLivingEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): OldestPeopleRecordsUtility`
 
 Return a copy of the SDK utility object.
 
@@ -96,14 +96,14 @@ $oldest_ever = $client->OldestEver();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `int` | Yes |  |
+| `birth_date` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `death_date` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `last_updated` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `verified` | `bool` | No |  |
 
 ### Operations
 
@@ -128,19 +128,19 @@ $result = $client->OldestEver()->update([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -149,7 +149,7 @@ Set the entity match criteria.
 Create a new `OldestEverEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -166,14 +166,14 @@ $oldest_living = $client->OldestLiving();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `int` | Yes |  |
+| `birth_date` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `death_date` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `last_updated` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `verified` | `bool` | No |  |
 
 ### Operations
 
@@ -198,19 +198,19 @@ $result = $client->OldestLiving()->update([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -219,7 +219,7 @@ Set the entity match criteria.
 Create a new `OldestLivingEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

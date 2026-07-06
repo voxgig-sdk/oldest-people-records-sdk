@@ -221,13 +221,13 @@ class OldestPeopleRecordsSDK:
 
 
     def OldestEver(self, data=None) -> "OldestEverEntity":
-        """Entity factory: client.OldestEver().list({}) / client.OldestEver().load({"id": ...})."""
+        """Entity factory: client.OldestEver().list() / client.OldestEver().load({"id": ...})."""
         from entity.oldest_ever_entity import OldestEverEntity
         return OldestEverEntity(self, data)
 
 
     def OldestLiving(self, data=None) -> "OldestLivingEntity":
-        """Entity factory: client.OldestLiving().list({}) / client.OldestLiving().load({"id": ...})."""
+        """Entity factory: client.OldestLiving().list() / client.OldestLiving().load({"id": ...})."""
         from entity.oldest_living_entity import OldestLivingEntity
         return OldestLivingEntity(self, data)
 

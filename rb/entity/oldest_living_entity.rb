@@ -67,10 +67,12 @@ class OldestLivingEntity
   
   # Load a single OldestLiving.
   #
-  # @param reqmatch [OldestLivingLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [OldestLivingLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.OldestLiving.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [OldestLiving, Hash] the loaded OldestLiving; raises OldestPeopleRecordsError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

@@ -45,7 +45,7 @@ OldestEver = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OldestEver#load (any subset of OldestEver fields).
+# Request payload for OldestEver#load.
 #
 # @!attribute [rw] age
 #   @return [Integer, nil]
@@ -60,7 +60,7 @@ OldestEver = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] last_updated
 #   @return [String, nil]
@@ -82,7 +82,7 @@ OldestEverLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OldestEver#update (any subset of OldestEver fields).
+# Request payload for OldestEver#update.
 #
 # @!attribute [rw] age
 #   @return [Integer, nil]
@@ -156,7 +156,7 @@ OldestLiving = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OldestLiving#load (any subset of OldestLiving fields).
+# Request payload for OldestLiving#load.
 #
 # @!attribute [rw] age
 #   @return [Integer, nil]
@@ -171,7 +171,7 @@ OldestLiving = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] last_updated
 #   @return [String, nil]
@@ -193,7 +193,7 @@ OldestLivingLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for OldestLiving#update (any subset of OldestLiving fields).
+# Request payload for OldestLiving#update.
 #
 # @!attribute [rw] age
 #   @return [Integer, nil]

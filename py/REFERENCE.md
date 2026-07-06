@@ -8,7 +8,7 @@ Complete API reference for the OldestPeopleRecords Python SDK.
 ### Constructor
 
 ```python
-from oldest-people-records_sdk import OldestPeopleRecordsSDK
+from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK
 
 client = OldestPeopleRecordsSDK(options)
 ```
@@ -91,14 +91,14 @@ oldest_ever = client.OldestEver()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `int` | Yes |  |
+| `birth_date` | `str` | Yes |  |
+| `country` | `str` | Yes |  |
+| `death_date` | `str` | No |  |
+| `id` | `str` | Yes |  |
+| `last_updated` | `str` | No |  |
+| `name` | `str` | Yes |  |
+| `verified` | `bool` | No |  |
 
 ### Operations
 
@@ -160,14 +160,14 @@ oldest_living = client.OldestLiving()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `int` | Yes |  |
+| `birth_date` | `str` | Yes |  |
+| `country` | `str` | Yes |  |
+| `death_date` | `str` | No |  |
+| `id` | `str` | Yes |  |
+| `last_updated` | `str` | No |  |
+| `name` | `str` | Yes |  |
+| `verified` | `bool` | No |  |
 
 ### Operations
 

@@ -8,7 +8,7 @@ Complete API reference for the OldestPeopleRecords Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'oldest-people-records_sdk'
+require_relative 'OldestPeopleRecords_sdk'
 
 client = OldestPeopleRecordsSDK.new(options)
 ```
@@ -97,14 +97,14 @@ oldest_ever = client.OldestEver
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `Integer` | Yes |  |
+| `birth_date` | `String` | Yes |  |
+| `country` | `String` | Yes |  |
+| `death_date` | `String` | No |  |
+| `id` | `String` | Yes |  |
+| `last_updated` | `String` | No |  |
+| `name` | `String` | Yes |  |
+| `verified` | `Boolean` | No |  |
 
 ### Operations
 
@@ -167,14 +167,14 @@ oldest_living = client.OldestLiving
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `Integer` | Yes |  |
+| `birth_date` | `String` | Yes |  |
+| `country` | `String` | Yes |  |
+| `death_date` | `String` | No |  |
+| `id` | `String` | Yes |  |
+| `last_updated` | `String` | No |  |
+| `name` | `String` | Yes |  |
+| `verified` | `Boolean` | No |  |
 
 ### Operations
 

@@ -20,21 +20,19 @@ type OldestEver struct {
 	Verified *bool `json:"verified,omitempty"`
 }
 
-// OldestEverLoadMatch mirrors the oldest_ever fields as an all-optional match
-// filter (Go analog of Partial<OldestEver>).
+// OldestEverLoadMatch is the typed request payload for OldestEver.LoadTyped.
 type OldestEverLoadMatch struct {
 	Age *int `json:"age,omitempty"`
 	BirthDate *string `json:"birth_date,omitempty"`
 	Country *string `json:"country,omitempty"`
 	DeathDate *string `json:"death_date,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	LastUpdated *string `json:"last_updated,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 }
 
-// OldestEverUpdateData mirrors the oldest_ever fields as an all-optional match
-// filter (Go analog of Partial<OldestEver>).
+// OldestEverUpdateData is the typed request payload for OldestEver.UpdateTyped.
 type OldestEverUpdateData struct {
 	Age *int `json:"age,omitempty"`
 	BirthDate *string `json:"birth_date,omitempty"`
@@ -58,21 +56,19 @@ type OldestLiving struct {
 	Verified *bool `json:"verified,omitempty"`
 }
 
-// OldestLivingLoadMatch mirrors the oldest_living fields as an all-optional match
-// filter (Go analog of Partial<OldestLiving>).
+// OldestLivingLoadMatch is the typed request payload for OldestLiving.LoadTyped.
 type OldestLivingLoadMatch struct {
 	Age *int `json:"age,omitempty"`
 	BirthDate *string `json:"birth_date,omitempty"`
 	Country *string `json:"country,omitempty"`
 	DeathDate *string `json:"death_date,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	LastUpdated *string `json:"last_updated,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 }
 
-// OldestLivingUpdateData mirrors the oldest_living fields as an all-optional match
-// filter (Go analog of Partial<OldestLiving>).
+// OldestLivingUpdateData is the typed request payload for OldestLiving.UpdateTyped.
 type OldestLivingUpdateData struct {
 	Age *int `json:"age,omitempty"`
 	BirthDate *string `json:"birth_date,omitempty"`

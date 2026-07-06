@@ -16,9 +16,27 @@ export interface OldestEver {
   verified?: boolean
 }
 
-export type OldestEverLoadMatch = Partial<OldestEver>
+export interface OldestEverLoadMatch {
+  age?: number
+  birth_date?: string
+  country?: string
+  death_date?: string
+  id: string
+  last_updated?: string
+  name?: string
+  verified?: boolean
+}
 
-export type OldestEverUpdateData = Partial<OldestEver>
+export interface OldestEverUpdateData {
+  age?: number
+  birth_date?: string
+  country?: string
+  death_date?: string
+  id?: string
+  last_updated?: string
+  name?: string
+  verified?: boolean
+}
 
 export interface OldestLiving {
   age: number
@@ -31,7 +49,25 @@ export interface OldestLiving {
   verified?: boolean
 }
 
-export type OldestLivingLoadMatch = Partial<OldestLiving>
+export interface OldestLivingLoadMatch {
+  age?: number
+  birth_date?: string
+  country?: string
+  death_date?: string
+  id: string
+  last_updated?: string
+  name?: string
+  verified?: boolean
+}
 
-export type OldestLivingUpdateData = Partial<OldestLiving>
+export interface OldestLivingUpdateData {
+  age?: number
+  birth_date?: string
+  country?: string
+  death_date?: string
+  id?: string
+  last_updated?: string
+  name?: string
+  verified?: boolean
+}
 

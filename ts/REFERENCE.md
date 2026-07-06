@@ -128,14 +128,14 @@ const oldest_ever = client.OldestEver()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `number` | Yes |  |
+| `birth_date` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `death_date` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `last_updated` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `verified` | `boolean` | No |  |
 
 ### Operations
 
@@ -196,14 +196,14 @@ const oldest_living = client.OldestLiving()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | Yes |  |
-| `birth_date` | ``$STRING`` | Yes |  |
-| `country` | ``$STRING`` | Yes |  |
-| `death_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | Yes |  |
-| `verified` | ``$BOOLEAN`` | No |  |
+| `age` | `number` | Yes |  |
+| `birth_date` | `string` | Yes |  |
+| `country` | `string` | Yes |  |
+| `death_date` | `string` | No |  |
+| `id` | `string` | Yes |  |
+| `last_updated` | `string` | No |  |
+| `name` | `string` | Yes |  |
+| `verified` | `boolean` | No |  |
 
 ### Operations
 

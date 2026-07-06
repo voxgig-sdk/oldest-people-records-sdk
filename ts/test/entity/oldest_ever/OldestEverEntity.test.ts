@@ -65,12 +65,12 @@ describe('OldestEverEntity', async () => {
     oldest_ever_ref01_data_up0.id = oldest_ever_ref01_data.id
 
     const oldest_ever_ref01_markdef_up0 = { name: 'birth_date', value: 'Mark01-oldest_ever_ref01_' + setup.now }
-    oldest_ever_ref01_data_up0 [oldest_ever_ref01_markdef_up0.name] = oldest_ever_ref01_markdef_up0.value
+    ;(oldest_ever_ref01_data_up0 as any)[oldest_ever_ref01_markdef_up0.name] = oldest_ever_ref01_markdef_up0.value
 
     const oldest_ever_ref01_resdata_up0 = await oldest_ever_ref01_ent.update(oldest_ever_ref01_data_up0)
     assert(oldest_ever_ref01_resdata_up0.id === oldest_ever_ref01_data_up0.id)
 
-    assert(oldest_ever_ref01_resdata_up0[oldest_ever_ref01_markdef_up0.name] === oldest_ever_ref01_markdef_up0.value)
+    assert((oldest_ever_ref01_resdata_up0 as any)[oldest_ever_ref01_markdef_up0.name] === oldest_ever_ref01_markdef_up0.value)
 
 
     // LOAD

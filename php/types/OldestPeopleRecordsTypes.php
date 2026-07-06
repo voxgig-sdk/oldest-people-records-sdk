@@ -25,20 +25,20 @@ class OldestEver
     public ?bool $verified = null;
 }
 
-/** Match filter for OldestEver#load (any subset of OldestEver fields). */
+/** Request payload for OldestEver#load. */
 class OldestEverLoadMatch
 {
     public ?int $age = null;
     public ?string $birth_date = null;
     public ?string $country = null;
     public ?string $death_date = null;
-    public ?string $id = null;
+    public string $id;
     public ?string $last_updated = null;
     public ?string $name = null;
     public ?bool $verified = null;
 }
 
-/** Match filter for OldestEver#update (any subset of OldestEver fields). */
+/** Request payload for OldestEver#update. */
 class OldestEverUpdateData
 {
     public ?int $age = null;
@@ -64,20 +64,20 @@ class OldestLiving
     public ?bool $verified = null;
 }
 
-/** Match filter for OldestLiving#load (any subset of OldestLiving fields). */
+/** Request payload for OldestLiving#load. */
 class OldestLivingLoadMatch
 {
     public ?int $age = null;
     public ?string $birth_date = null;
     public ?string $country = null;
     public ?string $death_date = null;
-    public ?string $id = null;
+    public string $id;
     public ?string $last_updated = null;
     public ?string $name = null;
     public ?bool $verified = null;
 }
 
-/** Match filter for OldestLiving#update (any subset of OldestLiving fields). */
+/** Request payload for OldestLiving#update. */
 class OldestLivingUpdateData
 {
     public ?int $age = null;

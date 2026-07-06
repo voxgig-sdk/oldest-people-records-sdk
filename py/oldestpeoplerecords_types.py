@@ -30,12 +30,15 @@ class OldestEver(OldestEverRequired, total=False):
     verified: bool
 
 
-class OldestEverLoadMatch(TypedDict, total=False):
+class OldestEverLoadMatchRequired(TypedDict):
+    id: str
+
+
+class OldestEverLoadMatch(OldestEverLoadMatchRequired, total=False):
     age: int
     birth_date: str
     country: str
     death_date: str
-    id: str
     last_updated: str
     name: str
     verified: bool
@@ -66,12 +69,15 @@ class OldestLiving(OldestLivingRequired, total=False):
     verified: bool
 
 
-class OldestLivingLoadMatch(TypedDict, total=False):
+class OldestLivingLoadMatchRequired(TypedDict):
+    id: str
+
+
+class OldestLivingLoadMatch(OldestLivingLoadMatchRequired, total=False):
     age: int
     birth_date: str
     country: str
     death_date: str
-    id: str
     last_updated: str
     name: str
     verified: bool

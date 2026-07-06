@@ -4,6 +4,11 @@
 
 The Python SDK for the OldestPeopleRecords API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.OldestEver()` — each
+carrying a small, uniform set of operations (`load`, `update`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -46,9 +51,37 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Update — the created record's id is a plain dict key
-client.OldestEver().update({"id": created["id"], "name": "Example-Renamed"})
+# Update
+client.OldestEver().update({"id": "example", "age": 1, "birth_date": "example"})
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    oldestever = client.OldestEver().load({"id": "example_id"})
+    print(oldestever)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -69,7 +102,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -182,10 +218,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
 | `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -267,14 +300,14 @@ Create an instance: `oldest_ever = client.OldestEver()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | ``$INTEGER`` |  |
-| `birth_date` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `death_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `age` | `int` |  |
+| `birth_date` | `str` |  |
+| `country` | `str` |  |
+| `death_date` | `str` |  |
+| `id` | `str` |  |
+| `last_updated` | `str` |  |
+| `name` | `str` |  |
+| `verified` | `bool` |  |
 
 #### Example: Load
 
@@ -298,14 +331,14 @@ Create an instance: `oldest_living = client.OldestLiving()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | ``$INTEGER`` |  |
-| `birth_date` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `death_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `verified` | ``$BOOLEAN`` |  |
+| `age` | `int` |  |
+| `birth_date` | `str` |  |
+| `country` | `str` |  |
+| `death_date` | `str` |  |
+| `id` | `str` |  |
+| `last_updated` | `str` |  |
+| `name` | `str` |  |
+| `verified` | `bool` |  |
 
 #### Example: Load
 
@@ -314,12 +347,16 @@ oldest_living = client.OldestLiving().load({"id": "oldest_living_id"})
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -336,8 +373,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -387,7 +425,7 @@ stores the returned data and match criteria internally.
 oldestever = client.OldestEver()
 oldestever.load({"id": "example_id"})
 
-# oldestever.data_get() now returns the loaded oldestever data
+# oldestever.data_get() now returns the oldestever data from the last load
 # oldestever.match_get() returns the last match criteria
 ```
 
