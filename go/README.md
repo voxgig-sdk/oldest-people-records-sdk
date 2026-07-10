@@ -50,15 +50,15 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single oldestever — the value is the loaded record.
-    oldestever, err := client.OldestEver(nil).Load(map[string]any{"id": "example"}, nil)
+    // Load a single oldestEver — the value is the loaded record.
+    oldestEver, err := client.OldestEver(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(oldestever)
+    fmt.Println(oldestEver)
 
-    // Update a oldestever.
-    updated, err := client.OldestEver(nil).Update(map[string]any{"id": "example", "age": 1, "birth_date": "example"}, nil)
+    // Update a oldestEver.
+    updated, err := client.OldestEver(nil).Update(map[string]any{"id": "example_id", "age": 1, "birth_date": "example_birth_date"}, nil)
     if err != nil {
         panic(err)
     }
@@ -142,13 +142,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-oldestever, err := client.OldestEver(nil).Load(
+oldestEver, err := client.OldestEver(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(oldestever) // the returned mock data
+fmt.Println(oldestEver) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -254,9 +254,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    oldestever, err := client.OldestEver(nil).Load(map[string]any{"id": "example_id"}, nil)
+    oldestEver, err := client.OldestEver(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // oldestever is the returned record
+    // oldestEver is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -304,7 +304,7 @@ API path: `/oldest-living`
 
 ### OldestEver
 
-Create an instance: `oldest_ever := client.OldestEver(nil)`
+Create an instance: `oldestEver := client.OldestEver(nil)`
 
 #### Operations
 
@@ -329,17 +329,17 @@ Create an instance: `oldest_ever := client.OldestEver(nil)`
 #### Example: Load
 
 ```go
-oldest_ever, err := client.OldestEver(nil).Load(map[string]any{"id": "oldest_ever_id"}, nil)
+oldestEver, err := client.OldestEver(nil).Load(map[string]any{"id": "oldest_ever_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(oldest_ever) // the loaded record
+fmt.Println(oldestEver) // the loaded record
 ```
 
 
 ### OldestLiving
 
-Create an instance: `oldest_living := client.OldestLiving(nil)`
+Create an instance: `oldestLiving := client.OldestLiving(nil)`
 
 #### Operations
 
@@ -364,11 +364,11 @@ Create an instance: `oldest_living := client.OldestLiving(nil)`
 #### Example: Load
 
 ```go
-oldest_living, err := client.OldestLiving(nil).Load(map[string]any{"id": "oldest_living_id"}, nil)
+oldestLiving, err := client.OldestLiving(nil).Load(map[string]any{"id": "oldest_living_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(oldest_living) // the loaded record
+fmt.Println(oldestLiving) // the loaded record
 ```
 
 

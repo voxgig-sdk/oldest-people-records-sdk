@@ -47,7 +47,7 @@ try {
 
 ```php
 // Update
-$client->OldestEver()->update(["id" => "example", "age" => 1, "birth_date" => "example"]);
+$client->OldestEver()->update(["id" => "example_id", "age" => 1, "birth_date" => "example_birth_date"]);
 
 ```
 

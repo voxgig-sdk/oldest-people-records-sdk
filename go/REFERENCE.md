@@ -94,7 +94,8 @@ same parameters as `Direct()`.
 ## OldestEverEntity
 
 ```go
-oldest_ever := client.OldestEver(nil)
+oldestEver := client.OldestEver(nil)
+fmt.Println(oldestEver.GetName()) // "oldest_ever"
 ```
 
 ### Fields
@@ -118,6 +119,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.OldestEver(nil).Load(map[string]any{"id": "oldest_ever_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 #### `Update(reqdata, ctrl map[string]any) (any, error)`
@@ -129,6 +134,10 @@ result, err := client.OldestEver(nil).Update(map[string]any{
     "id": "oldest_ever_id",
     // Fields to update
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -158,7 +167,8 @@ Return the entity name.
 ## OldestLivingEntity
 
 ```go
-oldest_living := client.OldestLiving(nil)
+oldestLiving := client.OldestLiving(nil)
+fmt.Println(oldestLiving.GetName()) // "oldest_living"
 ```
 
 ### Fields
@@ -182,6 +192,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.OldestLiving(nil).Load(map[string]any{"id": "oldest_living_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 #### `Update(reqdata, ctrl map[string]any) (any, error)`
@@ -193,6 +207,10 @@ result, err := client.OldestLiving(nil).Update(map[string]any{
     "id": "oldest_living_id",
     // Fields to update
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

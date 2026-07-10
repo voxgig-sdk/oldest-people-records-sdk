@@ -15,9 +15,9 @@ main: {
           url: "https://whoistheoldest.com"
         }
       ]
+      summary: "This API provides information about the oldest living person and the oldest person ever recorded."
       title: "Oldest People Records API"
       version: "1.0.0"
+      website: "https://whoistheoldest.com"
     }
   }
-}
-
