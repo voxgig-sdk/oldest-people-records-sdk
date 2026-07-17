@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- OldestPeopleRecords SDK exists test
 
 local sdk = require("oldest-people-records_sdk")
 
