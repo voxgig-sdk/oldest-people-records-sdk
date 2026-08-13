@@ -23,7 +23,7 @@ support (`load`, `update`):
 
 ```ts
 const client = new OldestPeopleRecordsSDK()
-const oldestever = await client.OldestEver().load()
+const oldestever = await client.OldestEver().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = OldestPeopleRecordsSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = OldestPeopleRecordsSDK.test({
+  entity: {
+    oldest_ever: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const oldestever = await client.OldestEver().load({ id: 'test01' })
-// oldestever is a bare OldestEver populated with mock data
+// oldestever is the OldestEver entity, populated with mock data
+// — call oldestever.data() for the record itself
 console.log(oldestever)
 ```
 
@@ -183,7 +192,7 @@ require_once 'oldestpeoplerecords_sdk.php';
 $client = new OldestPeopleRecordsSDK();
 
 
-// Load a specific oldestever (returns the bare record; throws on error)
+// Load a specific oldestever (returns the ENTITY; call data_get() for the record; throws on error)
 $oldestever = $client->OldestEver()->load(["id" => "example_id"]);
 print_r($oldestever);
 ```
@@ -211,7 +220,7 @@ require_relative "OldestPeopleRecords_sdk"
 client = OldestPeopleRecordsSDK.new
 
 
-# Load a specific oldestever (returns the bare record; raises on error)
+# Load a specific oldestever (returns the ENTITY; call data_get for the record)
 oldestever = client.OldestEver.load({ "id" => "example_id" })
 puts oldestever
 ```
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://whoistheoldest.com/](https://whoistheoldest.com/)
 

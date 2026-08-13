@@ -38,7 +38,7 @@ client = OldestPeopleRecordsSDK()
 
 ### 3. Load an oldestever
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -52,7 +52,7 @@ except Exception as err:
 
 ```python
 # Update
-client.OldestEver().update({"id": "example_id", "age": 1, "birth_date": "example_birth_date"})
+client.OldestEver().update({"id": "example_id", "age": 1, "birthDate": "example_birthDate"})
 
 ```
 
@@ -130,7 +130,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = OldestPeopleRecordsSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 oldestever = client.OldestEver().load({"id": "test01"})
 # oldestever contains the mock response record
 ```
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -251,11 +252,11 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -268,11 +269,11 @@ API path: `/oldest-ever`
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -301,11 +302,11 @@ Create an instance: `oldest_ever = client.OldestEver()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `int` |  |
-| `birth_date` | `str` |  |
+| `birthDate` | `str` |  |
 | `country` | `str` |  |
-| `death_date` | `str` |  |
+| `deathDate` | `str` |  |
 | `id` | `str` |  |
-| `last_updated` | `str` |  |
+| `lastUpdated` | `str` |  |
 | `name` | `str` |  |
 | `verified` | `bool` |  |
 
@@ -332,11 +333,11 @@ Create an instance: `oldest_living = client.OldestLiving()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `int` |  |
-| `birth_date` | `str` |  |
+| `birthDate` | `str` |  |
 | `country` | `str` |  |
-| `death_date` | `str` |  |
+| `deathDate` | `str` |  |
 | `id` | `str` |  |
-| `last_updated` | `str` |  |
+| `lastUpdated` | `str` |  |
 | `name` | `str` |  |
 | `verified` | `bool` |  |
 

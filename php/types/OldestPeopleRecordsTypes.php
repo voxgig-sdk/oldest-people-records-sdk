@@ -16,11 +16,11 @@ declare(strict_types=1);
 class OldestEver
 {
     public int $age;
-    public string $birth_date;
+    public string $birthDate;
     public string $country;
-    public ?string $death_date = null;
+    public ?string $deathDate = null;
     public string $id;
-    public ?string $last_updated = null;
+    public ?string $lastUpdated = null;
     public string $name;
     public ?bool $verified = null;
 }
@@ -29,11 +29,11 @@ class OldestEver
 class OldestEverLoadMatch
 {
     public ?int $age = null;
-    public ?string $birth_date = null;
+    public ?string $birthDate = null;
     public ?string $country = null;
-    public ?string $death_date = null;
+    public ?string $deathDate = null;
     public string $id;
-    public ?string $last_updated = null;
+    public ?string $lastUpdated = null;
     public ?string $name = null;
     public ?bool $verified = null;
 }
@@ -42,11 +42,11 @@ class OldestEverLoadMatch
 class OldestEverUpdateData
 {
     public ?int $age = null;
-    public ?string $birth_date = null;
+    public ?string $birthDate = null;
     public ?string $country = null;
-    public ?string $death_date = null;
+    public ?string $deathDate = null;
     public ?string $id = null;
-    public ?string $last_updated = null;
+    public ?string $lastUpdated = null;
     public ?string $name = null;
     public ?bool $verified = null;
 }
@@ -55,11 +55,11 @@ class OldestEverUpdateData
 class OldestLiving
 {
     public int $age;
-    public string $birth_date;
+    public string $birthDate;
     public string $country;
-    public ?string $death_date = null;
+    public ?string $deathDate = null;
     public string $id;
-    public ?string $last_updated = null;
+    public ?string $lastUpdated = null;
     public string $name;
     public ?bool $verified = null;
 }
@@ -68,11 +68,11 @@ class OldestLiving
 class OldestLivingLoadMatch
 {
     public ?int $age = null;
-    public ?string $birth_date = null;
+    public ?string $birthDate = null;
     public ?string $country = null;
-    public ?string $death_date = null;
+    public ?string $deathDate = null;
     public string $id;
-    public ?string $last_updated = null;
+    public ?string $lastUpdated = null;
     public ?string $name = null;
     public ?bool $verified = null;
 }
@@ -81,11 +81,11 @@ class OldestLivingLoadMatch
 class OldestLivingUpdateData
 {
     public ?int $age = null;
-    public ?string $birth_date = null;
+    public ?string $birthDate = null;
     public ?string $country = null;
-    public ?string $death_date = null;
+    public ?string $deathDate = null;
     public ?string $id = null;
-    public ?string $last_updated = null;
+    public ?string $lastUpdated = null;
     public ?string $name = null;
     public ?bool $verified = null;
 }

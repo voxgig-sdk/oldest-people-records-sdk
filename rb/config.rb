@@ -35,7 +35,7 @@ module OldestPeopleRecordsConfig
             },
             {
               "active" => true,
-              "name" => "birth_date",
+              "name" => "birthDate",
               "req" => true,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -49,7 +49,7 @@ module OldestPeopleRecordsConfig
             },
             {
               "active" => true,
-              "name" => "death_date",
+              "name" => "deathDate",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
@@ -63,7 +63,7 @@ module OldestPeopleRecordsConfig
             },
             {
               "active" => true,
-              "name" => "last_updated",
+              "name" => "lastUpdated",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 5,
@@ -119,6 +119,7 @@ module OldestPeopleRecordsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/oldest-ever",
                   "parts" => [
@@ -147,6 +148,7 @@ module OldestPeopleRecordsConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/oldest-ever",
                   "parts" => [
@@ -178,7 +180,7 @@ module OldestPeopleRecordsConfig
             },
             {
               "active" => true,
-              "name" => "birth_date",
+              "name" => "birthDate",
               "req" => true,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -192,7 +194,7 @@ module OldestPeopleRecordsConfig
             },
             {
               "active" => true,
-              "name" => "death_date",
+              "name" => "deathDate",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
@@ -206,7 +208,7 @@ module OldestPeopleRecordsConfig
             },
             {
               "active" => true,
-              "name" => "last_updated",
+              "name" => "lastUpdated",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 5,
@@ -262,6 +264,7 @@ module OldestPeopleRecordsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/oldest-living",
                   "parts" => [
@@ -290,6 +293,7 @@ module OldestPeopleRecordsConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/oldest-living",
                   "parts" => [

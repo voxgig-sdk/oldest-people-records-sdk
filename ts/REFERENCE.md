@@ -129,11 +129,11 @@ const oldest_ever = client.OldestEver()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `age` | `number` | Yes |  |
-| `birth_date` | `string` | Yes |  |
+| `birthDate` | `string` | Yes |  |
 | `country` | `string` | Yes |  |
-| `death_date` | `string` | No |  |
+| `deathDate` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `verified` | `boolean` | No |  |
 
@@ -197,11 +197,11 @@ const oldest_living = client.OldestLiving()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `age` | `number` | Yes |  |
-| `birth_date` | `string` | Yes |  |
+| `birthDate` | `string` | Yes |  |
 | `country` | `string` | Yes |  |
-| `death_date` | `string` | No |  |
+| `deathDate` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `verified` | `boolean` | No |  |
 

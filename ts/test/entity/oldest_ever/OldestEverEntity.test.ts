@@ -26,8 +26,8 @@ import {
 describe('OldestEverEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OLDESTPEOPLERECORDS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OLDESTPEOPLERECORDS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OLDEST_PEOPLE_RECORDS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OLDEST_PEOPLE_RECORDS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = OldestPeopleRecordsSDK.test()
@@ -64,10 +64,10 @@ describe('OldestEverEntity', async () => {
     const oldest_ever_ref01_data_up0: any = {}
     oldest_ever_ref01_data_up0.id = oldest_ever_ref01_data.id
 
-    const oldest_ever_ref01_markdef_up0 = { name: 'birth_date', value: 'Mark01-oldest_ever_ref01_' + setup.now }
+    const oldest_ever_ref01_markdef_up0 = { name: 'birthDate', value: 'Mark01-oldest_ever_ref01_' + setup.now }
     ;(oldest_ever_ref01_data_up0 as any)[oldest_ever_ref01_markdef_up0.name] = oldest_ever_ref01_markdef_up0.value
 
-    const oldest_ever_ref01_resdata_up0 = await oldest_ever_ref01_ent.update(oldest_ever_ref01_data_up0)
+    const oldest_ever_ref01_resdata_up0 = (await oldest_ever_ref01_ent.update(oldest_ever_ref01_data_up0)).data()
     assert(oldest_ever_ref01_resdata_up0.id === oldest_ever_ref01_data_up0.id)
 
     assert((oldest_ever_ref01_resdata_up0 as any)[oldest_ever_ref01_markdef_up0.name] === oldest_ever_ref01_markdef_up0.value)
@@ -76,7 +76,7 @@ describe('OldestEverEntity', async () => {
     // LOAD
     const oldest_ever_ref01_match_dt0: any = {}
     oldest_ever_ref01_match_dt0.id = oldest_ever_ref01_data.id
-    const oldest_ever_ref01_data_dt0 = await oldest_ever_ref01_ent.load(oldest_ever_ref01_match_dt0)
+    const oldest_ever_ref01_data_dt0 = (await oldest_ever_ref01_ent.load(oldest_ever_ref01_match_dt0)).data()
     assert(oldest_ever_ref01_data_dt0.id === oldest_ever_ref01_data.id)
 
 

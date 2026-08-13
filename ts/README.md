@@ -53,7 +53,7 @@ try {
 const updated = await client.OldestEver().update({
   id: 'example_id',
   age: 1,
-  birth_date: 'example_birth_date',
+  birthDate: 'example_birthDate',
 })
 
 ```
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 const client = OldestPeopleRecordsSDK.test()
 
 const oldestever = await client.OldestEver().load({ id: 'test01' })
-// oldestever is a bare entity populated with mock response data
+// oldestever is the entity, populated with mock response data
+// — call oldestever.data() for the record itself
 console.log(oldestever)
 ```
 
@@ -299,11 +300,11 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -316,11 +317,11 @@ API path: `/oldest-ever`
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -349,11 +350,11 @@ Create an instance: `const oldest_ever = client.OldestEver()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `number` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `boolean` |  |
 
@@ -380,11 +381,11 @@ Create an instance: `const oldest_living = client.OldestLiving()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `number` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `boolean` |  |
 

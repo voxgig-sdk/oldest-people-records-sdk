@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from oldestpeoplerecords_sdk.utility.voxgig_struct import voxgig_struct as vs
 from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK
-from core import helpers
+from oldestpeoplerecords_sdk.core import helpers
 from test import runner
 
 
@@ -56,11 +56,11 @@ def _oldest_living_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID": {},
-        "OLDESTPEOPLERECORDS_TEST_LIVE": "FALSE",
+        "OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID": {},
+        "OLDEST_PEOPLE_RECORDS_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("OLDESTPEOPLERECORDS_TEST_LIVE") == "TRUE"
+    live = env.get("OLDEST_PEOPLE_RECORDS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

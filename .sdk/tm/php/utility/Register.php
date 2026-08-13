@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ OldestPeopleRecordsUtility::setRegistrar(function (OldestPeopleRecordsUtility $u
     $u->prepare_params = [OldestPeopleRecordsPrepareParams::class, 'call'];
     $u->prepare_path = [OldestPeopleRecordsPreparePath::class, 'call'];
     $u->prepare_query = [OldestPeopleRecordsPrepareQuery::class, 'call'];
+    $u->graphql_body = [OldestPeopleRecordsGraphql::class, 'body'];
+    $u->graphql_errors = [OldestPeopleRecordsGraphql::class, 'errors'];
     $u->result_basic = [OldestPeopleRecordsResultBasic::class, 'call'];
     $u->result_body = [OldestPeopleRecordsResultBody::class, 'call'];
     $u->result_headers = [OldestPeopleRecordsResultHeaders::class, 'call'];

@@ -6,16 +6,20 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/oldest-people-records-sdk/go/core"
+)
 
 // OldestEver is the typed data model for the oldest_ever entity.
 type OldestEver struct {
 	Age int `json:"age"`
-	BirthDate string `json:"birth_date"`
+	BirthDate string `json:"birthDate"`
 	Country string `json:"country"`
-	DeathDate *string `json:"death_date,omitempty"`
+	DeathDate *string `json:"deathDate,omitempty"`
 	Id string `json:"id"`
-	LastUpdated *string `json:"last_updated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 	Name string `json:"name"`
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -23,11 +27,11 @@ type OldestEver struct {
 // OldestEverLoadMatch is the typed request payload for OldestEver.LoadTyped.
 type OldestEverLoadMatch struct {
 	Age *int `json:"age,omitempty"`
-	BirthDate *string `json:"birth_date,omitempty"`
+	BirthDate *string `json:"birthDate,omitempty"`
 	Country *string `json:"country,omitempty"`
-	DeathDate *string `json:"death_date,omitempty"`
+	DeathDate *string `json:"deathDate,omitempty"`
 	Id string `json:"id"`
-	LastUpdated *string `json:"last_updated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -35,11 +39,11 @@ type OldestEverLoadMatch struct {
 // OldestEverUpdateData is the typed request payload for OldestEver.UpdateTyped.
 type OldestEverUpdateData struct {
 	Age *int `json:"age,omitempty"`
-	BirthDate *string `json:"birth_date,omitempty"`
+	BirthDate *string `json:"birthDate,omitempty"`
 	Country *string `json:"country,omitempty"`
-	DeathDate *string `json:"death_date,omitempty"`
+	DeathDate *string `json:"deathDate,omitempty"`
 	Id *string `json:"id,omitempty"`
-	LastUpdated *string `json:"last_updated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -47,11 +51,11 @@ type OldestEverUpdateData struct {
 // OldestLiving is the typed data model for the oldest_living entity.
 type OldestLiving struct {
 	Age int `json:"age"`
-	BirthDate string `json:"birth_date"`
+	BirthDate string `json:"birthDate"`
 	Country string `json:"country"`
-	DeathDate *string `json:"death_date,omitempty"`
+	DeathDate *string `json:"deathDate,omitempty"`
 	Id string `json:"id"`
-	LastUpdated *string `json:"last_updated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 	Name string `json:"name"`
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -59,11 +63,11 @@ type OldestLiving struct {
 // OldestLivingLoadMatch is the typed request payload for OldestLiving.LoadTyped.
 type OldestLivingLoadMatch struct {
 	Age *int `json:"age,omitempty"`
-	BirthDate *string `json:"birth_date,omitempty"`
+	BirthDate *string `json:"birthDate,omitempty"`
 	Country *string `json:"country,omitempty"`
-	DeathDate *string `json:"death_date,omitempty"`
+	DeathDate *string `json:"deathDate,omitempty"`
 	Id string `json:"id"`
-	LastUpdated *string `json:"last_updated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -71,11 +75,11 @@ type OldestLivingLoadMatch struct {
 // OldestLivingUpdateData is the typed request payload for OldestLiving.UpdateTyped.
 type OldestLivingUpdateData struct {
 	Age *int `json:"age,omitempty"`
-	BirthDate *string `json:"birth_date,omitempty"`
+	BirthDate *string `json:"birthDate,omitempty"`
 	Country *string `json:"country,omitempty"`
-	DeathDate *string `json:"death_date,omitempty"`
+	DeathDate *string `json:"deathDate,omitempty"`
 	Id *string `json:"id,omitempty"`
-	LastUpdated *string `json:"last_updated,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 }
@@ -92,12 +96,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -109,12 +127,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

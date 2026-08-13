@@ -26,7 +26,7 @@ class OldestEverEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -45,12 +45,12 @@ class OldestEverEntityTest < Minitest::Test
       "id" => oldest_ever_ref01_data["id"],
     }
 
-    oldest_ever_ref01_markdef_up0_name = "birth_date"
+    oldest_ever_ref01_markdef_up0_name = "birthDate"
     oldest_ever_ref01_markdef_up0_value = "Mark01-oldest_ever_ref01_#{setup[:now]}"
     oldest_ever_ref01_data_up0_up[oldest_ever_ref01_markdef_up0_name] = oldest_ever_ref01_markdef_up0_value
 
     oldest_ever_ref01_resdata_up0_result = oldest_ever_ref01_ent.update(oldest_ever_ref01_data_up0_up, nil)
-    oldest_ever_ref01_resdata_up0 = Helpers.to_map(oldest_ever_ref01_resdata_up0_result)
+    oldest_ever_ref01_resdata_up0 = Helpers.to_map(oldest_ever_ref01_resdata_up0_result.respond_to?(:data_get) ? oldest_ever_ref01_resdata_up0_result.data_get : oldest_ever_ref01_resdata_up0_result)
     assert !oldest_ever_ref01_resdata_up0.nil?
     assert_equal oldest_ever_ref01_resdata_up0["id"], oldest_ever_ref01_data_up0_up["id"]
     assert_equal oldest_ever_ref01_resdata_up0[oldest_ever_ref01_markdef_up0_name], oldest_ever_ref01_markdef_up0_value
@@ -60,7 +60,7 @@ class OldestEverEntityTest < Minitest::Test
       "id" => oldest_ever_ref01_data["id"],
     }
     oldest_ever_ref01_data_dt0_loaded = oldest_ever_ref01_ent.load(oldest_ever_ref01_match_dt0, nil)
-    oldest_ever_ref01_data_dt0_load_result = Helpers.to_map(oldest_ever_ref01_data_dt0_loaded)
+    oldest_ever_ref01_data_dt0_load_result = Helpers.to_map(oldest_ever_ref01_data_dt0_loaded.respond_to?(:data_get) ? oldest_ever_ref01_data_dt0_loaded.data_get : oldest_ever_ref01_data_dt0_loaded)
     assert !oldest_ever_ref01_data_dt0_load_result.nil?
     assert_equal oldest_ever_ref01_data_dt0_load_result["id"], oldest_ever_ref01_data["id"]
 
@@ -93,22 +93,22 @@ def oldest_ever_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID"]
+  entid_env_raw = ENV["OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID" => idmap,
-    "OLDESTPEOPLERECORDS_TEST_LIVE" => "FALSE",
-    "OLDESTPEOPLERECORDS_TEST_EXPLAIN" => "FALSE",
+    "OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID" => idmap,
+    "OLDEST_PEOPLE_RECORDS_TEST_LIVE" => "FALSE",
+    "OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID"])
+    env["OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
+  if env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -117,13 +117,13 @@ def oldest_ever_basic_setup(extra)
     client = OldestPeopleRecordsSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
+  live = env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["OLDESTPEOPLERECORDS_TEST_EXPLAIN"] == "TRUE",
+    explain: env["OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

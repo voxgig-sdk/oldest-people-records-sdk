@@ -98,11 +98,11 @@ oldest_ever = client.OldestEver
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `age` | `Integer` | Yes |  |
-| `birth_date` | `String` | Yes |  |
+| `birthDate` | `String` | Yes |  |
 | `country` | `String` | Yes |  |
-| `death_date` | `String` | No |  |
+| `deathDate` | `String` | No |  |
 | `id` | `String` | Yes |  |
-| `last_updated` | `String` | No |  |
+| `lastUpdated` | `String` | No |  |
 | `name` | `String` | Yes |  |
 | `verified` | `Boolean` | No |  |
 
@@ -168,11 +168,11 @@ oldest_living = client.OldestLiving
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `age` | `Integer` | Yes |  |
-| `birth_date` | `String` | Yes |  |
+| `birthDate` | `String` | Yes |  |
 | `country` | `String` | Yes |  |
-| `death_date` | `String` | No |  |
+| `deathDate` | `String` | No |  |
 | `id` | `String` | Yes |  |
-| `last_updated` | `String` | No |  |
+| `lastUpdated` | `String` | No |  |
 | `name` | `String` | Yes |  |
 | `verified` | `Boolean` | No |  |
 

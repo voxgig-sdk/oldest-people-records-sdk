@@ -16,11 +16,11 @@
 import pytest
 
 from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK
-from core.error import OldestPeopleRecordsError
-from core.result import OldestPeopleRecordsResult
-from core.response import OldestPeopleRecordsResponse
-from core.spec import OldestPeopleRecordsSpec
-from feature.base_feature import OldestPeopleRecordsBaseFeature
+from oldestpeoplerecords_sdk.core.error import OldestPeopleRecordsError
+from oldestpeoplerecords_sdk.core.result import OldestPeopleRecordsResult
+from oldestpeoplerecords_sdk.core.response import OldestPeopleRecordsResponse
+from oldestpeoplerecords_sdk.core.spec import OldestPeopleRecordsSpec
+from oldestpeoplerecords_sdk.feature.base_feature import OldestPeopleRecordsBaseFeature
 
 
 def _client():

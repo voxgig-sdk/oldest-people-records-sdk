@@ -34,7 +34,7 @@ client = OldestPeopleRecordsSDK.new
 
 ```ruby
 begin
-  # load returns the bare OldestEver record (raises on error).
+  # load returns the ENTITY — call data_get for the OldestEver record (raises on error).
   oldestever = client.OldestEver.load({ "id" => "example_id" })
   puts oldestever
 rescue => err
@@ -46,7 +46,7 @@ end
 
 ```ruby
 # Update
-client.OldestEver.update({ "id" => "example_id", "age" => 1, "birth_date" => "example_birth_date" })
+client.OldestEver.update({ "id" => "example_id", "age" => 1, "birthDate" => "example_birthDate" })
 
 ```
 
@@ -128,7 +128,8 @@ client = OldestPeopleRecordsSDK.test({
   "entity" => { "oldestever" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 oldestever = client.OldestEver.load({ "id" => "test01" })
 puts oldestever
 ```
@@ -248,11 +249,11 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -265,11 +266,11 @@ API path: `/oldest-ever`
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -298,18 +299,18 @@ Create an instance: `oldest_ever = client.OldestEver`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `Integer` |  |
-| `birth_date` | `String` |  |
+| `birthDate` | `String` |  |
 | `country` | `String` |  |
-| `death_date` | `String` |  |
+| `deathDate` | `String` |  |
 | `id` | `String` |  |
-| `last_updated` | `String` |  |
+| `lastUpdated` | `String` |  |
 | `name` | `String` |  |
 | `verified` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare OldestEver record (raises on error).
+# load returns the ENTITY — call data_get for the OldestEver record (raises on error).
 oldest_ever = client.OldestEver.load({ "id" => "oldest_ever_id" })
 ```
 
@@ -330,18 +331,18 @@ Create an instance: `oldest_living = client.OldestLiving`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `Integer` |  |
-| `birth_date` | `String` |  |
+| `birthDate` | `String` |  |
 | `country` | `String` |  |
-| `death_date` | `String` |  |
+| `deathDate` | `String` |  |
 | `id` | `String` |  |
-| `last_updated` | `String` |  |
+| `lastUpdated` | `String` |  |
 | `name` | `String` |  |
 | `verified` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare OldestLiving record (raises on error).
+# load returns the ENTITY — call data_get for the OldestLiving record (raises on error).
 oldest_living = client.OldestLiving.load({ "id" => "oldest_living_id" })
 ```
 

@@ -19,11 +19,15 @@ import {
 describe('OldestEverDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when OLDESTPEOPLERECORDS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('OLDESTPEOPLERECORDS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when OLDEST_PEOPLE_RECORDS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('OLDEST_PEOPLE_RECORDS_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new OldestPeopleRecordsSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -72,17 +76,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID': {},
-    'OLDESTPEOPLERECORDS_TEST_LIVE': 'FALSE',
+    'OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID': {},
+    'OLDEST_PEOPLE_RECORDS_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.OLDESTPEOPLERECORDS_TEST_LIVE
+  const live = 'TRUE' === env.OLDEST_PEOPLE_RECORDS_TEST_LIVE
 
   if (live) {
     const client = new OldestPeopleRecordsSDK({
     })
 
-    let idmap: any = env['OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID']
+    let idmap: any = env['OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

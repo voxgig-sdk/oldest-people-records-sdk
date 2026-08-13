@@ -103,11 +103,11 @@ fmt.Println(oldestEver.GetName()) // "oldest_ever"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `age` | `int` | Yes |  |
-| `birth_date` | `string` | Yes |  |
+| `birthDate` | `string` | Yes |  |
 | `country` | `string` | Yes |  |
-| `death_date` | `string` | No |  |
+| `deathDate` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `verified` | `bool` | No |  |
 
@@ -176,11 +176,11 @@ fmt.Println(oldestLiving.GetName()) // "oldest_living"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `age` | `int` | Yes |  |
-| `birth_date` | `string` | Yes |  |
+| `birthDate` | `string` | Yes |  |
 | `country` | `string` | Yes |  |
-| `death_date` | `string` | No |  |
+| `deathDate` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `name` | `string` | Yes |  |
 | `verified` | `bool` | No |  |
 

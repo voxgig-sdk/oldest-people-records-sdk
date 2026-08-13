@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# OldestPeopleRecords SDK exists test
 
 import pytest
 from oldestpeoplerecords_sdk import OldestPeopleRecordsSDK

@@ -11,7 +11,7 @@ main: kit: entity: oldest_ever: {
       type: "`$INTEGER`"
     }
     {
-      name: "birth_date"
+      name: "birthDate"
       req: true
       type: "`$STRING`"
     }
@@ -21,7 +21,7 @@ main: kit: entity: oldest_ever: {
       type: "`$STRING`"
     }
     {
-      name: "death_date"
+      name: "deathDate"
       req: false
       type: "`$STRING`"
     }
@@ -31,7 +31,7 @@ main: kit: entity: oldest_ever: {
       type: "`$STRING`"
     }
     {
-      name: "last_updated"
+      name: "lastUpdated"
       req: false
       type: "`$STRING`"
     }

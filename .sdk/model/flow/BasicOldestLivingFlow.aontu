@@ -11,7 +11,7 @@ main: kit: flow: BasicOldestLivingFlow:
         ref: "oldest_living_ref01",
         srcdatavar: "oldest_living_ref01_data",
         suffix: "_up0",
-        textfield: "birth_date"
+        textfield: "birthDate"
       }
 
       op: "update",

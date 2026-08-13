@@ -60,11 +60,11 @@ function oldest_living_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID"] = {},
-    ["OLDESTPEOPLERECORDS_TEST_LIVE"] = "FALSE",
+    ["OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID"] = {},
+    ["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
+  local live = env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

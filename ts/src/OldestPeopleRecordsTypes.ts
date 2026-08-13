@@ -7,66 +7,66 @@
 
 export interface OldestEver {
   age: number
-  birth_date: string
+  birthDate: string
   country: string
-  death_date?: string
+  deathDate?: string
   id: string
-  last_updated?: string
+  lastUpdated?: string
   name: string
   verified?: boolean
 }
 
 export interface OldestEverLoadMatch {
   age?: number
-  birth_date?: string
+  birthDate?: string
   country?: string
-  death_date?: string
+  deathDate?: string
   id: string
-  last_updated?: string
+  lastUpdated?: string
   name?: string
   verified?: boolean
 }
 
 export interface OldestEverUpdateData {
   age?: number
-  birth_date?: string
+  birthDate?: string
   country?: string
-  death_date?: string
+  deathDate?: string
   id?: string
-  last_updated?: string
+  lastUpdated?: string
   name?: string
   verified?: boolean
 }
 
 export interface OldestLiving {
   age: number
-  birth_date: string
+  birthDate: string
   country: string
-  death_date?: string
+  deathDate?: string
   id: string
-  last_updated?: string
+  lastUpdated?: string
   name: string
   verified?: boolean
 }
 
 export interface OldestLivingLoadMatch {
   age?: number
-  birth_date?: string
+  birthDate?: string
   country?: string
-  death_date?: string
+  deathDate?: string
   id: string
-  last_updated?: string
+  lastUpdated?: string
   name?: string
   verified?: boolean
 }
 
 export interface OldestLivingUpdateData {
   age?: number
-  birth_date?: string
+  birthDate?: string
   country?: string
-  death_date?: string
+  deathDate?: string
   id?: string
-  last_updated?: string
+  lastUpdated?: string
   name?: string
   verified?: boolean
 }

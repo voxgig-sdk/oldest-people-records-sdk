@@ -29,7 +29,7 @@ describe("OldestEverEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -48,13 +48,13 @@ describe("OldestEverEntity", function()
       id = oldest_ever_ref01_data["id"],
     }
 
-    local oldest_ever_ref01_markdef_up0_name = "birth_date"
+    local oldest_ever_ref01_markdef_up0_name = "birthDate"
     local oldest_ever_ref01_markdef_up0_value = "Mark01-oldest_ever_ref01_" .. tostring(setup.now)
     oldest_ever_ref01_data_up0_up[oldest_ever_ref01_markdef_up0_name] = oldest_ever_ref01_markdef_up0_value
 
     local oldest_ever_ref01_resdata_up0_result, err = oldest_ever_ref01_ent:update(oldest_ever_ref01_data_up0_up, nil)
     assert.is_nil(err)
-    local oldest_ever_ref01_resdata_up0 = helpers.to_map(oldest_ever_ref01_resdata_up0_result)
+    local oldest_ever_ref01_resdata_up0 = helpers.to_map(type(oldest_ever_ref01_resdata_up0_result) == 'table' and oldest_ever_ref01_resdata_up0_result.data_get and oldest_ever_ref01_resdata_up0_result:data_get() or oldest_ever_ref01_resdata_up0_result)
     assert.is_not_nil(oldest_ever_ref01_resdata_up0)
     assert.are.equal(oldest_ever_ref01_resdata_up0["id"], oldest_ever_ref01_data_up0_up["id"])
     assert.are.equal(oldest_ever_ref01_resdata_up0[oldest_ever_ref01_markdef_up0_name], oldest_ever_ref01_markdef_up0_value)
@@ -65,7 +65,7 @@ describe("OldestEverEntity", function()
     }
     local oldest_ever_ref01_data_dt0_loaded, err = oldest_ever_ref01_ent:load(oldest_ever_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local oldest_ever_ref01_data_dt0_load_result = helpers.to_map(oldest_ever_ref01_data_dt0_loaded)
+    local oldest_ever_ref01_data_dt0_load_result = helpers.to_map(type(oldest_ever_ref01_data_dt0_loaded) == 'table' and oldest_ever_ref01_data_dt0_loaded.data_get and oldest_ever_ref01_data_dt0_loaded:data_get() or oldest_ever_ref01_data_dt0_loaded)
     assert.is_not_nil(oldest_ever_ref01_data_dt0_load_result)
     assert.are.equal(oldest_ever_ref01_data_dt0_load_result["id"], oldest_ever_ref01_data["id"])
 
@@ -104,22 +104,22 @@ function oldest_ever_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID")
+  local entid_env_raw = os.getenv("OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID"] = idmap,
-    ["OLDESTPEOPLERECORDS_TEST_LIVE"] = "FALSE",
-    ["OLDESTPEOPLERECORDS_TEST_EXPLAIN"] = "FALSE",
+    ["OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID"] = idmap,
+    ["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] = "FALSE",
+    ["OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["OLDESTPEOPLERECORDS_TEST_OLDEST_EVER_ENTID"])
+    env["OLDEST_PEOPLE_RECORDS_TEST_OLDEST_EVER_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE" then
+  if env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -128,13 +128,13 @@ function oldest_ever_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
+  local live = env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["OLDESTPEOPLERECORDS_TEST_EXPLAIN"] == "TRUE",
+    explain = env["OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

@@ -43,8 +43,8 @@ class OldestPeopleRecordsTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('OLDESTPEOPLERECORDS_TEST_LIVE');
-        $override = self::getenv('OLDESTPEOPLERECORDS_TEST_OVERRIDE');
+        $live = self::getenv('OLDEST_PEOPLE_RECORDS_TEST_LIVE');
+        $override = self::getenv('OLDEST_PEOPLE_RECORDS_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class OldestPeopleRecordsTestRunner
             }
         }
 
-        $explain = self::getenv('OLDESTPEOPLERECORDS_TEST_EXPLAIN');
+        $explain = self::getenv('OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['OLDESTPEOPLERECORDS_TEST_EXPLAIN'] = $explain;
+            $m['OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

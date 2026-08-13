@@ -35,7 +35,7 @@ $client = new OldestPeopleRecordsSDK();
 
 ```php
 try {
-    // load() returns the bare OldestEver record (throws on error).
+    // load() returns the ENTITY — call data_get() for the OldestEver record (throws on error).
     $oldestever = $client->OldestEver()->load(["id" => "example_id"]);
     print_r($oldestever);
 } catch (\Throwable $err) {
@@ -47,7 +47,7 @@ try {
 
 ```php
 // Update
-$client->OldestEver()->update(["id" => "example_id", "age" => 1, "birth_date" => "example_birth_date"]);
+$client->OldestEver()->update(["id" => "example_id", "age" => 1, "birthDate" => "example_birthDate"]);
 
 ```
 
@@ -134,7 +134,8 @@ $client = OldestPeopleRecordsSDK::test([
     "entity" => ["oldestever" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $oldestever = $client->OldestEver()->load(["id" => "test01"]);
 print_r($oldestever);
 ```
@@ -235,7 +236,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -258,11 +259,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -275,11 +276,11 @@ API path: `/oldest-ever`
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -308,18 +309,18 @@ Create an instance: `$oldest_ever = $client->OldestEver();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `int` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare OldestEver record (throws on error).
+// load() returns the ENTITY — call data_get() for the OldestEver record (throws on error).
 $oldest_ever = $client->OldestEver()->load(["id" => "oldest_ever_id"]);
 ```
 
@@ -340,18 +341,18 @@ Create an instance: `$oldest_living = $client->OldestLiving();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `int` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare OldestLiving record (throws on error).
+// load() returns the ENTITY — call data_get() for the OldestLiving record (throws on error).
 $oldest_living = $client->OldestLiving()->load(["id" => "oldest_living_id"]);
 ```
 

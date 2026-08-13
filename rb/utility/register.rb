@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ OldestPeopleRecordsUtility.registrar = ->(u) {
   u.prepare_params = OldestPeopleRecordsUtilities::PrepareParams
   u.prepare_path = OldestPeopleRecordsUtilities::PreparePath
   u.prepare_query = OldestPeopleRecordsUtilities::PrepareQuery
+  u.graphql_body = OldestPeopleRecordsUtilities::GraphqlBody
+  u.graphql_errors = OldestPeopleRecordsUtilities::GraphqlErrors
   u.result_basic = OldestPeopleRecordsUtilities::ResultBasic
   u.result_body = OldestPeopleRecordsUtilities::ResultBody
   u.result_headers = OldestPeopleRecordsUtilities::ResultHeaders

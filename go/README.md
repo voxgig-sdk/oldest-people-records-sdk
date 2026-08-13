@@ -58,7 +58,7 @@ func main() {
     fmt.Println(oldestEver)
 
     // Update a oldestEver.
-    updated, err := client.OldestEver(nil).Update(map[string]any{"id": "example_id", "age": 1, "birth_date": "example_birth_date"}, nil)
+    updated, err := client.OldestEver(nil).Update(map[string]any{"id": "example_id", "age": 1, "birthDate": "example_birthDate"}, nil)
     if err != nil {
         panic(err)
     }
@@ -268,11 +268,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"age"` |  |
-| `"birth_date"` |  |
+| `"birthDate"` |  |
 | `"country"` |  |
-| `"death_date"` |  |
+| `"deathDate"` |  |
 | `"id"` |  |
-| `"last_updated"` |  |
+| `"lastUpdated"` |  |
 | `"name"` |  |
 | `"verified"` |  |
 
@@ -285,11 +285,11 @@ API path: `/oldest-ever`
 | Field | Description |
 | --- | --- |
 | `"age"` |  |
-| `"birth_date"` |  |
+| `"birthDate"` |  |
 | `"country"` |  |
-| `"death_date"` |  |
+| `"deathDate"` |  |
 | `"id"` |  |
-| `"last_updated"` |  |
+| `"lastUpdated"` |  |
 | `"name"` |  |
 | `"verified"` |  |
 
@@ -318,11 +318,11 @@ Create an instance: `oldestEver := client.OldestEver(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `int` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `bool` |  |
 
@@ -353,11 +353,11 @@ Create an instance: `oldestLiving := client.OldestLiving(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `int` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `bool` |  |
 

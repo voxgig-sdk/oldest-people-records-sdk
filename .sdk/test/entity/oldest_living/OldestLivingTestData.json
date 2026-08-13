@@ -3,31 +3,31 @@
     "oldest_living": {
       "OLDEST_LIVING00": {
         "age": "s50",
-        "birth_date": "s51",
+        "birthDate": "s51",
         "country": "s52",
-        "death_date": "s53",
+        "deathDate": "s53",
         "id": "OLDEST_LIVING00",
-        "last_updated": "s55",
+        "lastUpdated": "s55",
         "name": "s56",
         "verified": false
       },
       "OLDEST_LIVING01": {
         "age": "sa0",
-        "birth_date": "sa1",
+        "birthDate": "sa1",
         "country": "sa2",
-        "death_date": "sa3",
+        "deathDate": "sa3",
         "id": "OLDEST_LIVING01",
-        "last_updated": "sa5",
+        "lastUpdated": "sa5",
         "name": "sa6",
         "verified": false
       },
       "OLDEST_LIVING02": {
         "age": "sf0",
-        "birth_date": "sf1",
+        "birthDate": "sf1",
         "country": "sf2",
-        "death_date": "sf3",
+        "deathDate": "sf3",
         "id": "OLDEST_LIVING02",
-        "last_updated": "sf5",
+        "lastUpdated": "sf5",
         "name": "sf6",
         "verified": false
       }
@@ -37,10 +37,10 @@
     "oldest_living": {
       "oldest_living_ref01": {
         "age": "s140",
-        "birth_date": "s141",
+        "birthDate": "s141",
         "country": "s142",
-        "death_date": "s143",
-        "last_updated": "s145",
+        "deathDate": "s143",
+        "lastUpdated": "s145",
         "name": "s146",
         "verified": false
       }

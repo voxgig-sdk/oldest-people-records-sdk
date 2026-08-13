@@ -34,7 +34,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "birth_date",
+						"name": "birthDate",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 1,
@@ -48,7 +48,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "death_date",
+						"name": "deathDate",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
@@ -62,7 +62,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "last_updated",
+						"name": "lastUpdated",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 5,
@@ -118,6 +118,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/oldest-ever",
 								"parts": []any{
@@ -137,7 +138,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 					"update": map[string]any{
 						"input": "data",
@@ -146,6 +146,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "PUT",
 								"orig": "/oldest-ever",
 								"parts": []any{
@@ -159,7 +160,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "update",
 					},
 				},
 				"relations": map[string]any{
@@ -177,7 +177,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "birth_date",
+						"name": "birthDate",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 1,
@@ -191,7 +191,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "death_date",
+						"name": "deathDate",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
@@ -205,7 +205,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "last_updated",
+						"name": "lastUpdated",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 5,
@@ -261,6 +261,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/oldest-living",
 								"parts": []any{
@@ -280,7 +281,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 					"update": map[string]any{
 						"input": "data",
@@ -289,6 +289,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "PUT",
 								"orig": "/oldest-living",
 								"parts": []any{
@@ -302,7 +303,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "update",
 					},
 				},
 				"relations": map[string]any{

@@ -34,7 +34,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "birth_date",
+            ["name"] = "birthDate",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -48,7 +48,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "death_date",
+            ["name"] = "deathDate",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
@@ -62,7 +62,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "last_updated",
+            ["name"] = "lastUpdated",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
@@ -118,6 +118,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/oldest-ever",
                 ["parts"] = {
@@ -146,6 +147,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/oldest-ever",
                 ["parts"] = {
@@ -177,7 +179,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "birth_date",
+            ["name"] = "birthDate",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -191,7 +193,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "death_date",
+            ["name"] = "deathDate",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
@@ -205,7 +207,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "last_updated",
+            ["name"] = "lastUpdated",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
@@ -261,6 +263,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/oldest-living",
                 ["parts"] = {
@@ -289,6 +292,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/oldest-living",
                 ["parts"] = {

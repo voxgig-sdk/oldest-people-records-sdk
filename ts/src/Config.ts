@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'OldestPeopleRecords',
   }
 
 
@@ -66,7 +66,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "birth_date",
+          "name": "birthDate",
           "req": true,
           "type": "`$STRING`",
           "index$": 1
@@ -80,7 +80,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "death_date",
+          "name": "deathDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -94,7 +94,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "last_updated",
+          "name": "lastUpdated",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
@@ -150,6 +150,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/oldest-ever",
               "parts": [
@@ -178,6 +179,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "PUT",
               "orig": "/oldest-ever",
               "parts": [
@@ -209,7 +211,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "birth_date",
+          "name": "birthDate",
           "req": true,
           "type": "`$STRING`",
           "index$": 1
@@ -223,7 +225,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "death_date",
+          "name": "deathDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -237,7 +239,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "last_updated",
+          "name": "lastUpdated",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
@@ -293,6 +295,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/oldest-living",
               "parts": [
@@ -321,6 +324,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "PUT",
               "orig": "/oldest-living",
               "parts": [

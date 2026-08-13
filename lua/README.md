@@ -45,7 +45,7 @@ print(oldestever)
 
 ```lua
 -- Update
-client:OldestEver():update({ id = "example_id", age = 1, birth_date = "example_birth_date" })
+client:OldestEver():update({ id = "example_id", age = 1, birthDate = "example_birthDate" })
 
 ```
 
@@ -236,11 +236,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -253,11 +253,11 @@ API path: `/oldest-ever`
 | Field | Description |
 | --- | --- |
 | `age` |  |
-| `birth_date` |  |
+| `birthDate` |  |
 | `country` |  |
-| `death_date` |  |
+| `deathDate` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `name` |  |
 | `verified` |  |
 
@@ -286,11 +286,11 @@ Create an instance: `local oldest_ever = client:OldestEver(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `number` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `boolean` |  |
 
@@ -317,11 +317,11 @@ Create an instance: `local oldest_living = client:OldestLiving(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `age` | `number` |  |
-| `birth_date` | `string` |  |
+| `birthDate` | `string` |  |
 | `country` | `string` |  |
-| `death_date` | `string` |  |
+| `deathDate` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `name` | `string` |  |
 | `verified` | `boolean` |  |
 

@@ -8,61 +8,61 @@
 
 ---@class OldestEver
 ---@field age number
----@field birth_date string
+---@field birthDate string
 ---@field country string
----@field death_date? string
+---@field deathDate? string
 ---@field id string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field name string
 ---@field verified? boolean
 
 ---@class OldestEverLoadMatch
 ---@field age? number
----@field birth_date? string
+---@field birthDate? string
 ---@field country? string
----@field death_date? string
+---@field deathDate? string
 ---@field id string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field name? string
 ---@field verified? boolean
 
 ---@class OldestEverUpdateData
 ---@field age? number
----@field birth_date? string
+---@field birthDate? string
 ---@field country? string
----@field death_date? string
+---@field deathDate? string
 ---@field id? string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field name? string
 ---@field verified? boolean
 
 ---@class OldestLiving
 ---@field age number
----@field birth_date string
+---@field birthDate string
 ---@field country string
----@field death_date? string
+---@field deathDate? string
 ---@field id string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field name string
 ---@field verified? boolean
 
 ---@class OldestLivingLoadMatch
 ---@field age? number
----@field birth_date? string
+---@field birthDate? string
 ---@field country? string
----@field death_date? string
+---@field deathDate? string
 ---@field id string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field name? string
 ---@field verified? boolean
 
 ---@class OldestLivingUpdateData
 ---@field age? number
----@field birth_date? string
+---@field birthDate? string
 ---@field country? string
----@field death_date? string
+---@field deathDate? string
 ---@field id? string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field name? string
 ---@field verified? boolean
 

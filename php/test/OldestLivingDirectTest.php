@@ -65,11 +65,11 @@ function oldest_living_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID" => [],
-        "OLDESTPEOPLERECORDS_TEST_LIVE" => "FALSE",
+        "OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID" => [],
+        "OLDEST_PEOPLE_RECORDS_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["OLDESTPEOPLERECORDS_TEST_LIVE"] === "TRUE";
+    $live = $env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

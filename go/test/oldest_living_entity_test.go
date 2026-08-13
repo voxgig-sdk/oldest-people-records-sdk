@@ -45,7 +45,7 @@ func TestOldestLivingEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -66,7 +66,7 @@ func TestOldestLivingEntity(t *testing.T) {
 			"id": oldestLivingRef01Data["id"],
 		}
 
-		oldestLivingRef01MarkdefUp0Name := "birth_date"
+		oldestLivingRef01MarkdefUp0Name := "birthDate"
 		oldestLivingRef01MarkdefUp0Value := fmt.Sprintf("Mark01-oldest_living_ref01_%d", setup.now)
 		oldestLivingRef01DataUp0Up[oldestLivingRef01MarkdefUp0Name] = oldestLivingRef01MarkdefUp0Value
 
@@ -74,7 +74,7 @@ func TestOldestLivingEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("update failed: %v", err)
 		}
-		oldestLivingRef01ResdataUp0 := core.ToMapAny(oldestLivingRef01ResdataUp0Result)
+		oldestLivingRef01ResdataUp0 := core.ToMapAny(entityData(oldestLivingRef01ResdataUp0Result))
 		if oldestLivingRef01ResdataUp0 == nil {
 			t.Fatal("expected update result to be a map")
 		}
@@ -93,7 +93,7 @@ func TestOldestLivingEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		oldestLivingRef01DataDt0LoadResult := core.ToMapAny(oldestLivingRef01DataDt0Loaded)
+		oldestLivingRef01DataDt0LoadResult := core.ToMapAny(entityData(oldestLivingRef01DataDt0Loaded))
 		if oldestLivingRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}
@@ -141,21 +141,21 @@ func oldest_livingBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID")
+	entidEnvRaw := os.Getenv("OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID": idmap,
-		"OLDESTPEOPLERECORDS_TEST_LIVE":      "FALSE",
-		"OLDESTPEOPLERECORDS_TEST_EXPLAIN":   "FALSE",
+		"OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID": idmap,
+		"OLDEST_PEOPLE_RECORDS_TEST_LIVE":      "FALSE",
+		"OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["OLDESTPEOPLERECORDS_TEST_OLDEST_LIVING_ENTID"])
+	idmapResolved := core.ToMapAny(env["OLDEST_PEOPLE_RECORDS_TEST_OLDEST_LIVING_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE" {
+	if env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -164,13 +164,13 @@ func oldest_livingBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewOldestPeopleRecordsSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["OLDESTPEOPLERECORDS_TEST_LIVE"] == "TRUE"
+	live := env["OLDEST_PEOPLE_RECORDS_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["OLDESTPEOPLERECORDS_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

@@ -23,8 +23,8 @@ module OldestPeopleRecordsTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("OLDESTPEOPLERECORDS_TEST_LIVE")
-    override = getenv("OLDESTPEOPLERECORDS_TEST_OVERRIDE")
+    live = getenv("OLDEST_PEOPLE_RECORDS_TEST_LIVE")
+    override = getenv("OLDEST_PEOPLE_RECORDS_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module OldestPeopleRecordsTestRunner
       end
     end
 
-    explain = getenv("OLDESTPEOPLERECORDS_TEST_EXPLAIN")
-    m["OLDESTPEOPLERECORDS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN")
+    m["OLDEST_PEOPLE_RECORDS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end
