@@ -15,7 +15,7 @@ require_relative "../OldestPeopleRecords_sdk"
 module OldestPeopleRecordsFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = OldestPeopleRecordsConfig.make_config["feature"]
+    f = OldestPeopleRecordsConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

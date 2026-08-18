@@ -28,7 +28,7 @@ class OldestPeopleRecordsSDK
     utility = OldestPeopleRecordsUtility.new
     @_utility = utility
 
-    config = OldestPeopleRecordsConfig.make_config
+    config = OldestPeopleRecordsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

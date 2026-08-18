@@ -40,7 +40,7 @@ class OldestPeopleRecordsSDK
         $utility = new OldestPeopleRecordsUtility();
         $this->_utility = $utility;
 
-        $config = OldestPeopleRecordsConfig::make_config();
+        $config = OldestPeopleRecordsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

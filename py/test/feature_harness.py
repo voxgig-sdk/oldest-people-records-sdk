@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from oldestpeoplerecords_sdk.config import make_config
+from oldestpeoplerecords_sdk.config import shared_config
 from oldestpeoplerecords_sdk.features import _make_feature
 from oldestpeoplerecords_sdk.core.control import OldestPeopleRecordsControl
 from oldestpeoplerecords_sdk.core.error import OldestPeopleRecordsError
@@ -24,7 +24,7 @@ from oldestpeoplerecords_sdk.core.spec import OldestPeopleRecordsSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

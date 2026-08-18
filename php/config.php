@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class OldestPeopleRecordsConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -32,60 +55,41 @@ class OldestPeopleRecordsConfig
         'oldest_ever' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'age',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'birthDate',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'country',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'deathDate',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'lastUpdated',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'verified',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
           ],
           'name' => 'oldest_ever',
@@ -95,31 +99,24 @@ class OldestPeopleRecordsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'birth_date_after',
                         'orig' => 'birth_date_after',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'birth_date_before',
                         'orig' => 'birth_date_before',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -141,17 +138,14 @@ class OldestPeopleRecordsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
             'update' => [
               'input' => 'data',
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'PUT',
@@ -164,10 +158,8 @@ class OldestPeopleRecordsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [
@@ -177,60 +169,41 @@ class OldestPeopleRecordsConfig
         'oldest_living' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'age',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'birthDate',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'country',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'deathDate',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'lastUpdated',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'name',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'verified',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
           ],
           'name' => 'oldest_living',
@@ -240,31 +213,24 @@ class OldestPeopleRecordsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'birth_date_after',
                         'orig' => 'birth_date_after',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'birth_date_before',
                         'orig' => 'birth_date_before',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -286,17 +252,14 @@ class OldestPeopleRecordsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
             'update' => [
               'input' => 'data',
               'name' => 'update',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'PUT',
@@ -309,10 +272,8 @@ class OldestPeopleRecordsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'update',
             ],
           ],
           'relations' => [

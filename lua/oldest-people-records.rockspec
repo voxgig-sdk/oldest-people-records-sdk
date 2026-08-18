@@ -23,6 +23,7 @@ build = {
   modules = {
     ["oldest-people-records_sdk"] = "oldest-people-records_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }
