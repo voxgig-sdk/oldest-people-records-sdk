@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "OldestPeopleRecords",
+			"slug": "oldest-people-records",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,38 +38,46 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "age",
 						"req": true,
+						"short": "Age in years",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "birthDate",
 						"req": true,
+						"short": "Date of birth in ISO 8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
 						"req": true,
+						"short": "Country of origin",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "deathDate",
+						"short": "Date of death in ISO 8601 format (null if still living)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "Unique identifier for the person",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lastUpdated",
+						"short": "Timestamp of last update",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
 						"req": true,
+						"short": "Full name of the person",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "verified",
+						"short": "Whether the record has been verified",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -149,38 +160,46 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "age",
 						"req": true,
+						"short": "Age in years",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "birthDate",
 						"req": true,
+						"short": "Date of birth in ISO 8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
 						"req": true,
+						"short": "Country of origin",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "deathDate",
+						"short": "Date of death in ISO 8601 format (null if still living)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
 						"req": true,
+						"short": "Unique identifier for the person",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lastUpdated",
+						"short": "Timestamp of last update",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
 						"req": true,
+						"short": "Full name of the person",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "verified",
+						"short": "Whether the record has been verified",
 						"type": "`$BOOLEAN`",
 					},
 				},

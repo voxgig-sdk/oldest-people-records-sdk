@@ -248,14 +248,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `age` |  |
-| `birthDate` |  |
-| `country` |  |
-| `deathDate` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `name` |  |
-| `verified` |  |
+| `age` | Age in years |
+| `birthDate` | Date of birth in ISO 8601 format |
+| `country` | Country of origin |
+| `deathDate` | Date of death in ISO 8601 format (null if still living) |
+| `id` | Unique identifier for the person |
+| `lastUpdated` | Timestamp of last update |
+| `name` | Full name of the person |
+| `verified` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -265,14 +265,14 @@ API path: `/oldest-ever`
 
 | Field | Description |
 | --- | --- |
-| `age` |  |
-| `birthDate` |  |
-| `country` |  |
-| `deathDate` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `name` |  |
-| `verified` |  |
+| `age` | Age in years |
+| `birthDate` | Date of birth in ISO 8601 format |
+| `country` | Country of origin |
+| `deathDate` | Date of death in ISO 8601 format (null if still living) |
+| `id` | Unique identifier for the person |
+| `lastUpdated` | Timestamp of last update |
+| `name` | Full name of the person |
+| `verified` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -298,14 +298,14 @@ Create an instance: `oldest_ever = client.OldestEver`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `Integer` |  |
-| `birthDate` | `String` |  |
-| `country` | `String` |  |
-| `deathDate` | `String` |  |
-| `id` | `String` |  |
-| `lastUpdated` | `String` |  |
-| `name` | `String` |  |
-| `verified` | `Boolean` |  |
+| `age` | `Integer` | Age in years |
+| `birthDate` | `String` | Date of birth in ISO 8601 format |
+| `country` | `String` | Country of origin |
+| `deathDate` | `String` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `String` | Unique identifier for the person |
+| `lastUpdated` | `String` | Timestamp of last update |
+| `name` | `String` | Full name of the person |
+| `verified` | `Boolean` | Whether the record has been verified |
 
 #### Example: Load
 
@@ -330,14 +330,14 @@ Create an instance: `oldest_living = client.OldestLiving`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `Integer` |  |
-| `birthDate` | `String` |  |
-| `country` | `String` |  |
-| `deathDate` | `String` |  |
-| `id` | `String` |  |
-| `lastUpdated` | `String` |  |
-| `name` | `String` |  |
-| `verified` | `Boolean` |  |
+| `age` | `Integer` | Age in years |
+| `birthDate` | `String` | Date of birth in ISO 8601 format |
+| `country` | `String` | Country of origin |
+| `deathDate` | `String` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `String` | Unique identifier for the person |
+| `lastUpdated` | `String` | Timestamp of last update |
+| `name` | `String` | Full name of the person |
+| `verified` | `Boolean` | Whether the record has been verified |
 
 #### Example: Load
 

@@ -1,6 +1,6 @@
-# Entity: oldest_living
+# Entity: oldest_ever
 
-main: kit: entity: oldest_living: {
+main: kit: entity: oldest_ever: {
 
   alias: field: {}
 
@@ -8,41 +8,49 @@ main: kit: entity: oldest_living: {
     {
       name: "age"
       req: true
+      short: "Age in years"
       type: "`$INTEGER`"
     }
     {
       name: "birthDate"
       req: true
+      short: "Date of birth in ISO 8601 format"
       type: "`$STRING`"
     }
     {
       name: "country"
       req: true
+      short: "Country of origin"
       type: "`$STRING`"
     }
     {
       name: "deathDate"
       req: false
+      short: "Date of death in ISO 8601 format (null if still living)"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: true
+      short: "Unique identifier for the person"
       type: "`$STRING`"
     }
     {
       name: "lastUpdated"
       req: false
+      short: "Timestamp of last update"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: true
+      short: "Full name of the person"
       type: "`$STRING`"
     }
     {
       name: "verified"
       req: false
+      short: "Whether the record has been verified"
       type: "`$BOOLEAN`"
     }
   ]
@@ -52,7 +60,7 @@ main: kit: entity: oldest_living: {
     name: "id"
   }
 
-  name: "oldest_living"
+  name: "oldest_ever"
   op: {
     load: {
       name: "load"
@@ -84,9 +92,9 @@ main: kit: entity: oldest_living: {
             ]
           }
           method: "GET"
-          orig: "/oldest-living"
+          orig: "/oldest-ever"
           parts: [
-            "oldest-living"
+            "oldest-ever"
           ]
           select: {
             exist: [
@@ -107,9 +115,9 @@ main: kit: entity: oldest_living: {
       points: [
         {
           method: "PUT"
-          orig: "/oldest-living"
+          orig: "/oldest-ever"
           parts: [
-            "oldest-living"
+            "oldest-ever"
           ]
           transform: {
             req: "`reqdata`"

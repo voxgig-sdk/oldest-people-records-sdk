@@ -96,14 +96,14 @@ $oldest_ever = $client->OldestEver();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | `int` | Yes |  |
-| `birthDate` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `deathDate` | `string` | No |  |
-| `id` | `string` | Yes |  |
-| `lastUpdated` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `verified` | `bool` | No |  |
+| `age` | `int` | Yes | Age in years |
+| `birthDate` | `string` | Yes | Date of birth in ISO 8601 format |
+| `country` | `string` | Yes | Country of origin |
+| `deathDate` | `string` | No | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Yes | Unique identifier for the person |
+| `lastUpdated` | `string` | No | Timestamp of last update |
+| `name` | `string` | Yes | Full name of the person |
+| `verified` | `bool` | No | Whether the record has been verified |
 
 ### Operations
 
@@ -166,14 +166,14 @@ $oldest_living = $client->OldestLiving();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | `int` | Yes |  |
-| `birthDate` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `deathDate` | `string` | No |  |
-| `id` | `string` | Yes |  |
-| `lastUpdated` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `verified` | `bool` | No |  |
+| `age` | `int` | Yes | Age in years |
+| `birthDate` | `string` | Yes | Date of birth in ISO 8601 format |
+| `country` | `string` | Yes | Country of origin |
+| `deathDate` | `string` | No | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Yes | Unique identifier for the person |
+| `lastUpdated` | `string` | No | Timestamp of last update |
+| `name` | `string` | Yes | Full name of the person |
+| `verified` | `bool` | No | Whether the record has been verified |
 
 ### Operations
 

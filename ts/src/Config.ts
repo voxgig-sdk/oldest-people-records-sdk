@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'OldestPeopleRecords',
+        slug: "oldest-people-records",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -60,38 +71,46 @@ class Config {
         {
           "name": "age",
           "req": true,
+          "short": "Age in years",
           "type": "`$INTEGER`"
         },
         {
           "name": "birthDate",
           "req": true,
+          "short": "Date of birth in ISO 8601 format",
           "type": "`$STRING`"
         },
         {
           "name": "country",
           "req": true,
+          "short": "Country of origin",
           "type": "`$STRING`"
         },
         {
           "name": "deathDate",
+          "short": "Date of death in ISO 8601 format (null if still living)",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the person",
           "type": "`$STRING`"
         },
         {
           "name": "lastUpdated",
+          "short": "Timestamp of last update",
           "type": "`$STRING`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Full name of the person",
           "type": "`$STRING`"
         },
         {
           "name": "verified",
+          "short": "Whether the record has been verified",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -174,38 +193,46 @@ class Config {
         {
           "name": "age",
           "req": true,
+          "short": "Age in years",
           "type": "`$INTEGER`"
         },
         {
           "name": "birthDate",
           "req": true,
+          "short": "Date of birth in ISO 8601 format",
           "type": "`$STRING`"
         },
         {
           "name": "country",
           "req": true,
+          "short": "Country of origin",
           "type": "`$STRING`"
         },
         {
           "name": "deathDate",
+          "short": "Date of death in ISO 8601 format (null if still living)",
           "type": "`$STRING`"
         },
         {
           "name": "id",
           "req": true,
+          "short": "Unique identifier for the person",
           "type": "`$STRING`"
         },
         {
           "name": "lastUpdated",
+          "short": "Timestamp of last update",
           "type": "`$STRING`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "Full name of the person",
           "type": "`$STRING`"
         },
         {
           "name": "verified",
+          "short": "Whether the record has been verified",
           "type": "`$BOOLEAN`"
         }
       ],

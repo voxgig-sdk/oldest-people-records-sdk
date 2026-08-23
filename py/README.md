@@ -251,14 +251,14 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `age` |  |
-| `birthDate` |  |
-| `country` |  |
-| `deathDate` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `name` |  |
-| `verified` |  |
+| `age` | Age in years |
+| `birthDate` | Date of birth in ISO 8601 format |
+| `country` | Country of origin |
+| `deathDate` | Date of death in ISO 8601 format (null if still living) |
+| `id` | Unique identifier for the person |
+| `lastUpdated` | Timestamp of last update |
+| `name` | Full name of the person |
+| `verified` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -268,14 +268,14 @@ API path: `/oldest-ever`
 
 | Field | Description |
 | --- | --- |
-| `age` |  |
-| `birthDate` |  |
-| `country` |  |
-| `deathDate` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `name` |  |
-| `verified` |  |
+| `age` | Age in years |
+| `birthDate` | Date of birth in ISO 8601 format |
+| `country` | Country of origin |
+| `deathDate` | Date of death in ISO 8601 format (null if still living) |
+| `id` | Unique identifier for the person |
+| `lastUpdated` | Timestamp of last update |
+| `name` | Full name of the person |
+| `verified` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -301,14 +301,14 @@ Create an instance: `oldest_ever = client.OldestEver()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `int` |  |
-| `birthDate` | `str` |  |
-| `country` | `str` |  |
-| `deathDate` | `str` |  |
-| `id` | `str` |  |
-| `lastUpdated` | `str` |  |
-| `name` | `str` |  |
-| `verified` | `bool` |  |
+| `age` | `int` | Age in years |
+| `birthDate` | `str` | Date of birth in ISO 8601 format |
+| `country` | `str` | Country of origin |
+| `deathDate` | `str` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `str` | Unique identifier for the person |
+| `lastUpdated` | `str` | Timestamp of last update |
+| `name` | `str` | Full name of the person |
+| `verified` | `bool` | Whether the record has been verified |
 
 #### Example: Load
 
@@ -332,14 +332,14 @@ Create an instance: `oldest_living = client.OldestLiving()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `int` |  |
-| `birthDate` | `str` |  |
-| `country` | `str` |  |
-| `deathDate` | `str` |  |
-| `id` | `str` |  |
-| `lastUpdated` | `str` |  |
-| `name` | `str` |  |
-| `verified` | `bool` |  |
+| `age` | `int` | Age in years |
+| `birthDate` | `str` | Date of birth in ISO 8601 format |
+| `country` | `str` | Country of origin |
+| `deathDate` | `str` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `str` | Unique identifier for the person |
+| `lastUpdated` | `str` | Timestamp of last update |
+| `name` | `str` | Full name of the person |
+| `verified` | `bool` | Whether the record has been verified |
 
 #### Example: Load
 

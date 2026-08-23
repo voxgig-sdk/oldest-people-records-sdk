@@ -36,48 +36,56 @@
               "active": true,
               "name": "age",
               "req": true,
+              "short": "Age in years",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "birthDate",
               "req": true,
+              "short": "Date of birth in ISO 8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": true,
+              "short": "Country of origin",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "deathDate",
               "req": false,
+              "short": "Date of death in ISO 8601 format (null if still living)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": true,
+              "short": "Unique identifier for the person",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lastUpdated",
               "req": false,
+              "short": "Timestamp of last update",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": true,
+              "short": "Full name of the person",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "verified",
               "req": false,
+              "short": "Whether the record has been verified",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -177,48 +185,56 @@
               "active": true,
               "name": "age",
               "req": true,
+              "short": "Age in years",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "birthDate",
               "req": true,
+              "short": "Date of birth in ISO 8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": true,
+              "short": "Country of origin",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "deathDate",
               "req": false,
+              "short": "Date of death in ISO 8601 format (null if still living)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": true,
+              "short": "Unique identifier for the person",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lastUpdated",
               "req": false,
+              "short": "Timestamp of last update",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": true,
+              "short": "Full name of the person",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "verified",
               "req": false,
+              "short": "Whether the record has been verified",
               "type": "`$BOOLEAN`"
             }
           ],

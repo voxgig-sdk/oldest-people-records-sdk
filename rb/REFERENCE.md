@@ -97,14 +97,14 @@ oldest_ever = client.OldestEver
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | `Integer` | Yes |  |
-| `birthDate` | `String` | Yes |  |
-| `country` | `String` | Yes |  |
-| `deathDate` | `String` | No |  |
-| `id` | `String` | Yes |  |
-| `lastUpdated` | `String` | No |  |
-| `name` | `String` | Yes |  |
-| `verified` | `Boolean` | No |  |
+| `age` | `Integer` | Yes | Age in years |
+| `birthDate` | `String` | Yes | Date of birth in ISO 8601 format |
+| `country` | `String` | Yes | Country of origin |
+| `deathDate` | `String` | No | Date of death in ISO 8601 format (null if still living) |
+| `id` | `String` | Yes | Unique identifier for the person |
+| `lastUpdated` | `String` | No | Timestamp of last update |
+| `name` | `String` | Yes | Full name of the person |
+| `verified` | `Boolean` | No | Whether the record has been verified |
 
 ### Operations
 
@@ -167,14 +167,14 @@ oldest_living = client.OldestLiving
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | `Integer` | Yes |  |
-| `birthDate` | `String` | Yes |  |
-| `country` | `String` | Yes |  |
-| `deathDate` | `String` | No |  |
-| `id` | `String` | Yes |  |
-| `lastUpdated` | `String` | No |  |
-| `name` | `String` | Yes |  |
-| `verified` | `Boolean` | No |  |
+| `age` | `Integer` | Yes | Age in years |
+| `birthDate` | `String` | Yes | Date of birth in ISO 8601 format |
+| `country` | `String` | Yes | Country of origin |
+| `deathDate` | `String` | No | Date of death in ISO 8601 format (null if still living) |
+| `id` | `String` | Yes | Unique identifier for the person |
+| `lastUpdated` | `String` | No | Timestamp of last update |
+| `name` | `String` | Yes | Full name of the person |
+| `verified` | `Boolean` | No | Whether the record has been verified |
 
 ### Operations
 

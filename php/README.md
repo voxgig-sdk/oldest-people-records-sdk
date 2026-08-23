@@ -258,14 +258,14 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `age` |  |
-| `birthDate` |  |
-| `country` |  |
-| `deathDate` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `name` |  |
-| `verified` |  |
+| `age` | Age in years |
+| `birthDate` | Date of birth in ISO 8601 format |
+| `country` | Country of origin |
+| `deathDate` | Date of death in ISO 8601 format (null if still living) |
+| `id` | Unique identifier for the person |
+| `lastUpdated` | Timestamp of last update |
+| `name` | Full name of the person |
+| `verified` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -275,14 +275,14 @@ API path: `/oldest-ever`
 
 | Field | Description |
 | --- | --- |
-| `age` |  |
-| `birthDate` |  |
-| `country` |  |
-| `deathDate` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `name` |  |
-| `verified` |  |
+| `age` | Age in years |
+| `birthDate` | Date of birth in ISO 8601 format |
+| `country` | Country of origin |
+| `deathDate` | Date of death in ISO 8601 format (null if still living) |
+| `id` | Unique identifier for the person |
+| `lastUpdated` | Timestamp of last update |
+| `name` | Full name of the person |
+| `verified` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -308,14 +308,14 @@ Create an instance: `$oldest_ever = $client->OldestEver();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `int` |  |
-| `birthDate` | `string` |  |
-| `country` | `string` |  |
-| `deathDate` | `string` |  |
-| `id` | `string` |  |
-| `lastUpdated` | `string` |  |
-| `name` | `string` |  |
-| `verified` | `bool` |  |
+| `age` | `int` | Age in years |
+| `birthDate` | `string` | Date of birth in ISO 8601 format |
+| `country` | `string` | Country of origin |
+| `deathDate` | `string` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Unique identifier for the person |
+| `lastUpdated` | `string` | Timestamp of last update |
+| `name` | `string` | Full name of the person |
+| `verified` | `bool` | Whether the record has been verified |
 
 #### Example: Load
 
@@ -340,14 +340,14 @@ Create an instance: `$oldest_living = $client->OldestLiving();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `int` |  |
-| `birthDate` | `string` |  |
-| `country` | `string` |  |
-| `deathDate` | `string` |  |
-| `id` | `string` |  |
-| `lastUpdated` | `string` |  |
-| `name` | `string` |  |
-| `verified` | `bool` |  |
+| `age` | `int` | Age in years |
+| `birthDate` | `string` | Date of birth in ISO 8601 format |
+| `country` | `string` | Country of origin |
+| `deathDate` | `string` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Unique identifier for the person |
+| `lastUpdated` | `string` | Timestamp of last update |
+| `name` | `string` | Full name of the person |
+| `verified` | `bool` | Whether the record has been verified |
 
 #### Example: Load
 

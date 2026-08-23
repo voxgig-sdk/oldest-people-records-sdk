@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "OldestPeopleRecords",
+            "slug": "oldest-people-records",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -52,38 +55,46 @@ def make_config():
           {
             "name": "age",
             "req": True,
+            "short": "Age in years",
             "type": "`$INTEGER`",
           },
           {
             "name": "birthDate",
             "req": True,
+            "short": "Date of birth in ISO 8601 format",
             "type": "`$STRING`",
           },
           {
             "name": "country",
             "req": True,
+            "short": "Country of origin",
             "type": "`$STRING`",
           },
           {
             "name": "deathDate",
+            "short": "Date of death in ISO 8601 format (null if still living)",
             "type": "`$STRING`",
           },
           {
             "name": "id",
             "req": True,
+            "short": "Unique identifier for the person",
             "type": "`$STRING`",
           },
           {
             "name": "lastUpdated",
+            "short": "Timestamp of last update",
             "type": "`$STRING`",
           },
           {
             "name": "name",
             "req": True,
+            "short": "Full name of the person",
             "type": "`$STRING`",
           },
           {
             "name": "verified",
+            "short": "Whether the record has been verified",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -166,38 +177,46 @@ def make_config():
           {
             "name": "age",
             "req": True,
+            "short": "Age in years",
             "type": "`$INTEGER`",
           },
           {
             "name": "birthDate",
             "req": True,
+            "short": "Date of birth in ISO 8601 format",
             "type": "`$STRING`",
           },
           {
             "name": "country",
             "req": True,
+            "short": "Country of origin",
             "type": "`$STRING`",
           },
           {
             "name": "deathDate",
+            "short": "Date of death in ISO 8601 format (null if still living)",
             "type": "`$STRING`",
           },
           {
             "name": "id",
             "req": True,
+            "short": "Unique identifier for the person",
             "type": "`$STRING`",
           },
           {
             "name": "lastUpdated",
+            "short": "Timestamp of last update",
             "type": "`$STRING`",
           },
           {
             "name": "name",
             "req": True,
+            "short": "Full name of the person",
             "type": "`$STRING`",
           },
           {
             "name": "verified",
+            "short": "Whether the record has been verified",
             "type": "`$BOOLEAN`",
           },
         ],

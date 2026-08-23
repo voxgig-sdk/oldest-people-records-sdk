@@ -6,7 +6,7 @@ The Golang SDK for the OldestPeopleRecords API — an entity-oriented client usi
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.OldestEver(nil)` — each with the same small set of operations (`Load`, `Update`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -267,14 +267,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"age"` |  |
-| `"birthDate"` |  |
-| `"country"` |  |
-| `"deathDate"` |  |
-| `"id"` |  |
-| `"lastUpdated"` |  |
-| `"name"` |  |
-| `"verified"` |  |
+| `"age"` | Age in years |
+| `"birthDate"` | Date of birth in ISO 8601 format |
+| `"country"` | Country of origin |
+| `"deathDate"` | Date of death in ISO 8601 format (null if still living) |
+| `"id"` | Unique identifier for the person |
+| `"lastUpdated"` | Timestamp of last update |
+| `"name"` | Full name of the person |
+| `"verified"` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -284,14 +284,14 @@ API path: `/oldest-ever`
 
 | Field | Description |
 | --- | --- |
-| `"age"` |  |
-| `"birthDate"` |  |
-| `"country"` |  |
-| `"deathDate"` |  |
-| `"id"` |  |
-| `"lastUpdated"` |  |
-| `"name"` |  |
-| `"verified"` |  |
+| `"age"` | Age in years |
+| `"birthDate"` | Date of birth in ISO 8601 format |
+| `"country"` | Country of origin |
+| `"deathDate"` | Date of death in ISO 8601 format (null if still living) |
+| `"id"` | Unique identifier for the person |
+| `"lastUpdated"` | Timestamp of last update |
+| `"name"` | Full name of the person |
+| `"verified"` | Whether the record has been verified |
 
 Operations: Load, Update.
 
@@ -317,14 +317,14 @@ Create an instance: `oldestEver := client.OldestEver(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `int` |  |
-| `birthDate` | `string` |  |
-| `country` | `string` |  |
-| `deathDate` | `string` |  |
-| `id` | `string` |  |
-| `lastUpdated` | `string` |  |
-| `name` | `string` |  |
-| `verified` | `bool` |  |
+| `age` | `int` | Age in years |
+| `birthDate` | `string` | Date of birth in ISO 8601 format |
+| `country` | `string` | Country of origin |
+| `deathDate` | `string` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Unique identifier for the person |
+| `lastUpdated` | `string` | Timestamp of last update |
+| `name` | `string` | Full name of the person |
+| `verified` | `bool` | Whether the record has been verified |
 
 #### Example: Load
 
@@ -352,14 +352,14 @@ Create an instance: `oldestLiving := client.OldestLiving(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age` | `int` |  |
-| `birthDate` | `string` |  |
-| `country` | `string` |  |
-| `deathDate` | `string` |  |
-| `id` | `string` |  |
-| `lastUpdated` | `string` |  |
-| `name` | `string` |  |
-| `verified` | `bool` |  |
+| `age` | `int` | Age in years |
+| `birthDate` | `string` | Date of birth in ISO 8601 format |
+| `country` | `string` | Country of origin |
+| `deathDate` | `string` | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Unique identifier for the person |
+| `lastUpdated` | `string` | Timestamp of last update |
+| `name` | `string` | Full name of the person |
+| `verified` | `bool` | Whether the record has been verified |
 
 #### Example: Load
 

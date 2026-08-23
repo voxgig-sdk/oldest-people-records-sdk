@@ -94,14 +94,14 @@ local oldest_ever = client:OldestEver(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | `number` | Yes |  |
-| `birthDate` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `deathDate` | `string` | No |  |
-| `id` | `string` | Yes |  |
-| `lastUpdated` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `verified` | `boolean` | No |  |
+| `age` | `number` | Yes | Age in years |
+| `birthDate` | `string` | Yes | Date of birth in ISO 8601 format |
+| `country` | `string` | Yes | Country of origin |
+| `deathDate` | `string` | No | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Yes | Unique identifier for the person |
+| `lastUpdated` | `string` | No | Timestamp of last update |
+| `name` | `string` | Yes | Full name of the person |
+| `verified` | `boolean` | No | Whether the record has been verified |
 
 ### Operations
 
@@ -164,14 +164,14 @@ local oldest_living = client:OldestLiving(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | `number` | Yes |  |
-| `birthDate` | `string` | Yes |  |
-| `country` | `string` | Yes |  |
-| `deathDate` | `string` | No |  |
-| `id` | `string` | Yes |  |
-| `lastUpdated` | `string` | No |  |
-| `name` | `string` | Yes |  |
-| `verified` | `boolean` | No |  |
+| `age` | `number` | Yes | Age in years |
+| `birthDate` | `string` | Yes | Date of birth in ISO 8601 format |
+| `country` | `string` | Yes | Country of origin |
+| `deathDate` | `string` | No | Date of death in ISO 8601 format (null if still living) |
+| `id` | `string` | Yes | Unique identifier for the person |
+| `lastUpdated` | `string` | No | Timestamp of last update |
+| `name` | `string` | Yes | Full name of the person |
+| `verified` | `boolean` | No | Whether the record has been verified |
 
 ### Operations
 
