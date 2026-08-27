@@ -42,6 +42,7 @@ class OldestPeopleRecordsConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
