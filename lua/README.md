@@ -36,7 +36,7 @@ local client = sdk.new()
 ### 3. Load an oldestever
 
 ```lua
-local oldestever, err = client:OldestEver():load({ id = "example_id" })
+local oldestever, err = client:OldestEver():load()
 if err then error(err) end
 print(oldestever)
 ```
@@ -45,7 +45,7 @@ print(oldestever)
 
 ```lua
 -- Update
-client:OldestEver():update({ id = "example_id", age = 1, birthDate = "example_birthDate" })
+client:OldestEver():update({ age = 1, birthDate = "example_birthDate" })
 
 ```
 
@@ -56,7 +56,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local oldestever, err = client:OldestEver():load({ id = "example_id" })
+local oldestever, err = client:OldestEver():load()
 if err then error(err) end
 ```
 
@@ -114,7 +114,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:OldestEver():load({ id = "test01" })
+local result, err = client:OldestEver():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -222,7 +222,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local oldest_ever, err = client:OldestEver():load({ id = "example_id" })
+    local oldest_ever, err = client:OldestEver():load()
     if err then error(err) end
     -- oldest_ever is the loaded record
 
@@ -297,7 +297,7 @@ Create an instance: `local oldest_ever = client:OldestEver(nil)`
 #### Example: Load
 
 ```lua
-local oldest_ever, err = client:OldestEver():load({ id = "oldest_ever_id" })
+local oldest_ever, err = client:OldestEver():load()
 ```
 
 
@@ -328,8 +328,31 @@ Create an instance: `local oldest_living = client:OldestLiving(nil)`
 #### Example: Load
 
 ```lua
-local oldest_living, err = client:OldestLiving():load({ id = "oldest_living_id" })
+local oldest_living, err = client:OldestLiving():load()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -409,7 +432,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local oldestever = client:OldestEver()
-oldestever:load({ id = "example_id" })
+oldestever:load()
 
 -- oldestever:data_get() now returns the oldestever data from the last load
 -- oldestever:match_get() returns the last match criteria

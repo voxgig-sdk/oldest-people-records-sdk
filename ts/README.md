@@ -39,7 +39,7 @@ const client = new OldestPeopleRecordsSDK()
 
 ```ts
 try {
-  const oldestever = await client.OldestEver().load({ id: 'example_id' })
+  const oldestever = await client.OldestEver().load()
   console.log(oldestever)
 } catch (err) {
   console.error('load failed:', err)
@@ -51,7 +51,6 @@ try {
 ```ts
 // Update
 const updated = await client.OldestEver().update({
-  id: 'example_id',
   age: 1,
   birthDate: 'example_birthDate',
 })
@@ -65,7 +64,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const oldestever = await client.OldestEver().load({ id: "example_id" })
+  const oldestever = await client.OldestEver().load()
   console.log(oldestever)
 } catch (err) {
   console.error('load failed:', err)
@@ -132,7 +131,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = OldestPeopleRecordsSDK.test()
 
-const oldestever = await client.OldestEver().load({ id: 'test01' })
+const oldestever = await client.OldestEver().load()
 // oldestever is the entity, populated with mock response data
 // — call oldestever.data() for the record itself
 console.log(oldestever)
@@ -153,7 +152,7 @@ Entity instances remember their last match and data:
 const entity = client.OldestEver()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -361,7 +360,7 @@ Create an instance: `const oldest_ever = client.OldestEver()`
 #### Example: Load
 
 ```ts
-const oldest_ever = await client.OldestEver().load({ id: 'oldest_ever_id' })
+const oldest_ever = await client.OldestEver().load()
 ```
 
 
@@ -392,8 +391,31 @@ Create an instance: `const oldest_living = client.OldestLiving()`
 #### Example: Load
 
 ```ts
-const oldest_living = await client.OldestLiving().load({ id: 'oldest_living_id' })
+const oldest_living = await client.OldestLiving().load()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -466,10 +488,10 @@ calls on the same instance can rely on this state.
 
 ```ts
 const oldestever = client.OldestEver()
-await oldestever.load({ id: "example_id" })
+await oldestever.load()
 
 // oldestever.data() now returns the oldestever data from the last `load`
-// oldestever.match() returns { id: "example_id" }
+// oldestever.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

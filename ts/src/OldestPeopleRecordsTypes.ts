@@ -17,14 +17,9 @@ export interface OldestEver {
 }
 
 export interface OldestEverLoadMatch {
-  age?: number
-  birthDate?: string
+  birth_date_after?: string
+  birth_date_before?: string
   country?: string
-  deathDate?: string
-  id: string
-  lastUpdated?: string
-  name?: string
-  verified?: boolean
 }
 
 export interface OldestEverUpdateData {
@@ -50,14 +45,9 @@ export interface OldestLiving {
 }
 
 export interface OldestLivingLoadMatch {
-  age?: number
-  birthDate?: string
+  birth_date_after?: string
+  birth_date_before?: string
   country?: string
-  deathDate?: string
-  id: string
-  lastUpdated?: string
-  name?: string
-  verified?: boolean
 }
 
 export interface OldestLivingUpdateData {

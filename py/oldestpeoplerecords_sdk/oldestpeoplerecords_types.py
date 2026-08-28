@@ -30,18 +30,10 @@ class OldestEver(OldestEverRequired, total=False):
     verified: bool
 
 
-class OldestEverLoadMatchRequired(TypedDict):
-    id: str
-
-
-class OldestEverLoadMatch(OldestEverLoadMatchRequired, total=False):
-    age: int
-    birthDate: str
+class OldestEverLoadMatch(TypedDict, total=False):
+    birth_date_after: str
+    birth_date_before: str
     country: str
-    deathDate: str
-    lastUpdated: str
-    name: str
-    verified: bool
 
 
 class OldestEverUpdateData(TypedDict, total=False):
@@ -69,18 +61,10 @@ class OldestLiving(OldestLivingRequired, total=False):
     verified: bool
 
 
-class OldestLivingLoadMatchRequired(TypedDict):
-    id: str
-
-
-class OldestLivingLoadMatch(OldestLivingLoadMatchRequired, total=False):
-    age: int
-    birthDate: str
+class OldestLivingLoadMatch(TypedDict, total=False):
+    birth_date_after: str
+    birth_date_before: str
     country: str
-    deathDate: str
-    lastUpdated: str
-    name: str
-    verified: bool
 
 
 class OldestLivingUpdateData(TypedDict, total=False):

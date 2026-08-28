@@ -26,14 +26,9 @@ type OldestEver struct {
 
 // OldestEverLoadMatch is the typed request payload for OldestEver.LoadTyped.
 type OldestEverLoadMatch struct {
-	Age *int `json:"age,omitempty"`
-	BirthDate *string `json:"birthDate,omitempty"`
+	BirthDateAfter *string `json:"birth_date_after,omitempty"`
+	BirthDateBefore *string `json:"birth_date_before,omitempty"`
 	Country *string `json:"country,omitempty"`
-	DeathDate *string `json:"deathDate,omitempty"`
-	Id string `json:"id"`
-	LastUpdated *string `json:"lastUpdated,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Verified *bool `json:"verified,omitempty"`
 }
 
 // OldestEverUpdateData is the typed request payload for OldestEver.UpdateTyped.
@@ -62,14 +57,9 @@ type OldestLiving struct {
 
 // OldestLivingLoadMatch is the typed request payload for OldestLiving.LoadTyped.
 type OldestLivingLoadMatch struct {
-	Age *int `json:"age,omitempty"`
-	BirthDate *string `json:"birthDate,omitempty"`
+	BirthDateAfter *string `json:"birth_date_after,omitempty"`
+	BirthDateBefore *string `json:"birth_date_before,omitempty"`
 	Country *string `json:"country,omitempty"`
-	DeathDate *string `json:"deathDate,omitempty"`
-	Id string `json:"id"`
-	LastUpdated *string `json:"lastUpdated,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Verified *bool `json:"verified,omitempty"`
 }
 
 // OldestLivingUpdateData is the typed request payload for OldestLiving.UpdateTyped.

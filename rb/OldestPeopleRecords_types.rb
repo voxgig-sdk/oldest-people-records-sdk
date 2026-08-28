@@ -47,38 +47,18 @@ OldestEver = Struct.new(
 
 # Request payload for OldestEver#load.
 #
-# @!attribute [rw] age
-#   @return [Integer, nil]
+# @!attribute [rw] birth_date_after
+#   @return [String, nil]
 #
-# @!attribute [rw] birthDate
+# @!attribute [rw] birth_date_before
 #   @return [String, nil]
 #
 # @!attribute [rw] country
 #   @return [String, nil]
-#
-# @!attribute [rw] deathDate
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] lastUpdated
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] verified
-#   @return [Boolean, nil]
 OldestEverLoadMatch = Struct.new(
-  :age,
-  :birthDate,
+  :birth_date_after,
+  :birth_date_before,
   :country,
-  :deathDate,
-  :id,
-  :lastUpdated,
-  :name,
-  :verified,
   keyword_init: true
 )
 
@@ -158,38 +138,18 @@ OldestLiving = Struct.new(
 
 # Request payload for OldestLiving#load.
 #
-# @!attribute [rw] age
-#   @return [Integer, nil]
+# @!attribute [rw] birth_date_after
+#   @return [String, nil]
 #
-# @!attribute [rw] birthDate
+# @!attribute [rw] birth_date_before
 #   @return [String, nil]
 #
 # @!attribute [rw] country
 #   @return [String, nil]
-#
-# @!attribute [rw] deathDate
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String]
-#
-# @!attribute [rw] lastUpdated
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] verified
-#   @return [Boolean, nil]
 OldestLivingLoadMatch = Struct.new(
-  :age,
-  :birthDate,
+  :birth_date_after,
+  :birth_date_before,
   :country,
-  :deathDate,
-  :id,
-  :lastUpdated,
-  :name,
-  :verified,
   keyword_init: true
 )
 

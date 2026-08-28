@@ -36,7 +36,7 @@ $client = new OldestPeopleRecordsSDK();
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the OldestEver record (throws on error).
-    $oldestever = $client->OldestEver()->load(["id" => "example_id"]);
+    $oldestever = $client->OldestEver()->load();
     print_r($oldestever);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -47,7 +47,7 @@ try {
 
 ```php
 // Update
-$client->OldestEver()->update(["id" => "example_id", "age" => 1, "birthDate" => "example_birthDate"]);
+$client->OldestEver()->update(["age" => 1, "birthDate" => "example_birthDate"]);
 
 ```
 
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $oldestever = $client->OldestEver()->load(["id" => "example_id"]);
+    $oldestever = $client->OldestEver()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -126,17 +126,14 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = OldestPeopleRecordsSDK::test([
-    "entity" => ["oldestever" => ["test01" => ["id" => "test01"]]],
-]);
+$client = OldestPeopleRecordsSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$oldestever = $client->OldestEver()->load(["id" => "test01"]);
+$oldestever = $client->OldestEver()->load();
 print_r($oldestever);
 ```
 
@@ -321,7 +318,7 @@ Create an instance: `$oldest_ever = $client->OldestEver();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the OldestEver record (throws on error).
-$oldest_ever = $client->OldestEver()->load(["id" => "oldest_ever_id"]);
+$oldest_ever = $client->OldestEver()->load();
 ```
 
 
@@ -353,8 +350,31 @@ Create an instance: `$oldest_living = $client->OldestLiving();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the OldestLiving record (throws on error).
-$oldest_living = $client->OldestLiving()->load(["id" => "oldest_living_id"]);
+$oldest_living = $client->OldestLiving()->load();
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -434,7 +454,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $oldestever = $client->OldestEver();
-$oldestever->load(["id" => "example_id"]);
+$oldestever->load();
 
 // $oldestever->data_get() now returns the oldestever data from the last load
 // $oldestever->match_get() returns the last match criteria

@@ -17,14 +17,9 @@
 ---@field verified? boolean
 
 ---@class OldestEverLoadMatch
----@field age? number
----@field birthDate? string
+---@field birth_date_after? string
+---@field birth_date_before? string
 ---@field country? string
----@field deathDate? string
----@field id string
----@field lastUpdated? string
----@field name? string
----@field verified? boolean
 
 ---@class OldestEverUpdateData
 ---@field age? number
@@ -47,14 +42,9 @@
 ---@field verified? boolean
 
 ---@class OldestLivingLoadMatch
----@field age? number
----@field birthDate? string
+---@field birth_date_after? string
+---@field birth_date_before? string
 ---@field country? string
----@field deathDate? string
----@field id string
----@field lastUpdated? string
----@field name? string
----@field verified? boolean
 
 ---@class OldestLivingUpdateData
 ---@field age? number

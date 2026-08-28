@@ -28,14 +28,9 @@ class OldestEver
 /** Request payload for OldestEver#load. */
 class OldestEverLoadMatch
 {
-    public ?int $age = null;
-    public ?string $birthDate = null;
+    public ?string $birth_date_after = null;
+    public ?string $birth_date_before = null;
     public ?string $country = null;
-    public ?string $deathDate = null;
-    public string $id;
-    public ?string $lastUpdated = null;
-    public ?string $name = null;
-    public ?bool $verified = null;
 }
 
 /** Request payload for OldestEver#update. */
@@ -67,14 +62,9 @@ class OldestLiving
 /** Request payload for OldestLiving#load. */
 class OldestLivingLoadMatch
 {
-    public ?int $age = null;
-    public ?string $birthDate = null;
+    public ?string $birth_date_after = null;
+    public ?string $birth_date_before = null;
     public ?string $country = null;
-    public ?string $deathDate = null;
-    public string $id;
-    public ?string $lastUpdated = null;
-    public ?string $name = null;
-    public ?bool $verified = null;
 }
 
 /** Request payload for OldestLiving#update. */

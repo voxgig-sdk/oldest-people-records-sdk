@@ -51,14 +51,14 @@ func main() {
     client := sdk.New()
 
     // Load a single oldestEver — the value is the loaded record.
-    oldestEver, err := client.OldestEver(nil).Load(map[string]any{"id": "example_id"}, nil)
+    oldestEver, err := client.OldestEver(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(oldestEver)
 
     // Update a oldestEver.
-    updated, err := client.OldestEver(nil).Update(map[string]any{"id": "example_id", "age": 1, "birthDate": "example_birthDate"}, nil)
+    updated, err := client.OldestEver(nil).Update(map[string]any{"age": 1, "birthDate": "example_birthDate"}, nil)
     if err != nil {
         panic(err)
     }
@@ -73,7 +73,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-oldestever, err := client.OldestEver(nil).Load(map[string]any{"id": "example_id"}, nil)
+oldestever, err := client.OldestEver(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
@@ -143,7 +143,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 oldestEver, err := client.OldestEver(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
@@ -254,7 +254,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    oldestEver, err := client.OldestEver(nil).Load(map[string]any{"id": "example_id"}, nil)
+    oldestEver, err := client.OldestEver(nil).Load(nil, nil)
     if err != nil { /* handle */ }
     // oldestEver is the returned record
 
@@ -329,7 +329,7 @@ Create an instance: `oldestEver := client.OldestEver(nil)`
 #### Example: Load
 
 ```go
-oldestEver, err := client.OldestEver(nil).Load(map[string]any{"id": "oldest_ever_id"}, nil)
+oldestEver, err := client.OldestEver(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -364,12 +364,35 @@ Create an instance: `oldestLiving := client.OldestLiving(nil)`
 #### Example: Load
 
 ```go
-oldestLiving, err := client.OldestLiving(nil).Load(map[string]any{"id": "oldest_living_id"}, nil)
+oldestLiving, err := client.OldestLiving(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(oldestLiving) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -446,7 +469,7 @@ stores the returned data and match criteria internally.
 
 ```go
 oldestever := client.OldestEver(nil)
-oldestever.Load(map[string]any{"id": "example_id"}, nil)
+oldestever.Load(nil, nil)
 
 // oldestever.Data() now returns the oldestever data from the last load
 // oldestever.Match() returns the last match criteria
