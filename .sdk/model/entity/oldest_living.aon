@@ -12,6 +12,7 @@ main: kit: entity: oldest_living: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "birthDate"
       req: true
       short: "Date of birth in ISO 8601 format"
@@ -24,6 +25,7 @@ main: kit: entity: oldest_living: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "deathDate"
       req: false
       short: "Date of death in ISO 8601 format (null if still living)"
@@ -36,6 +38,7 @@ main: kit: entity: oldest_living: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "lastUpdated"
       req: false
       short: "Timestamp of last update"
@@ -93,8 +96,10 @@ main: kit: entity: oldest_living: {
           }
           method: "GET"
           orig: "/oldest-living"
-          parts: [
-            "oldest-living"
+          segments: [
+            {
+              lit: "oldest-living"
+            }
           ]
           select: {
             exist: [
@@ -116,8 +121,10 @@ main: kit: entity: oldest_living: {
         {
           method: "PUT"
           orig: "/oldest-living"
-          parts: [
-            "oldest-living"
+          segments: [
+            {
+              lit: "oldest-living"
+            }
           ]
           transform: {
             req: "`reqdata`"

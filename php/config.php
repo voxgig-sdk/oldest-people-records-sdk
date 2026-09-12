@@ -65,6 +65,7 @@ class OldestPeopleRecordsConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'birthDate',
               'req' => true,
               'short' => 'Date of birth in ISO 8601 format',
@@ -77,6 +78,7 @@ class OldestPeopleRecordsConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'deathDate',
               'short' => 'Date of death in ISO 8601 format (null if still living)',
               'type' => '`$STRING`',
@@ -88,6 +90,7 @@ class OldestPeopleRecordsConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'lastUpdated',
               'short' => 'Timestamp of last update',
               'type' => '`$STRING`',
@@ -103,6 +106,10 @@ class OldestPeopleRecordsConfig
               'short' => 'Whether the record has been verified',
               'type' => '`$BOOLEAN`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'oldest_ever',
           'op' => [
@@ -136,8 +143,10 @@ class OldestPeopleRecordsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/oldest-ever',
-                  'parts' => [
-                    'oldest-ever',
+                  'segments' => [
+                    [
+                      'lit' => 'oldest-ever',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -149,6 +158,9 @@ class OldestPeopleRecordsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'oldest-ever',
                   ],
                 ],
               ],
@@ -162,13 +174,18 @@ class OldestPeopleRecordsConfig
                   'kind' => 'http',
                   'method' => 'PUT',
                   'orig' => '/oldest-ever',
-                  'parts' => [
-                    'oldest-ever',
+                  'segments' => [
+                    [
+                      'lit' => 'oldest-ever',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'oldest-ever',
                   ],
                 ],
               ],
@@ -187,6 +204,7 @@ class OldestPeopleRecordsConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'birthDate',
               'req' => true,
               'short' => 'Date of birth in ISO 8601 format',
@@ -199,6 +217,7 @@ class OldestPeopleRecordsConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'deathDate',
               'short' => 'Date of death in ISO 8601 format (null if still living)',
               'type' => '`$STRING`',
@@ -210,6 +229,7 @@ class OldestPeopleRecordsConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'lastUpdated',
               'short' => 'Timestamp of last update',
               'type' => '`$STRING`',
@@ -225,6 +245,10 @@ class OldestPeopleRecordsConfig
               'short' => 'Whether the record has been verified',
               'type' => '`$BOOLEAN`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'oldest_living',
           'op' => [
@@ -258,8 +282,10 @@ class OldestPeopleRecordsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/oldest-living',
-                  'parts' => [
-                    'oldest-living',
+                  'segments' => [
+                    [
+                      'lit' => 'oldest-living',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -271,6 +297,9 @@ class OldestPeopleRecordsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'oldest-living',
                   ],
                 ],
               ],
@@ -284,13 +313,18 @@ class OldestPeopleRecordsConfig
                   'kind' => 'http',
                   'method' => 'PUT',
                   'orig' => '/oldest-living',
-                  'parts' => [
-                    'oldest-living',
+                  'segments' => [
+                    [
+                      'lit' => 'oldest-living',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'oldest-living',
                   ],
                 ],
               ],

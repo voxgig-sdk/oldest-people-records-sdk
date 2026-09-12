@@ -51,6 +51,7 @@ module OldestPeopleRecordsConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date",
               "name" => "birthDate",
               "req" => true,
               "short" => "Date of birth in ISO 8601 format",
@@ -63,6 +64,7 @@ module OldestPeopleRecordsConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date",
               "name" => "deathDate",
               "short" => "Date of death in ISO 8601 format (null if still living)",
               "type" => "`$STRING`",
@@ -74,6 +76,7 @@ module OldestPeopleRecordsConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "lastUpdated",
               "short" => "Timestamp of last update",
               "type" => "`$STRING`",
@@ -90,6 +93,10 @@ module OldestPeopleRecordsConfig
               "type" => "`$BOOLEAN`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "oldest_ever",
           "op" => {
             "load" => {
@@ -122,8 +129,10 @@ module OldestPeopleRecordsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/oldest-ever",
-                  "parts" => [
-                    "oldest-ever",
+                  "segments" => [
+                    {
+                      "lit" => "oldest-ever",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -136,6 +145,9 @@ module OldestPeopleRecordsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "oldest-ever",
+                  ],
                 },
               ],
             },
@@ -148,14 +160,19 @@ module OldestPeopleRecordsConfig
                   "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/oldest-ever",
-                  "parts" => [
-                    "oldest-ever",
+                  "segments" => [
+                    {
+                      "lit" => "oldest-ever",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "oldest-ever",
+                  ],
                 },
               ],
             },
@@ -173,6 +190,7 @@ module OldestPeopleRecordsConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date",
               "name" => "birthDate",
               "req" => true,
               "short" => "Date of birth in ISO 8601 format",
@@ -185,6 +203,7 @@ module OldestPeopleRecordsConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date",
               "name" => "deathDate",
               "short" => "Date of death in ISO 8601 format (null if still living)",
               "type" => "`$STRING`",
@@ -196,6 +215,7 @@ module OldestPeopleRecordsConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "lastUpdated",
               "short" => "Timestamp of last update",
               "type" => "`$STRING`",
@@ -212,6 +232,10 @@ module OldestPeopleRecordsConfig
               "type" => "`$BOOLEAN`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "oldest_living",
           "op" => {
             "load" => {
@@ -244,8 +268,10 @@ module OldestPeopleRecordsConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/oldest-living",
-                  "parts" => [
-                    "oldest-living",
+                  "segments" => [
+                    {
+                      "lit" => "oldest-living",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -258,6 +284,9 @@ module OldestPeopleRecordsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "oldest-living",
+                  ],
                 },
               ],
             },
@@ -270,14 +299,19 @@ module OldestPeopleRecordsConfig
                   "kind" => "http",
                   "method" => "PUT",
                   "orig" => "/oldest-living",
-                  "parts" => [
-                    "oldest-living",
+                  "segments" => [
+                    {
+                      "lit" => "oldest-living",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "oldest-living",
+                  ],
                 },
               ],
             },

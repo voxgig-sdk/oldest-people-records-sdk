@@ -12,6 +12,7 @@ main: kit: entity: oldest_ever: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "birthDate"
       req: true
       short: "Date of birth in ISO 8601 format"
@@ -24,6 +25,7 @@ main: kit: entity: oldest_ever: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "deathDate"
       req: false
       short: "Date of death in ISO 8601 format (null if still living)"
@@ -36,6 +38,7 @@ main: kit: entity: oldest_ever: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "lastUpdated"
       req: false
       short: "Timestamp of last update"
@@ -93,8 +96,10 @@ main: kit: entity: oldest_ever: {
           }
           method: "GET"
           orig: "/oldest-ever"
-          parts: [
-            "oldest-ever"
+          segments: [
+            {
+              lit: "oldest-ever"
+            }
           ]
           select: {
             exist: [
@@ -116,8 +121,10 @@ main: kit: entity: oldest_ever: {
         {
           method: "PUT"
           orig: "/oldest-ever"
-          parts: [
-            "oldest-ever"
+          segments: [
+            {
+              lit: "oldest-ever"
+            }
           ]
           transform: {
             req: "`reqdata`"

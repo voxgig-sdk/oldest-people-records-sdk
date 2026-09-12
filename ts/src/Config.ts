@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -76,6 +87,7 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
+          "format": "date",
           "name": "birthDate",
           "req": true,
           "short": "Date of birth in ISO 8601 format",
@@ -88,6 +100,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "deathDate",
           "short": "Date of death in ISO 8601 format (null if still living)",
           "type": "`$STRING`"
@@ -99,6 +112,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "lastUpdated",
           "short": "Timestamp of last update",
           "type": "`$STRING`"
@@ -115,6 +129,10 @@ class Config {
           "type": "`$BOOLEAN`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "oldest_ever",
       "op": {
         "load": {
@@ -147,8 +165,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/oldest-ever",
-              "parts": [
-                "oldest-ever"
+              "segments": [
+                {
+                  "lit": "oldest-ever"
+                }
               ],
               "select": {
                 "exist": [
@@ -160,7 +180,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "oldest-ever"
+              ]
             }
           ]
         },
@@ -173,14 +196,19 @@ class Config {
               "kind": "http",
               "method": "PUT",
               "orig": "/oldest-ever",
-              "parts": [
-                "oldest-ever"
+              "segments": [
+                {
+                  "lit": "oldest-ever"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "oldest-ever"
+              ]
             }
           ]
         }
@@ -198,6 +226,7 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
+          "format": "date",
           "name": "birthDate",
           "req": true,
           "short": "Date of birth in ISO 8601 format",
@@ -210,6 +239,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "deathDate",
           "short": "Date of death in ISO 8601 format (null if still living)",
           "type": "`$STRING`"
@@ -221,6 +251,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "lastUpdated",
           "short": "Timestamp of last update",
           "type": "`$STRING`"
@@ -237,6 +268,10 @@ class Config {
           "type": "`$BOOLEAN`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "oldest_living",
       "op": {
         "load": {
@@ -269,8 +304,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/oldest-living",
-              "parts": [
-                "oldest-living"
+              "segments": [
+                {
+                  "lit": "oldest-living"
+                }
               ],
               "select": {
                 "exist": [
@@ -282,7 +319,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "oldest-living"
+              ]
             }
           ]
         },
@@ -295,14 +335,19 @@ class Config {
               "kind": "http",
               "method": "PUT",
               "orig": "/oldest-living",
-              "parts": [
-                "oldest-living"
+              "segments": [
+                {
+                  "lit": "oldest-living"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "oldest-living"
+              ]
             }
           ]
         }
@@ -318,6 +363,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

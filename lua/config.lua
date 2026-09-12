@@ -39,6 +39,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "date",
             ["name"] = "birthDate",
             ["req"] = true,
             ["short"] = "Date of birth in ISO 8601 format",
@@ -51,6 +52,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "deathDate",
             ["short"] = "Date of death in ISO 8601 format (null if still living)",
             ["type"] = "`$STRING`",
@@ -62,6 +64,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "lastUpdated",
             ["short"] = "Timestamp of last update",
             ["type"] = "`$STRING`",
@@ -77,6 +80,10 @@ local function make_config()
             ["short"] = "Whether the record has been verified",
             ["type"] = "`$BOOLEAN`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "oldest_ever",
         ["op"] = {
@@ -110,8 +117,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/oldest-ever",
-                ["parts"] = {
-                  "oldest-ever",
+                ["segments"] = {
+                  {
+                    ["lit"] = "oldest-ever",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -123,6 +132,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "oldest-ever",
                 },
               },
             },
@@ -136,13 +148,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/oldest-ever",
-                ["parts"] = {
-                  "oldest-ever",
+                ["segments"] = {
+                  {
+                    ["lit"] = "oldest-ever",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "oldest-ever",
                 },
               },
             },
@@ -161,6 +178,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "date",
             ["name"] = "birthDate",
             ["req"] = true,
             ["short"] = "Date of birth in ISO 8601 format",
@@ -173,6 +191,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "deathDate",
             ["short"] = "Date of death in ISO 8601 format (null if still living)",
             ["type"] = "`$STRING`",
@@ -184,6 +203,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "lastUpdated",
             ["short"] = "Timestamp of last update",
             ["type"] = "`$STRING`",
@@ -199,6 +219,10 @@ local function make_config()
             ["short"] = "Whether the record has been verified",
             ["type"] = "`$BOOLEAN`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "oldest_living",
         ["op"] = {
@@ -232,8 +256,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/oldest-living",
-                ["parts"] = {
-                  "oldest-living",
+                ["segments"] = {
+                  {
+                    ["lit"] = "oldest-living",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -245,6 +271,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "oldest-living",
                 },
               },
             },
@@ -258,13 +287,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/oldest-living",
-                ["parts"] = {
-                  "oldest-living",
+                ["segments"] = {
+                  {
+                    ["lit"] = "oldest-living",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "oldest-living",
                 },
               },
             },

@@ -1,6 +1,14 @@
 # OldestPeopleRecords SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -60,6 +68,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "birthDate",
             "req": True,
             "short": "Date of birth in ISO 8601 format",
@@ -72,6 +81,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "deathDate",
             "short": "Date of death in ISO 8601 format (null if still living)",
             "type": "`$STRING`",
@@ -83,6 +93,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "lastUpdated",
             "short": "Timestamp of last update",
             "type": "`$STRING`",
@@ -99,6 +110,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "oldest_ever",
         "op": {
           "load": {
@@ -131,8 +146,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/oldest-ever",
-                "parts": [
-                  "oldest-ever",
+                "segments": [
+                  {
+                    "lit": "oldest-ever",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -145,6 +162,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "oldest-ever",
+                ],
               },
             ],
           },
@@ -157,14 +177,19 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/oldest-ever",
-                "parts": [
-                  "oldest-ever",
+                "segments": [
+                  {
+                    "lit": "oldest-ever",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "oldest-ever",
+                ],
               },
             ],
           },
@@ -182,6 +207,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "birthDate",
             "req": True,
             "short": "Date of birth in ISO 8601 format",
@@ -194,6 +220,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "deathDate",
             "short": "Date of death in ISO 8601 format (null if still living)",
             "type": "`$STRING`",
@@ -205,6 +232,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "lastUpdated",
             "short": "Timestamp of last update",
             "type": "`$STRING`",
@@ -221,6 +249,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "oldest_living",
         "op": {
           "load": {
@@ -253,8 +285,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/oldest-living",
-                "parts": [
-                  "oldest-living",
+                "segments": [
+                  {
+                    "lit": "oldest-living",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -267,6 +301,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "oldest-living",
+                ],
               },
             ],
           },
@@ -279,14 +316,19 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/oldest-living",
-                "parts": [
-                  "oldest-living",
+                "segments": [
+                  {
+                    "lit": "oldest-living",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "oldest-living",
+                ],
               },
             ],
           },
