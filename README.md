@@ -105,7 +105,7 @@ local result, err = client:OldestEver():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
+| TypeScript | `@voxgig-sdk/oldest-people-records-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
 | Python | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
 | PHP | `voxgig-sdk/oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/oldest-people-records-sdk/go` | `go get github.com/voxgig-sdk/oldest-people-records-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:OldestEver():load()
 ### TypeScript
 
 ```ts
-import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records'
+import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records-sdk'
 
 const client = new OldestPeopleRecordsSDK()
 

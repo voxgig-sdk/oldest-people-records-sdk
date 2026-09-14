@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records'
+import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records-sdk'
 
 const client = new OldestPeopleRecordsSDK()
 ```
@@ -477,7 +477,7 @@ oldest-people-records/
 Import the SDK from the package root:
 
 ```ts
-import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records'
+import { OldestPeopleRecordsSDK } from '@voxgig-sdk/oldest-people-records-sdk'
 ```
 
 ### Entity state
