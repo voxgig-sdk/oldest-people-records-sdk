@@ -2,7 +2,7 @@
   "existing": {
     "oldest_living": {
       "OLDEST_LIVING00": {
-        "age": "s50",
+        "age": 80,
         "birthDate": "s51",
         "country": "s52",
         "deathDate": "s53",
@@ -12,7 +12,7 @@
         "verified": false
       },
       "OLDEST_LIVING01": {
-        "age": "sa0",
+        "age": 160,
         "birthDate": "sa1",
         "country": "sa2",
         "deathDate": "sa3",
@@ -22,7 +22,7 @@
         "verified": false
       },
       "OLDEST_LIVING02": {
-        "age": "sf0",
+        "age": 240,
         "birthDate": "sf1",
         "country": "sf2",
         "deathDate": "sf3",
@@ -36,13 +36,329 @@
   "new": {
     "oldest_living": {
       "oldest_living_ref01": {
-        "age": "s140",
+        "age": 320,
         "birthDate": "s141",
         "country": "s142",
         "deathDate": "s143",
         "lastUpdated": "s145",
         "name": "s146",
         "verified": false
+      }
+    }
+  },
+  "requests": {
+    "GET /oldest-living": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getOldestLiving",
+        "parameters": [
+          {
+            "description": "Filter by country of origin",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter for people born after this date (ISO 8601 format)",
+            "in": "query",
+            "name": "birthDateAfter",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter for people born before this date (ISO 8601 format)",
+            "in": "query",
+            "name": "birthDateBefore",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "age": {
+                      "description": "Age in years",
+                      "type": "integer"
+                    },
+                    "birthDate": {
+                      "description": "Date of birth in ISO 8601 format",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "country": {
+                      "description": "Country of origin",
+                      "type": "string"
+                    },
+                    "deathDate": {
+                      "description": "Date of death in ISO 8601 format (null if still living)",
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the person",
+                      "type": "string"
+                    },
+                    "lastUpdated": {
+                      "description": "Timestamp of last update",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Full name of the person",
+                      "type": "string"
+                    },
+                    "verified": {
+                      "description": "Whether the record has been verified",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "birthDate",
+                    "age",
+                    "country"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No record found matching the criteria"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "PUT /oldest-living": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateOldestLiving",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "birthDate": {
+                    "description": "Date of birth in ISO 8601 format",
+                    "format": "date",
+                    "type": "string"
+                  },
+                  "country": {
+                    "description": "Country of origin",
+                    "type": "string"
+                  },
+                  "deathDate": {
+                    "description": "Date of death in ISO 8601 format (null if still living)",
+                    "format": "date",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Full name of the person",
+                    "type": "string"
+                  },
+                  "verified": {
+                    "description": "Whether the record has been verified",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "birthDate",
+                  "country"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "age": {
+                      "description": "Age in years",
+                      "type": "integer"
+                    },
+                    "birthDate": {
+                      "description": "Date of birth in ISO 8601 format",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "country": {
+                      "description": "Country of origin",
+                      "type": "string"
+                    },
+                    "deathDate": {
+                      "description": "Date of death in ISO 8601 format (null if still living)",
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the person",
+                      "type": "string"
+                    },
+                    "lastUpdated": {
+                      "description": "Timestamp of last update",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Full name of the person",
+                      "type": "string"
+                    },
+                    "verified": {
+                      "description": "Whether the record has been verified",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "birthDate",
+                    "age",
+                    "country"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully updated"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid input data"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
