@@ -105,12 +105,12 @@ local result, err = client:OldestEver():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/oldest-people-records-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
-| Python | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
-| PHP | `voxgig-sdk/oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
+| TypeScript | `@voxgig-sdk/oldest-people-records-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/tags) |
+| Python | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/tags) |
+| PHP | `voxgig-sdk/oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/oldest-people-records-sdk/go` | `go get github.com/voxgig-sdk/oldest-people-records-sdk/go@latest` |
-| Ruby | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
-| Lua | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/releases) |
+| Ruby | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/tags) |
+| Lua | `voxgig-sdk-oldest-people-records` | publish pending — [install from git tag](https://github.com/voxgig-sdk/oldest-people-records-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/oldest-people-records-sdk/go-cli` | `go install github.com/voxgig-sdk/oldest-people-records-sdk/go-cli/cmd/oldest-people-records@latest` |
 | Go MCP server | `github.com/voxgig-sdk/oldest-people-records-sdk/go-mcp` | `go get github.com/voxgig-sdk/oldest-people-records-sdk/go-mcp@latest` |
 

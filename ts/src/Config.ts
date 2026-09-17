@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      oldest_ever: {
-      },
-
-      oldest_living: {
-      },
-
+        oldest_ever: {
+        },
+  
+        oldest_living: {
+        },
+  
     }
   }
 

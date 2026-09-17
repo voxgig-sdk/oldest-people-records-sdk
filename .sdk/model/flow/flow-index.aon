@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicOldestEverFlow.aon"
-@"BasicOldestLivingFlow.aon"
+@"./BasicOldestEverFlow.aon"
+@"./BasicOldestLivingFlow.aon"

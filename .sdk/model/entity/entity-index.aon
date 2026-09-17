@@ -1,4 +1,4 @@
 # Entity Models
 
-@"oldest_ever.aon"
-@"oldest_living.aon"
+@"./oldest_ever.aon"
+@"./oldest_living.aon"
